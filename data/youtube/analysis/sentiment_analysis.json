@@ -1,0 +1,262 @@
+{
+  "summary": {
+    "total_videos": 8,
+    "total_words": 14934,
+    "avg_sentiment_score": 0.57425,
+    "sentiment_distribution": {
+      "positive": 7,
+      "neutral": 1
+    },
+    "top_themes": {
+      "schedule/hours": 112,
+      "physical toll": 72,
+      "coworkers": 65,
+      "environment": 41,
+      "workload": 35,
+      "pay/benefits": 24,
+      "management": 4
+    }
+  },
+  "videos": [
+    {
+      "video_id": "lxBjYK8wHt4",
+      "title": "WORKING AT AMAZON WAREHOUSE + COME TO WORK WITH ME: FIRST DAY",
+      "word_count": 4448,
+      "sentiment_score": 0.709,
+      "sentiment": "positive",
+      "themes": {
+        "pay/benefits": 10,
+        "schedule/hours": 23,
+        "management": 2,
+        "physical toll": 14,
+        "workload": 5,
+        "environment": 8,
+        "coworkers": 14
+      },
+      "top_themes": [
+        [
+          "schedule/hours",
+          23
+        ],
+        [
+          "physical toll",
+          14
+        ],
+        [
+          "coworkers",
+          14
+        ]
+      ]
+    },
+    {
+      "video_id": "MQjVIJkvNPY",
+      "title": "ONE MONTH WORKING AT AMAZON WAREHOUSE: PROS & CONS",
+      "word_count": 1981,
+      "sentiment_score": 0.593,
+      "sentiment": "positive",
+      "themes": {
+        "pay/benefits": 7,
+        "schedule/hours": 21,
+        "management": 0,
+        "physical toll": 10,
+        "workload": 6,
+        "environment": 7,
+        "coworkers": 15
+      },
+      "top_themes": [
+        [
+          "schedule/hours",
+          21
+        ],
+        [
+          "coworkers",
+          15
+        ],
+        [
+          "physical toll",
+          10
+        ]
+      ]
+    },
+    {
+      "video_id": "BggxkRAW2_I",
+      "title": "Come To Work With Me | Amazon Overnight shift | Working at Amazon",
+      "word_count": 1415,
+      "sentiment_score": 0.435,
+      "sentiment": "positive",
+      "themes": {
+        "pay/benefits": 1,
+        "schedule/hours": 6,
+        "management": 0,
+        "physical toll": 6,
+        "workload": 6,
+        "environment": 5,
+        "coworkers": 8
+      },
+      "top_themes": [
+        [
+          "coworkers",
+          8
+        ],
+        [
+          "schedule/hours",
+          6
+        ],
+        [
+          "physical toll",
+          6
+        ]
+      ]
+    },
+    {
+      "video_id": "kXOb9lfWU9w",
+      "title": "AMAZON WAREHOUSE SHIFT 6pm-4:30am |SUNDAY-WEDNESDAY OVERNIGHT SHIFT Vlogmas",
+      "word_count": 1739,
+      "sentiment_score": 0.608,
+      "sentiment": "positive",
+      "themes": {
+        "pay/benefits": 1,
+        "schedule/hours": 8,
+        "management": 0,
+        "physical toll": 9,
+        "workload": 0,
+        "environment": 1,
+        "coworkers": 2
+      },
+      "top_themes": [
+        [
+          "physical toll",
+          9
+        ],
+        [
+          "schedule/hours",
+          8
+        ],
+        [
+          "coworkers",
+          2
+        ]
+      ]
+    },
+    {
+      "video_id": "jzg4snTtk3E",
+      "title": "DAY IN THE LIFE Working at an AMAZON Warehouse (INSIDE FOOTAGE)",
+      "word_count": 804,
+      "sentiment_score": 0.565,
+      "sentiment": "positive",
+      "themes": {
+        "pay/benefits": 0,
+        "schedule/hours": 5,
+        "management": 0,
+        "physical toll": 5,
+        "workload": 8,
+        "environment": 3,
+        "coworkers": 3
+      },
+      "top_themes": [
+        [
+          "workload",
+          8
+        ],
+        [
+          "schedule/hours",
+          5
+        ],
+        [
+          "physical toll",
+          5
+        ]
+      ]
+    },
+    {
+      "video_id": "GDu6cmst__A",
+      "title": "Come To WORK With Me | Amazon MORNING SHIFT",
+      "word_count": 1582,
+      "sentiment_score": 0.765,
+      "sentiment": "positive",
+      "themes": {
+        "pay/benefits": 1,
+        "schedule/hours": 19,
+        "management": 1,
+        "physical toll": 3,
+        "workload": 7,
+        "environment": 6,
+        "coworkers": 4
+      },
+      "top_themes": [
+        [
+          "schedule/hours",
+          19
+        ],
+        [
+          "workload",
+          7
+        ],
+        [
+          "environment",
+          6
+        ]
+      ]
+    },
+    {
+      "video_id": "tgWkQC3_b30",
+      "title": "DAY IN THE LIFE Working at an AMAZON Warehouse (Inside Footage)",
+      "word_count": 925,
+      "sentiment_score": 0.122,
+      "sentiment": "neutral",
+      "themes": {
+        "pay/benefits": 0,
+        "schedule/hours": 17,
+        "management": 0,
+        "physical toll": 16,
+        "workload": 1,
+        "environment": 6,
+        "coworkers": 3
+      },
+      "top_themes": [
+        [
+          "schedule/hours",
+          17
+        ],
+        [
+          "physical toll",
+          16
+        ],
+        [
+          "environment",
+          6
+        ]
+      ]
+    },
+    {
+      "video_id": "40EDWNpK2XM",
+      "title": "WORKING AT AMAZON..I SHOULD QUIT RIGHT? + LIVE FOOTAGE",
+      "word_count": 2040,
+      "sentiment_score": 0.797,
+      "sentiment": "positive",
+      "themes": {
+        "pay/benefits": 4,
+        "schedule/hours": 13,
+        "management": 1,
+        "physical toll": 9,
+        "workload": 2,
+        "environment": 5,
+        "coworkers": 16
+      },
+      "top_themes": [
+        [
+          "coworkers",
+          16
+        ],
+        [
+          "schedule/hours",
+          13
+        ],
+        [
+          "physical toll",
+          9
+        ]
+      ]
+    }
+  ]
+}

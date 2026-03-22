@@ -1,0 +1,13 @@
+DATA MERGE REPORT
+==================================================
+
+Merge date: 2026-02-15 19:49:44
+
+SOURCES:
+  - glassdoor: 100
+  - reddit: 57
+  - youtube: 18
+
+TOTAL REVIEWS: 175
+DATE RANGE: 2020-08-01 to 2026-02-15
+AVERAGE RATING: 3.36

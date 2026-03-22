@@ -1,0 +1,4405 @@
+[
+  {
+    "prompt_version": "v1.0",
+    "prompt_name": "Zero-shot Basic",
+    "k_shot": 0,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.24,
+      "sentiment_rmse": 0.4898979485566356,
+      "sentiment_exact_accuracy": 0.76,
+      "sentiment_direction_accuracy": 0.92,
+      "theme_precision": 0.07333333333333333,
+      "theme_recall": 0.0738255033557047,
+      "theme_f1": 0.07357859531772575,
+      "theme_exact_match": 0.0,
+      "risk_accuracy": 0.84,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 13971,
+      "total_tokens_out": 1885,
+      "total_cost": 0.00322665,
+      "cost_per_sample": 6.4533e-05,
+      "cost_per_1k_samples": 0.06453300000000001
+    },
+    "predictions": [
+      {
+        "sentiment": 2,
+        "themes": [
+          "cleaning_and_maintenance",
+          "safety_concerns",
+          "compensation_and_benefits"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workplace_dynamics",
+          "employee_rights",
+          "intelligence_and_assertiveness"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "workplace_harassment",
+          "job_insecurity",
+          "poor_management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workplace_hierarchy",
+          "respect_among_colleagues",
+          "team_dynamics"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_environment",
+          "media_portrayal",
+          "employee_treatment"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "wages",
+          "cost_of_living",
+          "job_satisfaction"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_as_a_stepping_stone",
+          "pay_range",
+          "physical_demands"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_stability",
+          "work_life_balance",
+          "career_advancement_concerns"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "job_dissatisfaction",
+          "job_search_frustration",
+          "temporary_employment"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_understanding",
+          "pros_and_cons",
+          "work_environment"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_simplicity",
+          "long_hours",
+          "physical_demands"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "physical_demands",
+          "job_satisfaction",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "positive_management",
+          "supportive_coworkers",
+          "comparison_to_previous_negative_experience"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety_concerns",
+          "work_intensity",
+          "job_monotony"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "management_oversight",
+          "job_ease"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "health_issues",
+          "work_environment",
+          "job_satisfaction"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety_concerns",
+          "training_experience",
+          "trust_issues"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_environment",
+          "job_satisfaction",
+          "career_development"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workplace_conflict",
+          "hr_response",
+          "job_security_concerns"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "new_hire_experience",
+          "financial_motivation",
+          "team_dynamics"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "new_hire_experience",
+          "information_sharing",
+          "amazon_culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "job_responsibilities",
+          "personal_experience"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "monotony_of_tasks",
+          "breaks_and_refreshment",
+          "cleaning_and_organization"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_environment",
+          "job_satisfaction",
+          "routine"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "routine",
+          "employee_engagement"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "work_environment",
+          "company_policies",
+          "employee_dissatisfaction"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "toxic_work_environment",
+          "lack_of_support_for_dissent",
+          "pressure_to_conform"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "positives_of_the_workplace",
+          "minimum_effort",
+          "negative_experiences"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "job_satisfaction",
+          "benefits",
+          "coworker_relationships"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "hr_support",
+          "communication_issues",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "lack_of_professionalism",
+          "inadequate_training",
+          "poor_support"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_environment",
+          "compensation_and_benefits",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "benefits",
+          "job_demands"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_life_balance",
+          "organizational_issues",
+          "job_dissatisfaction"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "initial_challenges",
+          "adaptation",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_transfer",
+          "work_life_balance",
+          "employee_engagement"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "work_hours_limitation",
+          "new_site_challenges",
+          "employee_dissatisfaction"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "competitive_pay_and_benefits",
+          "career_growth_opportunities",
+          "high_pressure_and_intense_workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_availability",
+          "employee_treatment",
+          "company_size"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "compensation",
+          "management",
+          "job_satisfaction"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "benefits_package",
+          "time_off_policies",
+          "hr_effectiveness"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "support_role",
+          "peak_season_experience"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workplace_atmosphere",
+          "job_expectations",
+          "shift_preference"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "misconceptions_about_workplace",
+          "employee_satisfaction",
+          "career_growth_opportunities"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management_support",
+          "employee_treatment",
+          "work_environment"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "salary",
+          "colleagues",
+          "work_environment"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "benefits",
+          "coworkers",
+          "physical_demands"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "compensation",
+          "job_satisfaction",
+          "employee_treatment"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "employment_stability",
+          "management_challenges",
+          "employee_well_being"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "compensation",
+          "benefits",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      }
+    ]
+  },
+  {
+    "prompt_version": "v2.0",
+    "prompt_name": "Role Context Enhanced",
+    "k_shot": 0,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.44,
+      "sentiment_rmse": 0.6633249580710799,
+      "sentiment_exact_accuracy": 0.56,
+      "sentiment_direction_accuracy": 0.82,
+      "theme_precision": 0.9060402684563759,
+      "theme_recall": 0.9060402684563759,
+      "theme_f1": 0.9060402684563759,
+      "theme_exact_match": 0.72,
+      "risk_accuracy": 0.84,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 21971,
+      "total_tokens_out": 1811,
+      "total_cost": 0.00438225,
+      "cost_per_sample": 8.764499999999999e-05,
+      "cost_per_1k_samples": 0.08764499999999999
+    },
+    "predictions": [
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "pay_benefits",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "safety",
+          "culture"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "career_growth"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "career_growth",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "training"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "culture",
+          "training"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "management",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "management",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "training",
+          "management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "training",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "management",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "pay_benefits"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_life_balance",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "training",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "career_growth",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "culture",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "other",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "career_growth",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "safety",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      }
+    ]
+  },
+  {
+    "prompt_version": "v3.0",
+    "prompt_name": "3-Shot Learning",
+    "k_shot": 0,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.48,
+      "sentiment_rmse": 0.6928203230275509,
+      "sentiment_exact_accuracy": 0.52,
+      "sentiment_direction_accuracy": 0.82,
+      "theme_precision": 0.9060402684563759,
+      "theme_recall": 0.9060402684563759,
+      "theme_f1": 0.9060402684563759,
+      "theme_exact_match": 0.74,
+      "risk_accuracy": 0.88,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 21971,
+      "total_tokens_out": 1808,
+      "total_cost": 0.004380449999999999,
+      "cost_per_sample": 8.760899999999998e-05,
+      "cost_per_1k_samples": 0.08760899999999998
+    },
+    "predictions": [
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "pay_benefits",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "workload",
+          "safety",
+          "culture"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "career_growth"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "career_growth",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "training",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "culture",
+          "training"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "management"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "training",
+          "management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "training",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "pay_benefits"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_life_balance",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "training",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "career_growth",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "career_growth",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "safety",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      }
+    ]
+  },
+  {
+    "prompt_version": "v3.0",
+    "prompt_name": "3-Shot Learning",
+    "k_shot": 1,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.48,
+      "sentiment_rmse": 0.6928203230275509,
+      "sentiment_exact_accuracy": 0.52,
+      "sentiment_direction_accuracy": 0.8,
+      "theme_precision": 0.8263888888888888,
+      "theme_recall": 0.7986577181208053,
+      "theme_f1": 0.8122866894197951,
+      "theme_exact_match": 0.52,
+      "risk_accuracy": 0.68,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 25971,
+      "total_tokens_out": 1776,
+      "total_cost": 0.0049612499999999995,
+      "cost_per_sample": 9.922499999999999e-05,
+      "cost_per_1k_samples": 0.09922499999999998
+    },
+    "predictions": [
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "pay_benefits",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "workload",
+          "culture",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "career_growth"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "career_growth",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "training",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "management"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "management",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "training",
+          "management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "training"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "other",
+          "training",
+          "workload"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "overtime",
+          "management",
+          "work_life_balance"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "training",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "career_growth",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "career_growth",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "career_growth",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "safety"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "low"
+      }
+    ]
+  },
+  {
+    "prompt_version": "v3.0",
+    "prompt_name": "3-Shot Learning",
+    "k_shot": 2,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.48,
+      "sentiment_rmse": 0.6928203230275509,
+      "sentiment_exact_accuracy": 0.52,
+      "sentiment_direction_accuracy": 0.8,
+      "theme_precision": 0.8321678321678322,
+      "theme_recall": 0.7986577181208053,
+      "theme_f1": 0.815068493150685,
+      "theme_exact_match": 0.54,
+      "risk_accuracy": 0.74,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 28821,
+      "total_tokens_out": 1769,
+      "total_cost": 0.00538455,
+      "cost_per_sample": 0.000107691,
+      "cost_per_1k_samples": 0.107691
+    },
+    "predictions": [
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "workload",
+          "pay_benefits"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "workload",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "career_growth"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "career_growth",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "training",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "management"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "management",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "training",
+          "management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "training"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "other",
+          "training",
+          "workload"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "culture",
+          "workload",
+          "management"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "training",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "career_growth",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "career_growth",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "workload",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "safety",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "low"
+      }
+    ]
+  },
+  {
+    "prompt_version": "v3.0",
+    "prompt_name": "3-Shot Learning",
+    "k_shot": 3,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.5,
+      "sentiment_rmse": 0.7071067811865476,
+      "sentiment_exact_accuracy": 0.5,
+      "sentiment_direction_accuracy": 0.8,
+      "theme_precision": 0.8231292517006803,
+      "theme_recall": 0.8120805369127517,
+      "theme_f1": 0.8175675675675675,
+      "theme_exact_match": 0.5,
+      "risk_accuracy": 0.76,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 32121,
+      "total_tokens_out": 1778,
+      "total_cost": 0.005884949999999999,
+      "cost_per_sample": 0.00011769899999999999,
+      "cost_per_1k_samples": 0.11769899999999998
+    },
+    "predictions": [
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "workload",
+          "pay_benefits"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "workload",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "career_growth"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "career_growth",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "training",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "management"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "management",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "training",
+          "management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "other",
+          "training",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "management"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "career_growth",
+          "training"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "career_growth",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "other",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "culture",
+          "career_growth",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "safety"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "low"
+      }
+    ]
+  },
+  {
+    "prompt_version": "v3.0",
+    "prompt_name": "3-Shot Learning",
+    "k_shot": 5,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.46,
+      "sentiment_rmse": 0.7071067811865476,
+      "sentiment_exact_accuracy": 0.56,
+      "sentiment_direction_accuracy": 0.8,
+      "theme_precision": 0.8055555555555556,
+      "theme_recall": 0.7785234899328859,
+      "theme_f1": 0.7918088737201365,
+      "theme_exact_match": 0.46,
+      "risk_accuracy": 0.72,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 38321,
+      "total_tokens_out": 1765,
+      "total_cost": 0.00680715,
+      "cost_per_sample": 0.000136143,
+      "cost_per_1k_samples": 0.13614300000000001
+    },
+    "predictions": [
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "workload",
+          "pay_benefits"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "workload",
+          "safety",
+          "culture"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "career_growth",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "training",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "other",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "management",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "management",
+          "training"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "other",
+          "workload",
+          "training"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "other",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "other",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "management"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "management",
+          "work_life_balance"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "training",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_life_balance",
+          "career_growth",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "culture",
+          "career_growth",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "safety"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "low"
+      }
+    ]
+  },
+  {
+    "prompt_version": "v4.0",
+    "prompt_name": "Chain of Thought",
+    "k_shot": 0,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 50,
+    "n_valid": 0,
+    "metrics": {
+      "error": "No valid predictions"
+    },
+    "predictions": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "prompt_version": "v5.0",
+    "prompt_name": "Structured Output",
+    "k_shot": 0,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.1,
+      "sentiment_rmse": 0.31622776601683794,
+      "sentiment_exact_accuracy": 0.9,
+      "sentiment_direction_accuracy": 0.96,
+      "theme_precision": 0.9463087248322147,
+      "theme_recall": 0.9463087248322147,
+      "theme_f1": 0.9463087248322147,
+      "theme_exact_match": 0.84,
+      "risk_accuracy": 0.9,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 18721,
+      "total_tokens_out": 1819,
+      "total_cost": 0.00389955,
+      "cost_per_sample": 7.799099999999999e-05,
+      "cost_per_1k_samples": 0.07799099999999999
+    },
+    "predictions": [
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "pay_benefits",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "culture",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "career_growth"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "career_growth",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "management",
+          "culture"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "management"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "overtime",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "management",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "safety",
+          "workload",
+          "management"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "safety",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "training",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "training"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "training",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_life_balance",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "training",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "career_growth",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "high"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "management",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "career_growth",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "safety",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium"
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium"
+      }
+    ]
+  },
+  {
+    "prompt_version": "v6.0",
+    "prompt_name": "Detailed Analysis",
+    "k_shot": 0,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.36,
+      "sentiment_rmse": 0.6,
+      "sentiment_exact_accuracy": 0.64,
+      "sentiment_direction_accuracy": 0.8,
+      "theme_precision": 0.8157894736842105,
+      "theme_recall": 0.8322147651006712,
+      "theme_f1": 0.8239202657807309,
+      "theme_exact_match": 0.32,
+      "risk_accuracy": 0.76,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 28221,
+      "total_tokens_out": 3425,
+      "total_cost": 0.006288149999999998,
+      "cost_per_sample": 0.00012576299999999998,
+      "cost_per_1k_samples": 0.12576299999999999
+    },
+    "predictions": [
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "pay_benefits"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses significant dissatisfaction with cleaning standards and safety measures, indicating a high likelihood of turnover."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The review indicates a significant dissatisfaction with management attitudes towards knowledgeable employees, suggesting a toxic culture that may drive talent away."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "safety",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses severe dissatisfaction with management practices, safety concerns, and overall work environment, leading to a high likelihood of quitting."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses dissatisfaction with certain management attitudes, indicating a risk of turnover due to perceived disrespect and lack of support."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "overtime",
+          "workload",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses significant dissatisfaction with the extreme operational pressures and negative media portrayal, indicating a high likelihood of leaving."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses significant dissatisfaction with wages relative to the high cost of living in California, indicating a strong likelihood of considering leaving the company."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "career_growth"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The employee views their experience at Amazon as a stepping stone rather than a long-term career, indicating moderate dissatisfaction with the overall work environment."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "career_growth",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The employee expresses a preference for stability over advancement, indicating a cautious approach to career growth amidst concerns about job security."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "other"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses dissatisfaction with their job choice, indicating a lack of enthusiasm and a potential risk of leaving."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "overtime",
+          "pay_benefits",
+          "management",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The employee has a balanced view of their experience, highlighting both positive aspects and significant concerns that could impact their long-term satisfaction."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "overtime"
+        ],
+        "retention_risk": "low",
+        "key_insight": "The employee is generally satisfied with the job despite the long hours and physical demands."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The employee experienced significant initial challenges but has adapted and found satisfaction in the job, though they remain open to leaving for better opportunities."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "management",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "key_insight": "The employee expresses strong satisfaction with their current management and coworkers, highlighting a positive workplace culture."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "overtime",
+          "safety",
+          "workload",
+          "management"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The focus on meeting rates over safety and the physically demanding nature of the roles contribute to a negative employee experience and high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The employee experiences a mix of enjoyment and frustration, indicating a need for improved management practices and support to enhance overall job satisfaction."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses significant dissatisfaction due to ongoing physical ailments, indicating a high likelihood of leaving."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "training",
+          "management"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses significant dissatisfaction with safety practices, indicating a breach of trust in management's commitment to employee welfare."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance",
+          "career_growth"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The employee appreciates the relaxed night shift environment and decent pay, but acknowledges challenges with attendance and occasional boredom."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture",
+          "workload"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee feels unsupported and threatened in a toxic work environment, leading to a high likelihood of seeking employment elsewhere."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The new hire expresses a neutral sentiment, primarily motivated by financial needs, indicating potential vulnerability to turnover if expectations are not met."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "management",
+          "training",
+          "other"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The employee provides a balanced view of their experience, highlighting both informative aspects of the decant role and some challenges faced as a new hire."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The employee expresses a mix of enthusiasm and frustration, indicating a neutral sentiment towards their job at Amazon with potential concerns about workload and overall work culture."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "key_insight": "The employee expresses a generally positive experience at work, highlighting satisfaction with breaks and the end of the shift, suggesting a good work-life balance."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses significant relief and exhaustion at the end of their shift, indicating a high likelihood of dissatisfaction with their workload and overall work experience."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The employee expresses a routine that suggests a struggle with work-life balance, indicating potential dissatisfaction."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "workload",
+          "overtime"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The review highlights significant dissatisfaction with management policies and workload expectations, indicating a high risk of employee turnover."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "culture"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses strong dissatisfaction with the toxic culture and management practices at Amazon, indicating a high likelihood of leaving."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "While the employee acknowledges some positives, their frustration with underlying issues suggests a moderate risk of turnover."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low",
+        "key_insight": "The employee expresses high satisfaction with their job, highlighting positive aspects such as pay, benefits, and workplace culture."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The employee expresses frustration with HR's effectiveness and reliance on kiosks, indicating potential dissatisfaction that could impact retention."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "management",
+          "safety",
+          "culture"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee experienced severe dissatisfaction due to inadequate training and unprofessional behavior from management, leading to an immediate decision to quit."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "key_insight": "The employee expresses overall satisfaction with their role at Amazon, highlighting manageable work demands, decent pay, and supportive colleagues."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses significant dissatisfaction with the physical demands, lack of organization, and work-life balance, indicating a high likelihood of turnover."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_life_balance",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses significant dissatisfaction with work-life balance and management organization, indicating a strong likelihood of leaving if conditions do not improve."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "career_growth",
+          "work_life_balance"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses significant dissatisfaction with the initial experience and uncertainty about long-term commitment, indicating a high risk of turnover."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "career_growth",
+          "work_life_balance"
+        ],
+        "retention_risk": "low",
+        "key_insight": "The employee expresses a positive outlook regarding potential career advancement and flexibility in scheduling, indicating satisfaction with their current role."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "workload"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses significant dissatisfaction with limited hours and overall experience, indicating a high risk of turnover."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "career_growth",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "While competitive pay and career growth opportunities are appealing, the high-pressure environment and work-life balance challenges may lead to employee dissatisfaction."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "high",
+        "key_insight": "While the ease of getting hired is a positive aspect, the lack of personal treatment in a large company contributes to significant dissatisfaction."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "While the pay is a strong positive aspect, the boredom and micromanagement may lead to increased dissatisfaction and potential turnover."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "management",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "While the employee appreciates the benefits and work-life balance, there are concerns about management and workplace culture that could impact retention."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "overtime",
+          "workload",
+          "management"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "The experience at the Amazon FC was balanced with both challenges related to workload and management, indicating a moderate level of dissatisfaction."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "other"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "While the employee appreciates the positive culture and flexibility compared to previous jobs, the monotonous nature of the work and lower expectations for mental stimulation contribute to a neutral sentiment and moderate retention risk."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "career_growth",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "key_insight": "The employee initially held negative perceptions about the workplace but found it to be a positive experience, leading to a desire for long-term career growth."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "safety",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "high",
+        "key_insight": "The employee expresses significant dissatisfaction with management support and workplace treatment, indicating a high risk of turnover."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "safety",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "While employees appreciate the good pay and supportive colleagues, concerns about heat and noise levels indicate areas for improvement that could affect retention."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "While the employee appreciates the benefits and camaraderie, the physically demanding nature of the work presents a notable concern."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "While the pay is perceived positively, feelings of being treated as just a number may lead to potential dissatisfaction and turnover."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "While the employee appreciates the stability and benefits of the job, concerns about physical demands and management challenges indicate a moderate risk of turnover."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "key_insight": "While the employee appreciates the pay and benefits, the physical demands of the job may lead to potential dissatisfaction."
+      }
+    ]
+  }
+]

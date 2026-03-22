@@ -1,0 +1,2612 @@
+[
+  {
+    "prompt_version": "v4.0",
+    "prompt_name": "Chain of Thought",
+    "k_shot": 0,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.1,
+      "sentiment_rmse": 0.31622776601683794,
+      "sentiment_exact_accuracy": 0.9,
+      "sentiment_direction_accuracy": 1.0,
+      "theme_precision": 0.07534246575342465,
+      "theme_recall": 0.0738255033557047,
+      "theme_f1": 0.07457627118644068,
+      "theme_exact_match": 0.0,
+      "risk_accuracy": 0.8,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 18821,
+      "total_tokens_out": 5003,
+      "total_cost": 0.005824949999999999,
+      "cost_per_sample": 0.00011649899999999998,
+      "cost_per_1k_samples": 0.11649899999999998
+    },
+    "predictions": [
+      {
+        "sentiment": 2,
+        "themes": [
+          "cleaning",
+          "safety",
+          "hazard_pay",
+          "vacation_time"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses significant concerns about cleaning and safety practices, which are critical for employee well-being. The mention of hazard pay and vacation time during a pandemic indicates deeper dissatisfaction with management policies. While these issues are serious, they may not be deal-breakers for all employees, hence a medium retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management_relations",
+          "employee_rights"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a conflict between certain management styles and intelligent employees who are aware of their rights. This suggests a potential for dissatisfaction among employees who feel undervalued or unsupported, which could lead to higher turnover if not addressed."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "labor_sharing",
+          "harassment",
+          "reduced_hours",
+          "job_security_concerns"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses severe dissatisfaction with multiple critical issues, including harassment, reduced hours, and a lack of job security. The reviewer felt compelled to quit due to these negative experiences, indicating a high risk of retention issues for current and future employees."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management_attitude",
+          "workplace_culture"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a negative experience with certain management personnel, which could affect morale and retention. However, the reviewer notes that these individuals are not the majority, suggesting that the overall environment may still be supportive. This mixed sentiment leads to a medium retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "media_portrayal",
+          "work_environment",
+          "employee_experience"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights a stark contrast between media perceptions and the actual experience at Amazon. While it does mention extreme scenarios that could deter potential employees, it does not reflect the reviewer's direct experience at the fulfillment center. The overall tone suggests a level of concern about the work environment, indicating a medium retention risk due to potential negative perceptions influencing employee morale."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "wages",
+          "cost_of_living",
+          "job_satisfaction"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses significant concern about the inadequacy of wages in relation to the high cost of living in California. The employee feels that despite working hard and being grateful for the job, their compensation does not meet basic living expenses, which can lead to dissatisfaction and potential turnover."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_as_a_stepping_stone",
+          "pay_range",
+          "physical_demands"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a neutral to slightly positive sentiment, indicating that while the job is viewed as a temporary solution rather than a long-term career, the pay is acceptable and the work is manageable. However, the mention of physical discomfort suggests that some employees may not stay long-term due to the physical demands of the role."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_stability",
+          "work_life_balance",
+          "career_advancement"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a generally positive experience with the job, highlighting ease and stability in the current role. However, there is a concern about career advancement and the fear of negative consequences when trying to move up, which suggests a medium retention risk due to potential dissatisfaction with growth opportunities."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "job_dissatisfaction",
+          "job_search_frustration"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a lack of enthusiasm for the job and indicates that the employee took the position out of necessity rather than desire. This suggests potential disengagement, which can lead to higher turnover risk, especially if they are not satisfied with their current role."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_understanding",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a neutral sentiment with both pros and cons, suggesting the employee is still assessing their experience. A medium retention risk is noted as the employee has only been there for two weeks and may still be forming their overall opinion."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "job_simplicity",
+          "long_hours",
+          "physical_demands"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review indicates a generally positive experience with the job being perceived as simple, despite the long hours and physical demands. The tone suggests that the employee is adapting well and does not express significant dissatisfaction, which lowers the retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "physical_demands",
+          "job_satisfaction",
+          "adjustment_period"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mixed sentiment. The employee experienced significant physical challenges initially, leading to contemplation of quitting, which indicates a medium retention risk. However, they have adjusted over time and now enjoy the job's simplicity and benefits, suggesting some level of job satisfaction. The mention of leaving for a better opportunity also highlights a potential risk for retention."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "positive_management",
+          "supportive_coworkers",
+          "personal_experience"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a strong positive sentiment towards the building, management, and coworkers, indicating a favorable work environment. The reviewer contrasts their current positive experience with a previous negative one, suggesting that they value their current situation highly and are likely to remain with the company."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "safety_concerns",
+          "rate_pressure",
+          "job_variety"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a mixed sentiment, highlighting both positive aspects (job variety and specific roles) and significant concerns (safety and rate pressure). While the reviewer acknowledges some positive experiences, the emphasis on safety being compromised for rate achievement indicates a notable issue that could affect retention. The mention of repetitive tasks and the physical demands of the job also contribute to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "management_oversight",
+          "physical_strain"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses a mixed sentiment, indicating both positive and negative experiences. While the reviewer finds the work easy, they also mention physical strain and stress from management oversight, which could impact overall job satisfaction. This suggests a moderate retention risk due to the balance of positive and negative aspects."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "health_concerns",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates ongoing health issues, specifically back pain, which could affect the employee's overall job satisfaction and performance. While the employee mentions that their ailments may not be directly related to Amazon, the persistence of pain could lead to increased absenteeism or a desire to leave the job. However, the tone is not overwhelmingly negative, suggesting that while there are concerns, they may not be deal-breakers at this time."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety_concerns",
+          "training_experience"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review indicates a strong disillusionment with the company's commitment to safety, which is a critical aspect for employees in warehouse operations. The phrase 'they lied through their teeth' suggests a deep-seated frustration that could lead to higher turnover if not addressed."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_environment",
+          "job_satisfaction",
+          "career_development"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review presents a generally positive sentiment towards the job, highlighting a relaxed work environment and decent pay. While the reviewer mentions some boredom and past attendance issues, these do not seem to be deal-breakers. The suggestion to utilize the career choice program indicates an awareness of growth opportunities, further reducing retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workplace_conflict",
+          "hr_communication",
+          "job_security"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review reflects significant distress regarding workplace conflict and a lack of support from HR, leading to feelings of insecurity about job stability. The employee's experience with a hostile coworker and the subsequent suspension indicates a toxic environment, which could drive them to seek employment elsewhere."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "new_hire_experience",
+          "financial_necessity"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a neutral sentiment, as the employee shares a common motivation for working at the fulfillment center\u2014financial need. While there are no explicit complaints, the focus on income suggests that job satisfaction may hinge on meeting financial expectations, indicating a medium retention risk if those needs are not met."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "decant_operations",
+          "new_hire_experience"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review provides a positive overview of the decant process and the author's experience as a new hire, suggesting satisfaction with the role and a willingness to share information. There are no significant complaints or issues raised that would indicate a risk of turnover."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "personal_experience",
+          "job_satisfaction"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mix of positive and negative sentiments. The employee expresses enjoyment in aspects like the ability to clock in via phone and shares personal experiences, which indicates some level of job satisfaction. However, phrases like 'going to be late' and 'going to be a slave' suggest stress and a feeling of being overwhelmed, which could contribute to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "monotony",
+          "breaks",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mix of positive and negative sentiments. The employee describes their tasks in detail, indicating familiarity with the job, but also highlights moments of boredom and monotony, particularly during low activity periods. The mention of enjoying breaks and the relief of finishing work suggests a desire for a more engaging work environment. While there are no severe complaints, the overall tone indicates a moderate risk of retention due to the repetitive nature of the work."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "routine",
+          "work_life_balance",
+          "job_satisfaction"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mix of satisfaction and exhaustion. The employee expresses relief and happiness when leaving work, indicating a routine that may be draining. While they appreciate the end of the workday, the tone suggests that the job can be taxing, which could lead to medium retention risk if not addressed."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "routine",
+          "community_support"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review reflects a neutral to slightly positive sentiment, indicating a routine acceptance of the work environment. While the reviewer expresses fatigue, they also show appreciation for the community and provide helpful advice for prospective employees, suggesting a level of engagement and acceptance of the job demands."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "flexibility_policy",
+          "communication"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses strong dissatisfaction with the flex up or flex down policy, indicating a lack of transparency. While it highlights a significant issue, it does not mention severe deal-breakers or widespread dissatisfaction, suggesting a moderate retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "toxic_work_environment",
+          "lack_of_support",
+          "fear_of_speaking_up"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses strong negative feelings about the work culture at Amazon, highlighting toxicity and a lack of support for employees who voice concerns. This indicates a high retention risk, as employees may feel pressured to conform and fear repercussions for speaking out."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "positives",
+          "negatives"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a mixed sentiment with acknowledgment of positives but also significant dissatisfaction, suggesting that while there are redeeming qualities, the underlying issues may lead to potential retention challenges."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "job_satisfaction",
+          "benefits",
+          "coworker_relationships",
+          "work_life_balance"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses strong positive sentiment, highlighting job satisfaction, great benefits, and positive relationships with coworkers. The employee's happiness and enjoyment of the work indicate a low risk of turnover."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "hr_support",
+          "shift_management",
+          "communication"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mixed sentiment. While the employee has had a generally positive experience over five years, the frustration with HR's lack of direct assistance and reliance on kiosks indicates a disconnect in support. The need for effective communication and problem resolution is highlighted, which could impact retention if not addressed."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training_quality",
+          "professionalism",
+          "employee_support"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review reflects a highly negative experience, particularly regarding the lack of professional training and support from staff. The reviewer felt abandoned during training and expressed concerns about safety and professionalism, leading to their decision to quit. This indicates a significant retention risk as the issues raised are severe and deal-breakers for the employee."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "easy_work",
+          "decent_pay",
+          "good_benefits",
+          "flexible_schedule",
+          "supportive_coworkers"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review presents a largely positive experience working at Amazon, highlighting easy tasks, decent pay, good benefits, and a supportive work environment. The employee appreciates the flexible schedule and paid breaks, which contribute to job satisfaction. There are no significant complaints or deal-breakers mentioned, indicating a low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "paid_time_off",
+          "work_environment",
+          "job_demands",
+          "employee_support",
+          "turnover_rates"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a balanced view with both positive and negative aspects. While the employee appreciates the supportive environment, benefits like tuition assistance, and flexibility, they also express concerns about the physical demands, high turnover rates, and organizational issues. The mixed sentiment indicates a moderate risk of retention, particularly due to the exhausting nature of the job and lack of work-life balance."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_life_balance",
+          "organizational_issues",
+          "overstaffing",
+          "job_satisfaction"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review reflects significant dissatisfaction with work-life balance due to exhaustion and limited personal time. The employee also highlights severe organizational issues, particularly during peak season, leading to overstaffing and unnecessary tasks. The mention of considering leaving the company and seeking part-time work indicates a high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "initial_adjustment",
+          "potential_transfer",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mixed sentiment, with initial dissatisfaction during the first two weeks but a gradual improvement in experience. The desire for a part-time position and flexibility to accommodate school suggests potential retention risk, as the employee is uncertain about staying long-term. However, the willingness to adapt and hope for a better situation indicates a moderate level of engagement."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "career_advancement",
+          "work_life_balance",
+          "employee_engagement"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a positive outlook regarding potential career advancement (transfer to blue badge) and the hope for a flexible work schedule. The overall tone is optimistic, indicating satisfaction with the current situation and a willingness to engage with the community, which suggests a low risk of turnover."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_hours",
+          "job_availability"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates dissatisfaction with limited work hours, which can lead to frustration among employees seeking full-time opportunities. While the tone is negative, it does not express severe grievances that would indicate an immediate deal-breaker, but the capped hours could contribute to higher turnover."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "compensation",
+          "career_development",
+          "work_environment",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a balanced view with both positive aspects, such as competitive pay and career growth opportunities, and significant concerns regarding high pressure and work-life balance. While the positives may attract employees, the intensity of the work environment and potential burnout could lead to retention challenges, hence a medium risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_accessibility",
+          "employee_treatment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights a positive aspect of job accessibility due to constant hiring, which is a strong point for retention. However, the negative comment about poor treatment due to the company's size indicates a potential concern that could affect employee morale and retention, leading to a medium risk overall."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "compensation",
+          "management",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights good pay, which is a strong positive aspect contributing to employee satisfaction. However, the mention of micro-management and the boredom associated with the work suggests potential dissatisfaction that could impact retention. Overall, the mixed sentiments indicate a moderate risk of turnover."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "benefits",
+          "work_culture",
+          "hr_effectiveness"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a generally positive sentiment with strong praise for the benefits and time off policies, indicating satisfaction with the overall work environment. The mention of typical workplace issues and HR effectiveness suggests minor annoyances but does not indicate serious concerns that would lead to high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "peak_season_experience"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review provides a neutral perspective on the experience at the FC, indicating a specific role during peak season without expressing strong positive or negative feelings. The mention of working in a support capacity suggests a lack of engagement with core fulfillment tasks, which could affect job satisfaction. Overall, the sentiment is average, indicating some potential for retention concerns, especially if the role was not fulfilling."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "job_expectations",
+          "shift_preference"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mix of positive and negative sentiments. While the employee appreciates the positive workplace vibe and prefers the night shift's relaxed atmosphere, they express disappointment regarding the lack of mental stimulation and the monotonous nature of the work. The mention of a flexible attendance policy is a positive aspect, but the overall dissatisfaction with job expectations and the nature of the work indicates a medium retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "misconceptions_about_workplace_culture",
+          "career_growth_opportunities"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review reflects a positive sentiment overall, countering common negative perceptions about the workplace. The employee initially had reservations but found the job fulfilling and is now considering a long-term career, indicating low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management_support",
+          "employee_treatment",
+          "work_environment",
+          "benefits_and_growth"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a mixed sentiment with positive aspects such as benefits and growth opportunities, but significant concerns regarding management support and treatment of employees, especially during hardships and injuries. These issues indicate a medium retention risk, as they could lead to dissatisfaction among employees if not addressed."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "salary",
+          "work_environment"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review highlights positive aspects such as good pay and supportive colleagues, which contribute to employee satisfaction. The cons mentioned, while valid, relate to environmental factors (heat and noise) that are common in warehouse settings but are not severe enough to indicate a high risk of turnover."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "benefits",
+          "work_environment",
+          "physical_demands"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights strong positive aspects such as great benefits and a supportive work environment, which are significant factors for employee satisfaction. However, the mention of physically demanding work indicates a potential challenge that could impact long-term retention, especially if employees feel overwhelmed by the physicality of the job."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay",
+          "monotony",
+          "employee_treatment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses a neutral sentiment with a mix of positive and negative aspects. While the pay is viewed positively, the mention of boredom and feeling treated like a number indicates potential dissatisfaction. This could lead to medium retention risk, as employees may seek more engaging work environments."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "employment_stability",
+          "competitive_pay",
+          "physical_demands",
+          "management_challenges",
+          "employee_well_being"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a generally positive sentiment with strong pros highlighting stability, pay, and diversity. However, it also notes significant cons related to physical demands, management challenges, and monotony, which could contribute to employee dissatisfaction and turnover. The advice suggests a need for improvements in employee well-being, indicating areas for potential enhancement in retention strategies."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "compensation",
+          "physical_demands"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights positive aspects such as good base pay, health benefits, and paid vacation, which are strong incentives for retention. However, the mention of heavy work and the need for physical strength indicates a potential challenge that could affect employee satisfaction, especially for those who may struggle with physical demands. Overall, the positive aspects outweigh the negatives, resulting in a medium retention risk."
+      }
+    ]
+  },
+  {
+    "prompt_version": "v4.0",
+    "prompt_name": "Chain of Thought",
+    "k_shot": 1,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.34,
+      "sentiment_rmse": 0.6164414002968976,
+      "sentiment_exact_accuracy": 0.68,
+      "sentiment_direction_accuracy": 0.92,
+      "theme_precision": 0.2463768115942029,
+      "theme_recall": 0.22818791946308725,
+      "theme_f1": 0.2369337979094077,
+      "theme_exact_match": 0.0,
+      "risk_accuracy": 0.78,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 24171,
+      "total_tokens_out": 4136,
+      "total_cost": 0.00610725,
+      "cost_per_sample": 0.000122145,
+      "cost_per_1k_samples": 0.12214499999999999
+    },
+    "predictions": [
+      {
+        "sentiment": 1,
+        "themes": [
+          "cleaning_safety",
+          "work_conditions",
+          "hazard_pay",
+          "vacation_policy"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses significant dissatisfaction with cleaning and safety standards, work conditions, and policies regarding hazard pay and vacation time. These are serious concerns that could lead to high retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "employee_rights",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a negative sentiment towards management's treatment of intelligent employees who assert their rights, suggesting potential issues with workplace culture and employee satisfaction, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "vto",
+          "work_environment",
+          "job_security"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses extreme dissatisfaction with the work environment, including issues with VTO, harassment, and job security. The severity of the complaints and the decision to quit indicate a high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management",
+          "workplace_culture"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses frustration with certain management figures but acknowledges that the issue is not widespread. This indicates a mixed sentiment with a medium retention risk due to potential negative experiences with management."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "work_conditions",
+          "quotas",
+          "media_perception"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review presents a highly negative portrayal of work conditions and extreme quotas, suggesting a severe dissatisfaction that indicates a high retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "cost_of_living",
+          "work_life_balance"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses gratitude for the job but highlights significant concerns about pay relative to the high cost of living in California. The mention of struggling to cover basic expenses indicates a serious dissatisfaction that could lead to high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_experience",
+          "pay_benefits",
+          "physical_demands"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a neutral sentiment with a mix of positive and negative aspects. While the pay is mentioned as decent and the work is described as easy, the reviewer indicates that the job is merely a stepping stone, which suggests a lack of long-term commitment. The physical demands of the job are acknowledged, but the adaptation over time mitigates some concerns."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_satisfaction",
+          "career_growth",
+          "vto"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mixed sentiment; the employee finds the job easy and appreciates VTO, but expresses concerns about career advancement and the risks associated with trying new roles, indicating a medium retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "job_satisfaction",
+          "employment_motivation"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a lack of enthusiasm for the job, indicating that the employee is not fully engaged or satisfied. The motivation for taking the job was primarily due to external circumstances rather than a positive attraction to the role, suggesting medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_experience",
+          "pros_cons"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a neutral sentiment with both pros and cons mentioned, suggesting a mixed experience. This could lead to medium retention risk as the employee is still in the early stages of their job and may be evaluating their long-term fit."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "job_simplicity",
+          "work_hours"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a positive sentiment towards the simplicity of the job and the willingness to work long hours, indicating a low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "physical_demands",
+          "work_life_balance",
+          "pay_benefits"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a journey from struggle to acceptance, highlighting the physical demands of the job and the initial challenges faced. While the employee has found a routine and appreciates the pay and benefits, the mention of contemplating quitting and the physical toll indicates a medium retention risk."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "management",
+          "coworkers",
+          "positive_experience"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses strong positive sentiment towards management and coworkers, indicating a favorable work environment. The comparison to a previous negative experience reinforces the positive outlook, suggesting low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "safety",
+          "workload",
+          "job_variety"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights concerns about safety and the focus on rates over employee well-being, indicating a mixed sentiment. While the author provides insights into job roles and acknowledges the physical demands, the overall tone suggests moderate dissatisfaction, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_conditions",
+          "management",
+          "mental_health"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses mixed feelings about the job, highlighting both the ease of the work and the taxing nature of the physical demands. Concerns about management practices and mental stability suggest a medium retention risk, as the employee enjoys aspects of the job but faces challenges that could lead to dissatisfaction."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "health_issues",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates ongoing health issues, which could lead to dissatisfaction, but the mention of ailments being likely unrelated to Amazon suggests that the employee may not attribute their problems to the workplace. This creates a medium retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "training"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The strong negative sentiment regarding safety, combined with the perception that training was misleading, indicates a significant issue that could lead to high retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_environment",
+          "pay_benefits",
+          "career_development"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a generally positive sentiment about the work environment, particularly the night shift, and mentions decent pay. While there are some issues like boredom and attendance problems, the overall tone is favorable, indicating low retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "workplace_conflict",
+          "hr_process",
+          "job_security"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review reflects a very negative experience with workplace conflict and a lack of support from HR, leading to significant job insecurity. The employee's consideration of leaving indicates a high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "new_hire_experience",
+          "income_needs"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a neutral sentiment regarding the new hire experience, with a focus on the need for extra income. While the individual expresses a common motivation for working, there are no strong complaints or praises, indicating a medium retention risk as they may seek better opportunities if income needs aren't met."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "new_hire_experience",
+          "information_sharing"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review provides a neutral perspective from a new hire sharing their experience, indicating a willingness to contribute to the community. There are no significant complaints or praises that suggest high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "job_experience",
+          "personal_expressions"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review provides a mix of personal experiences and observations about the job at Amazon. While there are no explicit complaints about the work environment, the mention of feeling like a 'slave' suggests some dissatisfaction. Overall, the tone is neutral with a hint of frustration, indicating a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_tasks",
+          "breaks",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review provides a detailed account of daily tasks and interactions at work, indicating a neutral to slightly positive sentiment. While the employee describes their routine and breaks positively, the overall tone suggests a lack of engagement or excitement about the work, which could lead to medium retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "work_environment",
+          "work_life_balance"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses a strong sense of relief and exhaustion upon leaving work, indicating a negative sentiment towards the work environment and a poor work-life balance, which suggests a high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "routine"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review reflects a neutral sentiment with a focus on routine and personal experience. There are no significant complaints or praises, indicating a stable but unremarkable experience, leading to a low retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "work_environment",
+          "policy_disclosure"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses strong dissatisfaction with the work environment and mentions a lack of transparency regarding policies, indicating severe negative sentiment and high retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "toxic_environment",
+          "communication",
+          "employee_relations"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses strong negative sentiment towards the work environment and communication issues, indicating a high retention risk due to the toxic culture described."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "positives",
+          "negatives"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "While the review starts positively, the mention of 'bare minimum' and 'bullshit' suggests underlying dissatisfaction, indicating a medium retention risk despite acknowledging some positives."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "job_satisfaction",
+          "pay_benefits",
+          "work_environment"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses strong positive sentiment about job satisfaction, benefits, and work environment, indicating a low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "hr_support",
+          "work_schedule",
+          "communication"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses frustration with HR support and communication, particularly regarding scheduling issues. While there are some positive aspects, such as the interaction with the ERC representative, the overall sentiment reflects dissatisfaction with the HR process, indicating a medium retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "professionalism",
+          "work_environment"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review reflects a deeply negative experience with inadequate training and unprofessional behavior, leading to a quick decision to quit. This indicates a high retention risk due to severe dissatisfaction."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_environment",
+          "pay_benefits",
+          "schedule",
+          "breaks"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review highlights several positive aspects of working at Amazon, including easy work, decent pay, great benefits, a favorable schedule, and a supportive work environment. The overall tone is optimistic, indicating a low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "work_environment",
+          "job_duties",
+          "turnover"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review highlights several positive aspects such as helpful coworkers and benefits like tuition reimbursement, but it also raises significant concerns about work-life balance, physical demands, high turnover rates, and organizational issues. The combination of exhaustion from repetitive tasks and a lack of adequate downtime suggests a high retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_life_balance",
+          "organization",
+          "overtime",
+          "job_satisfaction"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses significant dissatisfaction with work-life balance, organization, and job duties, indicating a negative sentiment. The mention of exhaustion, overstaffing issues, and the desire for a part-time position suggests a high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "initial_struggles",
+          "adaptation",
+          "part_time_interest"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mix of initial dissatisfaction and eventual adaptation, indicating a neutral sentiment. The desire for part-time work suggests a potential risk of leaving if needs are not met, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "career_growth",
+          "work_schedule"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses hope for career advancement and flexibility in scheduling, indicating a generally positive outlook. While there are no strong complaints, the desire for a blue badge suggests a focus on stability and growth, contributing to a low retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "work_hours",
+          "job_experience"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses a very negative experience, highlighting dissatisfaction with limited work hours, which is a significant issue for retention."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "career_growth",
+          "work_life_balance",
+          "work_pressure"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights positive aspects such as competitive pay and career growth opportunities, but also raises concerns about high pressure and work-life balance issues. This indicates a mixed sentiment with medium retention risk due to the significant stress factors mentioned."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "hiring_process",
+          "employee_treatment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights easy job access, which is a positive aspect, but the concern about poor treatment due to the company's size indicates a negative sentiment, resulting in medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "work_environment",
+          "management"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights good pay, which is a positive aspect, but also mentions boredom and micro-management as negatives. This mixed sentiment indicates a medium retention risk due to dissatisfaction with the work environment and management style."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "benefits",
+          "time_off",
+          "work_environment"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Overall positive sentiment with strong praise for benefits and time off policies, despite minor complaints about the work environment and HR effectiveness, indicating low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_experience",
+          "peak_season"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review is neutral, reflecting a past experience without strong positive or negative sentiments. The mention of working during peak season suggests some awareness of the challenges, but lacks specific complaints or praises, indicating a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "expectations",
+          "job_satisfaction"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mix of positive and negative sentiments. The positive vibe and relaxed atmosphere are appreciated, but there are concerns about job monotony and lowered expectations. This indicates a medium retention risk as the reviewer may feel disengaged despite some positive aspects."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_environment",
+          "career_growth"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a positive sentiment about the work environment and the potential for career growth, indicating low retention risk despite initial misconceptions."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "benefits",
+          "management_support",
+          "work_environment",
+          "fair_treatment"
+        ],
+        "retention_risk": "high",
+        "reasoning": "While the review highlights positive aspects such as benefits and opportunities for growth, the significant complaints regarding management support, unfair treatment, and high-pressure expectations indicate a negative sentiment with high retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_environment"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review highlights positive aspects such as good pay and supportive colleagues, which contribute to a favorable sentiment. While there are complaints about heat and noise, these are minor annoyances compared to the overall positive experience, indicating low retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "benefits",
+          "work_environment",
+          "physical_demand"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review highlights strong positive sentiments regarding benefits and coworkers, with only a minor concern about the physical demands of the job, indicating a low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights good pay but mentions boredom and feeling treated like a number, indicating mixed feelings about the work environment, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "employment_stability",
+          "pay_benefits",
+          "work_conditions",
+          "management"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "While the review highlights positive aspects such as employment stability, competitive pay, and benefits, it also raises concerns about physical demands, management challenges, and monotonous tasks. The mention of high turnover rates suggests a potential issue with retention, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review highlights positive aspects such as good pay and benefits, while the mention of heavy work indicates a manageable challenge rather than a deal-breaker, suggesting low retention risk."
+      }
+    ]
+  },
+  {
+    "prompt_version": "v4.0",
+    "prompt_name": "Chain of Thought",
+    "k_shot": 2,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.26,
+      "sentiment_rmse": 0.5099019513592785,
+      "sentiment_exact_accuracy": 0.74,
+      "sentiment_direction_accuracy": 0.9,
+      "theme_precision": 0.40559440559440557,
+      "theme_recall": 0.38926174496644295,
+      "theme_f1": 0.3972602739726028,
+      "theme_exact_match": 0.02,
+      "risk_accuracy": 0.74,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 28271,
+      "total_tokens_out": 4068,
+      "total_cost": 0.006681449999999999,
+      "cost_per_sample": 0.000133629,
+      "cost_per_1k_samples": 0.133629
+    },
+    "predictions": [
+      {
+        "sentiment": 2,
+        "themes": [
+          "cleaning",
+          "safety",
+          "workload",
+          "compensation"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses concerns about cleaning and safety, which are significant issues, along with complaints about workload expectations and compensation during the pandemic. While the tone is not extremely negative, the combination of these factors indicates a medium retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "employee_treatment",
+          "workplace_culture"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a negative sentiment towards management and workplace culture, particularly regarding the treatment of intelligent employees. While it doesn't raise severe safety or workload issues, the dissatisfaction with management suggests a medium retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "vto",
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses severe dissatisfaction with management practices, safety concerns, and workload issues, indicating a very negative sentiment and a high risk of employee turnover."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management",
+          "workplace_culture"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses frustration with certain AM/PAs and their attitudes, indicating a mixed sentiment. While there are negative feelings towards some management figures, the acknowledgment that it's only a few individuals suggests a moderate retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "media_perception",
+          "workload",
+          "bathroom_breaks"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mix of skepticism about media portrayals and some concerns about workload and bathroom breaks. While the tone is somewhat critical, it does not indicate severe dissatisfaction, suggesting a medium retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "cost_of_living",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "While the employee expresses gratitude for having a job and acknowledges the pay above minimum wage, the significant concerns about the cost of living in California and the struggle to cover basic expenses indicate a negative sentiment with medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_experience",
+          "pay_benefits",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a neutral tone, indicating that while the job is seen as a stepping stone rather than a long-term career, the pay is acceptable and the work is manageable. However, the mention of foot pain suggests some discomfort, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_satisfaction",
+          "workload",
+          "career_growth"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a neutral sentiment with a mix of satisfaction about the job being easy and concerns about career advancement and workload. The mention of VTO suggests a positive aspect, but the fear of demotion and reluctance to change indicate medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_satisfaction",
+          "employment_motivation"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a neutral sentiment, indicating that the employee is not particularly enthusiastic about their job but also not expressing severe dissatisfaction. The mention of taking the job out of necessity suggests a lack of commitment, which poses a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "job_experience"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a neutral sentiment with both pros and cons mentioned, suggesting a mixed experience. This indicates a medium retention risk as the employee is still forming their opinion about the job."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_role",
+          "work_hours"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses a neutral sentiment about the job role and long hours, indicating some level of acceptance but also suggesting potential for dissatisfaction if conditions do not improve, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "physical_demand",
+          "work_life_balance",
+          "pay_benefits"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a journey from struggle to acceptance, indicating initial difficulties with the physical demands of the job but ultimately finding enjoyment in the routine and benefits. The mention of considering leaving for better opportunities suggests a medium retention risk."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "management",
+          "coworkers",
+          "positive_experience"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses strong positive sentiment about management and coworkers, indicating a favorable work environment and low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "job_variety"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights concerns about safety and the pressure to meet rates, indicating a negative sentiment. However, it also mentions some aspects of job variety and positions that may appeal to part-time workers, suggesting a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "management",
+          "mental_health"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses mixed feelings, indicating some enjoyment of the work but also significant stress related to physical demands and management scrutiny. This balance suggests a medium retention risk due to the taxing nature of the job and mental stability concerns."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "health_issues",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review mentions ongoing health issues, which could indicate a concern about the work environment. However, the tone is neutral and does not express strong dissatisfaction, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "training",
+          "management"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses severe disappointment regarding safety practices, contradicting initial training claims. This indicates a very negative sentiment and high retention risk due to trust issues with management and safety concerns."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_environment",
+          "pay_benefits",
+          "work_life_balance"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review has a positive tone, highlighting a relaxed work environment and decent pay. While there are mentions of boredom and past attendance issues, the overall sentiment is favorable, indicating low retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "workplace_conflict",
+          "hr_support"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses severe frustration with management's handling of a workplace conflict and a lack of support from HR, indicating a very negative sentiment and high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "new_hire_experience",
+          "income"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a neutral sentiment about the new hire experience, with a focus on the need for extra income. While there are no severe complaints, the mention of financial necessity suggests a potential risk if expectations are not met."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "new_hire_experience",
+          "information_sharing"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review is neutral and informative, indicating a willingness to share experiences, but lacks strong positive or negative sentiment, suggesting a medium retention risk as the employee is still forming their opinion about the workplace."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "workload",
+          "employee_experience"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a mix of positive and neutral sentiments about the work experience at Amazon, with some light-hearted commentary. While there are no severe complaints, the mention of feeling like a 'slave' suggests some dissatisfaction with the workload. Overall, the tone is not overly negative, indicating a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "breaks",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a neutral to positive sentiment about the work process and breaks, but the overall tone is somewhat mundane and lacks enthusiasm, indicating a medium retention risk due to potential disengagement."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "routine"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses a mix of emotions, with a focus on the relief of leaving work and a routine that seems to be exhausting. While there is no severe complaint, the overall tone suggests a level of dissatisfaction with the work environment, indicating medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "routine"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a neutral tone with a focus on personal routine and the experience of working at Amazon. While there are no severe complaints, the mention of looking exhausted suggests potential challenges with work-life balance, indicating a medium retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "work_environment",
+          "policy_disclosure"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses a very negative sentiment about the work environment and dissatisfaction with the flex policy, indicating high retention risk due to severe complaints."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "toxic_environment",
+          "management",
+          "workplace_culture"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses a very negative sentiment about the workplace culture and management, indicating severe issues that suggest a high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "positives",
+          "negatives"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "While the review starts positively, the mention of 'bare minimum' and 'other bullshit' suggests underlying dissatisfaction, indicating a medium retention risk."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "job_satisfaction",
+          "pay_benefits",
+          "work_environment"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses strong positive feelings about the job, benefits, and work environment, indicating very low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "hr_support",
+          "workload",
+          "communication"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses frustration with HR support and communication, particularly regarding the process for shift changes. While there are some positive aspects, such as the interaction with the ERC representative, the overall tone indicates dissatisfaction with the HR system, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses severe dissatisfaction with the training process, management's lack of professionalism, and concerns about safety, indicating a very negative sentiment and high retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "schedule",
+          "breaks",
+          "work_environment"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Overall positive sentiment with multiple pros highlighted, including easy work, decent pay, great benefits, and a favorable schedule. The mention of helpful coworkers and a supportive work environment further indicates low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "management",
+          "benefits"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights both positive aspects, such as helpful coworkers and tuition benefits, and significant concerns regarding workload, work-life balance, and organizational issues. The mixed sentiment indicates a medium retention risk due to the exhaustion and dissatisfaction expressed."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_life_balance",
+          "organization",
+          "workload",
+          "vto",
+          "met"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses frustration with work-life balance and organizational issues, particularly during peak season. While there are some positive notes about getting used to the job, the overall tone is negative, indicating a medium retention risk due to dissatisfaction with management practices and workload."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "onboarding",
+          "work_life_balance",
+          "career_growth"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects mixed feelings about the initial experience, with a struggle during onboarding but a potential for improvement. The desire for part-time work and flexibility indicates a need for better work-life balance, suggesting medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "transfer",
+          "schedule",
+          "engagement"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses hope for a transfer and flexibility with scheduling, indicating a neutral to positive sentiment. However, the lack of concrete complaints suggests some uncertainty about job satisfaction, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "hours"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses frustration with limited hours and a negative experience, indicating dissatisfaction with workload, which suggests medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "career_growth",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights positive aspects such as competitive pay and career growth opportunities, but also raises concerns about high pressure, intense workload, and work-life balance issues. This mixed sentiment suggests a medium retention risk as the positives may not outweigh the negatives for some employees."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "hiring_process",
+          "employee_treatment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a neutral sentiment with a positive note on the ease of getting hired, but a negative aspect regarding employee treatment suggests a medium retention risk due to potential dissatisfaction."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights good pay and efficient app management, indicating positive aspects. However, complaints about micro-management and monotonous work suggest moderate dissatisfaction, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "benefits",
+          "work_environment",
+          "hr"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Overall positive sentiment with strong praise for benefits and time off, despite minor complaints about the work environment and HR. This indicates low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_experience",
+          "peak_season",
+          "support_role"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review provides a neutral account of the experience at the FC, indicating a specific role during peak season without expressing strong positive or negative feelings. This suggests a medium retention risk as the experience may not have been particularly fulfilling or detrimental."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "expectations",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses mixed feelings, highlighting a positive work environment and team dynamics but also mentions disappointment regarding mental stimulation and monotonous tasks. This indicates a balanced sentiment with medium retention risk due to unmet expectations."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_environment",
+          "career_growth"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a positive sentiment about the work environment and the potential for career growth, countering initial misconceptions. This indicates a low retention risk as the employee feels satisfied and sees a future with the company."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "work_environment",
+          "support"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "While the review highlights positive aspects like benefits and opportunities for growth, the significant concerns regarding management support, treatment of employees, and high-pressure expectations indicate a negative sentiment with medium retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_environment"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Positive sentiment regarding pay and colleagues, with minor complaints about heat and noise indicating a generally favorable view and low retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "benefits",
+          "work_environment",
+          "physical_demand"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review highlights positive aspects such as great benefits and good coworkers, while the only complaint is about the physical demands of the job, which is a common expectation in warehouse roles. Overall, the positive tone suggests low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses a positive sentiment about pay but indicates boredom and a feeling of being treated as just a number, which suggests a medium retention risk due to potential disengagement."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "employment_stability",
+          "pay_benefits",
+          "workload",
+          "management"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "Overall positive sentiment regarding employment stability, pay, and benefits, but concerns about physical demands, management challenges, and high turnover indicate medium retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review highlights positive aspects such as good pay and benefits, while the mention of heavy work is a minor concern. Overall, the positive tone and lack of severe complaints indicate low retention risk."
+      }
+    ]
+  },
+  {
+    "prompt_version": "v4.0",
+    "prompt_name": "Chain of Thought",
+    "k_shot": 3,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.3,
+      "sentiment_rmse": 0.5477225575051661,
+      "sentiment_exact_accuracy": 0.7,
+      "sentiment_direction_accuracy": 0.88,
+      "theme_precision": 0.5384615384615384,
+      "theme_recall": 0.5167785234899329,
+      "theme_f1": 0.5273972602739725,
+      "theme_exact_match": 0.06,
+      "risk_accuracy": 0.52,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 32621,
+      "total_tokens_out": 3863,
+      "total_cost": 0.007210949999999999,
+      "cost_per_sample": 0.00014421899999999998,
+      "cost_per_1k_samples": 0.14421899999999999
+    },
+    "predictions": [
+      {
+        "sentiment": 2,
+        "themes": [
+          "cleaning",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses significant concerns about cleaning and safety, along with a complaint about workload expectations. While the tone is not overwhelmingly negative, the issues raised indicate a medium retention risk due to dissatisfaction with workplace conditions."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "employee_rights",
+          "workplace_culture"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a negative sentiment towards management's treatment of intelligent employees who assert their rights, suggesting a potential conflict in workplace culture. This could lead to medium retention risk if employees feel undervalued or unsupported."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "vto",
+          "management",
+          "safety",
+          "workload"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses severe dissatisfaction with management practices, safety concerns, and workload issues, indicating a very negative sentiment and a high likelihood of retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "management",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a neutral sentiment towards management, noting some negative interactions but also indicating that the majority of coworkers are respectful. This balanced view suggests average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "culture",
+          "media_perception"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a negative perception influenced by media portrayal, with concerns about workload and culture. While the tone is somewhat exaggerated, it indicates a level of dissatisfaction that suggests medium retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "cost_of_living",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses gratitude for the job but highlights significant concerns about pay relative to the high cost of living in California. While there is no outright blame on Amazon, the dissatisfaction with compensation and the impact on basic living needs indicates negative sentiment and a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "job_satisfaction"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review presents a neutral perspective, highlighting decent pay and easy work while acknowledging some discomfort from standing. Overall, the tone is balanced with no severe complaints, indicating average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_satisfaction",
+          "workload",
+          "career_growth"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review reflects a neutral sentiment with a focus on job satisfaction and the ease of the role, despite concerns about career advancement. The mention of VTO suggests a positive view on mental and physical health options, indicating low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "job_satisfaction",
+          "motivation"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a lack of enthusiasm for the job and suggests that the employee is only there due to external circumstances, which reflects negative sentiment and medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review indicates a neutral perspective with both pros and cons, suggesting an average level of satisfaction and a low retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "job_satisfaction",
+          "workload"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a positive sentiment towards the job, indicating satisfaction with the role despite the long hours. This suggests a low retention risk as the employee seems content with their experience so far."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "physical_demand",
+          "pay_benefits"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a journey from struggle to acceptance, indicating a neutral sentiment overall. While the physical demands were initially overwhelming, the employee has adapted and appreciates the routine and benefits, but expresses a willingness to leave for a better opportunity, indicating medium retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "management",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Positive sentiment about management and coworkers indicates a strong sense of satisfaction, with no significant complaints, suggesting low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "job_variability"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights concerns about safety and the pressure to meet rates, indicating negative sentiment. While there are some insights about job variability and positions, the overall tone suggests dissatisfaction, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "management",
+          "mental_health"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "Mixed feelings about the job with some positive aspects but also significant stress related to management and physical demands indicate a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "health",
+          "work_conditions"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review mentions health issues but attributes them to personal circumstances rather than work-related factors. The neutral tone suggests average satisfaction with low retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "training",
+          "management"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses severe dissatisfaction with safety practices and management's honesty, indicating a very negative sentiment and high retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_environment",
+          "pay_benefits",
+          "workload",
+          "career_growth"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a generally positive sentiment about the work environment and pay, despite some boredom and past attendance issues. The mention of enjoying the night shift and the career choice program indicates a level of satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "workplace_culture",
+          "job_security"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review reflects severe dissatisfaction with management's handling of a conflict and concerns about job security. The negative tone and feelings of being unsupported indicate a high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "new_hire_experience",
+          "pay_benefits",
+          "work_culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review reflects a neutral sentiment regarding the new hire experience, with a focus on the need for extra income. The mention of working passion jobs suggests a positive work culture, but the overall tone indicates average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "job_experience",
+          "onboarding",
+          "information_sharing"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review indicates a positive sentiment about sharing experiences and providing information, suggesting engagement and satisfaction, which correlates with low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture",
+          "technology"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review provides a neutral perspective on the job, highlighting aspects of the work environment and technology used for clocking in. While there are some light-hearted comments about the job, there are no severe complaints, indicating average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "breaks",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review reflects a neutral tone with a mix of routine tasks and personal anecdotes. While the work appears monotonous, the employee expresses satisfaction with breaks and a sense of relief at the end of the shift, indicating average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses a strong desire to leave work and indicates fatigue, suggesting dissatisfaction with workload and work-life balance. However, there is no severe complaint, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "routine",
+          "community"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review reflects a neutral sentiment with a focus on routine and community engagement, indicating average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "workload",
+          "management"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses a strong negative sentiment towards the Sort Centers and hints at dissatisfaction with policies that affect work conditions, indicating a high retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "work_environment",
+          "management",
+          "culture"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses strong negative feelings about the work environment and management, indicating a toxic culture and a lack of support for employees. This severe dissatisfaction suggests a high retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "positives",
+          "negatives",
+          "work_environment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "While the review starts positively, the mention of 'bare minimum' and 'bullshit' indicates underlying dissatisfaction, suggesting medium retention risk due to mixed feelings about the work environment."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "job_satisfaction",
+          "pay_benefits",
+          "work_environment"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses strong positive feelings about the job, benefits, and work environment, indicating high job satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "hr_support",
+          "workload",
+          "communication"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses frustration with HR support and communication, indicating a negative sentiment. While the employee appreciates the call from ERC, the overall tone suggests dissatisfaction with the onsite HR's effectiveness, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high",
+        "reasoning": "Severe complaints about unprofessional training, lack of support, and safety concerns indicate very negative sentiment, leading to a high retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "schedule",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review presents a largely positive experience with easy work, decent pay, great benefits, and a favorable schedule. The overall tone is upbeat, with only minor concerns about the variability of experiences across different facilities, indicating low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "management",
+          "pay_benefits"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights both positive aspects, such as helpful coworkers and tuition benefits, and significant complaints about workload, lack of organization, and poor work-life balance. The mixed sentiment suggests a medium retention risk due to the exhaustion and challenges faced in the role."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_life_balance",
+          "organization",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses significant frustration with organizational issues and work-life balance, particularly during peak season. While there are some positive notes about getting used to the job, the overall negative sentiment regarding management practices and workload indicates a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "job_satisfaction",
+          "career_growth"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a mixed experience with initial difficulties but a gradual improvement in job satisfaction. The desire for part-time work and potential transfer indicates uncertainty about long-term commitment, suggesting medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "career_growth",
+          "work_life_balance"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a desire for career advancement (transfer to blue badge) and flexibility in scheduling, indicating a neutral sentiment with a focus on potential improvements rather than significant complaints."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "hours"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses frustration with limited hours and a negative experience, indicating dissatisfaction but not severe complaints, resulting in medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance",
+          "career_growth"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights competitive pay and benefits along with career growth opportunities, which are positive aspects. However, it also mentions high pressure, intense workload, and work-life balance issues, indicating a mixed sentiment with medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "employment_opportunity",
+          "company_size"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review presents a neutral sentiment with a positive note on job availability but a mild concern regarding treatment due to the company's size, indicating average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Overall positive sentiment about pay and efficient processes, but minor complaints about management and boredom suggest average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_environment",
+          "hr"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Overall positive sentiment with strong praise for benefits and time off, despite some minor complaints about the work environment and HR. This indicates high satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "peak_season"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review provides a neutral account of the experience without significant complaints or praises, indicating average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "workload",
+          "expectations"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review reflects a neutral sentiment with mixed feelings about expectations versus reality. While the monotony of the job is noted, the positive workplace vibe and flexibility indicate overall satisfaction, leading to a low retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_environment",
+          "career_growth",
+          "misconceptions"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a positive shift in perception, highlighting a supportive work environment and potential for career advancement, indicating low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "work_environment",
+          "support"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "While there are positive aspects regarding benefits and opportunities for growth, significant complaints about management support, treatment during hardships, and high-pressure expectations indicate negative sentiment with medium retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_environment",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Positive sentiment about pay and colleagues indicates overall satisfaction, while complaints about heat and noise are minor annoyances that do not significantly impact retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Positive comments about benefits and coworkers indicate strong satisfaction, while the mention of physically demanding work suggests a challenge but not a deal-breaker, leading to low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a neutral sentiment overall, highlighting good pay but also mentioning boredom and feelings of being treated as a number. The balance of pros and cons suggests average satisfaction with low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "management",
+          "employee_wellbeing"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "Overall positive sentiment regarding employment stability, pay, and benefits, but concerns about physical demands, management challenges, and high turnover indicate a medium retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Positive comments about pay and benefits indicate high satisfaction, while the mention of heavy work suggests a minor annoyance rather than a deal-breaker, leading to a low retention risk."
+      }
+    ]
+  },
+  {
+    "prompt_version": "v4.0",
+    "prompt_name": "Chain of Thought",
+    "k_shot": 5,
+    "model": "gpt-4o-mini",
+    "dataset": "validation",
+    "n_samples": 50,
+    "n_failed": 0,
+    "n_valid": 50,
+    "metrics": {
+      "sentiment_mae": 0.32,
+      "sentiment_rmse": 0.565685424949238,
+      "sentiment_exact_accuracy": 0.68,
+      "sentiment_direction_accuracy": 0.88,
+      "theme_precision": 0.6275862068965518,
+      "theme_recall": 0.610738255033557,
+      "theme_f1": 0.6190476190476191,
+      "theme_exact_match": 0.14,
+      "risk_accuracy": 0.68,
+      "risk_within_one": 1.0,
+      "total_tokens_in": 41021,
+      "total_tokens_out": 3953,
+      "total_cost": 0.00852495,
+      "cost_per_sample": 0.000170499,
+      "cost_per_1k_samples": 0.170499
+    },
+    "predictions": [
+      {
+        "sentiment": 2,
+        "themes": [
+          "cleaning",
+          "safety",
+          "work_conditions"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses significant concerns about cleaning and safety, indicating dissatisfaction with work conditions. While the tone is not extremely negative, the issues raised are serious enough to suggest a medium retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture",
+          "employee_rights"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a negative sentiment towards management and workplace culture, particularly regarding the treatment of intelligent employees who assert their rights. This suggests a medium retention risk due to potential dissatisfaction with management dynamics."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "vto",
+          "management",
+          "workload",
+          "safety"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses extreme dissatisfaction with management practices, safety concerns, and the overall work environment, indicating a very negative sentiment and high retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses negative feelings towards certain management personnel and their behavior, indicating a lack of respect and potential issues with workplace culture. However, the mention of only a few individuals suggests that the overall environment may not be severely impacted, resulting in medium retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "workload",
+          "culture",
+          "safety"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review presents an extremely negative portrayal of working conditions, highlighting severe issues with workload and a toxic culture. The use of vivid, distressing imagery suggests a very high retention risk due to the described environment."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "pay_benefits",
+          "cost_of_living",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "While the employee expresses gratitude for having a job and acknowledges the pay above minimum wage, the significant concern about the cost of living in California and the struggle to cover basic expenses indicates negative sentiment with medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a neutral view of the job, acknowledging decent pay and easy work while mentioning minor discomfort from standing. The sentiment indicates average satisfaction but suggests the job is seen as temporary, leading to medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "job_satisfaction",
+          "workload",
+          "vto"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses a neutral sentiment about job ease and stability but indicates concerns about career advancement and the risks of moving up. The mention of VTO suggests appreciation for mental and physical health options, leading to a balanced view with medium retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "job_satisfaction",
+          "employment_choice"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a lack of enthusiasm for the job and indicates that the decision to work at Amazon was not based on positive motivations, suggesting medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review indicates a neutral perspective with both pros and cons, suggesting average satisfaction and low retention risk as the employee is still in the early stages of their experience."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "job_satisfaction",
+          "other"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a positive attitude towards the job and the long hours, indicating a good level of satisfaction despite the physical demands, suggesting low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a journey from struggle to acceptance, indicating a neutral sentiment overall. While the initial physical demands were challenging, the employee has adjusted and appreciates the job's simplicity, benefits, and pay. However, the mention of leaving for a better opportunity suggests a medium retention risk."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "management",
+          "culture",
+          "workplace_experience"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses strong positive feelings about management and coworkers, contrasting previous negative experiences, indicating high satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "safety",
+          "workload",
+          "rate"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights concerns about safety and the pressure to meet rates, indicating a negative sentiment. While there are some insights into job roles, the focus on rate over safety suggests medium retention risk due to potential dissatisfaction."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "management",
+          "other"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "Mixed feelings about the job with both positive and negative aspects. While the work is easy, there are concerns about physical strain and management oversight, indicating a moderate level of satisfaction and medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "health",
+          "workload",
+          "other"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review indicates a neutral sentiment overall, with mention of back pain that may not be directly related to the job. The acknowledgment of health issues suggests a medium retention risk due to potential ongoing discomfort."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "safety",
+          "training",
+          "management"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses severe dissatisfaction with safety practices and management's dishonesty during training, indicating a very negative sentiment and high retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "pay_benefits"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a generally positive sentiment about the night shift experience, highlighting a relaxed work environment and decent pay despite some boredom. The mention of career programs and the ability to have time to think indicates overall satisfaction, leading to a low retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "management",
+          "workplace_culture",
+          "job_security"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses severe dissatisfaction with management's handling of a conflict and raises concerns about job security. The negative tone and feelings of being unsupported indicate a very high retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review reflects a neutral sentiment with a focus on the need for extra income, indicating that while the job is seen as a means to an end, there are no strong complaints or praises, suggesting average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "onboarding",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review provides an informative perspective on the decant role and shares general experiences as a new hire, indicating a neutral sentiment and average satisfaction with low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "work_environment",
+          "other"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review reflects a neutral tone with a mix of casual commentary about the job and personal experiences. While there are mentions of challenges, such as feeling rushed and the nature of the work, there is no severe negativity or major complaints, indicating average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "breaks",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review provides a detailed account of daily tasks and interactions, indicating a neutral sentiment overall. While there are moments of enjoyment, such as breaks and the satisfaction of completing tasks, the tone suggests a lack of enthusiasm and a routine nature to the work, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses a sense of relief and happiness when leaving work, indicating dissatisfaction with the workload and environment. While there is a lighthearted tone, the overall sentiment suggests a struggle with work-life balance, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "other"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review reflects a neutral tone with no strong complaints or praises, indicating average satisfaction and low retention risk. The mention of routine suggests adaptation to the job demands."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "policy",
+          "work_environment"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses strong negative sentiment towards the work environment and dissatisfaction with the flex up or flex down policy, indicating a high retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "culture",
+          "management"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses strong negative feelings about the toxic culture and management practices, indicating a very high retention risk due to the severe nature of the complaints."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "While the review starts positively, the mention of 'bare minimum' and 'bullshit' indicates underlying dissatisfaction, suggesting a balanced but cautious sentiment with medium retention risk."
+      },
+      {
+        "sentiment": 5,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture",
+          "work_life_balance"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses strong positive feelings about the job, including satisfaction with benefits, pay, work enjoyment, and coworker relationships, indicating very low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "hr_support",
+          "workload",
+          "communication"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses frustration with HR support and communication issues, indicating a negative sentiment. However, the employee has been with Amazon for 5 years, suggesting some level of commitment, resulting in a medium retention risk."
+      },
+      {
+        "sentiment": 1,
+        "themes": [
+          "training",
+          "management",
+          "safety"
+        ],
+        "retention_risk": "high",
+        "reasoning": "The review expresses severe dissatisfaction with the training process, management's lack of professionalism, and concerns about safety, indicating a very negative experience and high retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "workload",
+          "pay_benefits",
+          "work_life_balance",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review highlights several positive aspects such as easy work, decent pay, great benefits, and a good schedule. The overall tone is positive, with minor mentions of limitations, indicating a high level of satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "benefits",
+          "work_life_balance",
+          "management"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "While the review highlights positive aspects such as helpful coworkers and benefits like tuition assistance, it also raises significant concerns about the exhausting workload, lack of work-life balance, and organizational issues, indicating a medium retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "work_life_balance",
+          "organization",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses significant frustration with work-life balance and organizational issues, particularly during peak season, which contributes to a negative sentiment. However, the reviewer also notes that the job becomes more manageable over time, indicating a possibility of retention if conditions improve."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "work_life_balance",
+          "career_growth"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses a mix of frustration during the initial weeks but indicates improvement over time. The desire for part-time work and flexibility suggests some dissatisfaction with current conditions, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_life_balance",
+          "career_growth"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a desire for a transfer to a blue badge position and mentions the potential for a flexible schedule, indicating a neutral to positive outlook on career growth and work-life balance, resulting in low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "workload",
+          "hours"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "Negative sentiment regarding limited hours and overall experience indicates dissatisfaction, leading to a medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "work_life_balance"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a balanced view with positive remarks about pay and career growth but highlights significant concerns regarding high pressure and work-life balance, indicating moderate satisfaction and medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "hiring_process",
+          "treatment"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "Neutral sentiment about the ease of getting a job is countered by concerns about treatment within the large company, indicating average satisfaction with medium retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "management",
+          "workload"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review highlights good pay and efficient app-based management tools, but also mentions issues with micro-management and boredom, indicating a balanced view with some dissatisfaction that suggests a medium retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "work_life_balance",
+          "management"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Overall positive sentiment with appreciation for benefits and time off, despite some minor complaints about management and HR, indicating good satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "workload",
+          "peak_season",
+          "other"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review is neutral, providing a basic account of the experience without strong positive or negative sentiments, indicating average satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "work_environment",
+          "workload",
+          "expectations"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review reflects a neutral sentiment with both positive aspects of the work environment and some dissatisfaction regarding the monotony of the job. While the reviewer appreciates the flexible policies compared to previous jobs, the mention of mind-numbing work indicates moderate retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "work_environment",
+          "career_growth",
+          "misconceptions"
+        ],
+        "retention_risk": "low",
+        "reasoning": "The review expresses a positive shift in perception about the work environment, highlighting career growth potential and contradicting common negative misconceptions, indicating good satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 2,
+        "themes": [
+          "management",
+          "work_environment",
+          "safety"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "While the review highlights positive aspects such as benefits and opportunities for growth, significant concerns about management support, treatment during hardships, and high-pressure expectations indicate negative sentiment with medium retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "culture",
+          "work_environment"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Positive feedback about pay and colleagues indicates good satisfaction, while complaints about heat and noise are minor inconveniences that do not significantly impact overall sentiment."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Positive remarks about benefits and coworkers, with only a minor complaint about the physical demands of the job, suggest overall satisfaction and low retention risk."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review expresses a neutral sentiment with positive comments about pay but mentions boredom and feeling dehumanized, indicating a medium retention risk due to potential dissatisfaction with workplace culture."
+      },
+      {
+        "sentiment": 3,
+        "themes": [
+          "pay_benefits",
+          "workload",
+          "management",
+          "culture"
+        ],
+        "retention_risk": "medium",
+        "reasoning": "The review presents a balanced view with positive aspects like stability, pay, and diversity, but also highlights significant concerns regarding physical demands, management challenges, and monotony, indicating medium retention risk."
+      },
+      {
+        "sentiment": 4,
+        "themes": [
+          "pay_benefits",
+          "workload"
+        ],
+        "retention_risk": "low",
+        "reasoning": "Positive feedback on pay and benefits, with only a minor complaint about the physical demands of the job indicates overall satisfaction and low retention risk."
+      }
+    ]
+  }
+]
