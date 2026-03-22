@@ -1,6 +1,5 @@
 # ReviewInsight AI
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Code style: PEP 8](https://img.shields.io/badge/code%20style-PEP%208-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
@@ -971,27 +970,6 @@ class AgentMemory:
         return {"metric": "value"}
 ```
 
----
-
-## License
-
-MIT License - See LICENSE file for details.
-
----
-
-## Citation
-
-If you use this system in research or academic work, please cite:
-
-```bibtex
-@software{reviewinsight_ai,
-  title={ReviewInsight AI: Agentic Employee Sentiment Analysis},
-  author={ReviewInsight AI Contributors},
-  year={2025},
-  url={https://github.com/yourusername/reviewinsight-ai},
-  description={ReAct-pattern agent system for employee review analysis with tool orchestration, persistent memory, and drift detection}
-}
-```
 
 ---
 
