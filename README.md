@@ -809,6 +809,32 @@ streamlit run dashboard/app.py
 # 5. Search Interface
 ```
 
+### 📊 YouTube Dataset
+
+**Available**: `data/youtube/youtube_dataset.csv`
+
+The project includes a comprehensive YouTube transcript dataset with cleaned versions for sentiment analysis:
+
+| Metric | Value |
+|--------|-------|
+| **Videos Processed** | 8 |
+| **Total Transcript Lines** | 2,294 |
+| **Average Lines per Video** | 286.8 |
+| **Cleaning Reduction** | 1-21% (filler words removed) |
+
+**Features**:
+- `transcript_original`: Raw transcript with timestamps
+- `transcript_cleaned`: Normalized text with fillers removed
+- Comprehensive text cleaning pipeline
+- Ready for sentiment analysis integration
+
+**Usage**:
+```python
+import pandas as pd
+df = pd.read_csv('data/youtube/youtube_dataset.csv')
+cleaned_text = ' '.join(df['transcript_cleaned'].tolist())
+```
+
 ### 📊 Dashboard Features
 
 **Real-Time Analysis**:
