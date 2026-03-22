@@ -26,7 +26,6 @@ A production-grade LLM-powered agent system implementing the ReAct (Reason + Act
 - [Project Structure](#project-structure)
 - [Configuration](#configuration)
 - [Extension Guide](#extension-guide)
-- [License](#license)
 
 ---
 
