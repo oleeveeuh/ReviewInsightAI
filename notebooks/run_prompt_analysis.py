@@ -90,7 +90,7 @@ def main():
 
     # Theme F1
     ax = axes[0]
-    bars = ax.bar(x, df['Theme F1'] * 100, color='steelblue', alpha=0.7)
+    ax.bar(x, df['Theme F1'] * 100, color='steelblue', alpha=0.7)
     ax.set_ylabel('Theme F1 (%)')
     ax.set_title('Theme Classification F1')
     ax.set_xticks(x)
@@ -101,7 +101,7 @@ def main():
 
     # Sentiment MAE
     ax = axes[1]
-    bars = ax.bar(x, df['Sentiment MAE'], color='coral', alpha=0.7)
+    ax.bar(x, df['Sentiment MAE'], color='coral', alpha=0.7)
     ax.set_ylabel('Sentiment MAE (lower is better)')
     ax.set_title('Sentiment Error')
     ax.set_xticks(x)
@@ -112,7 +112,7 @@ def main():
 
     # Risk F1
     ax = axes[2]
-    bars = ax.bar(x, df['Risk F1'] * 100, color='mediumseagreen', alpha=0.7)
+    ax.bar(x, df['Risk F1'] * 100, color='mediumseagreen', alpha=0.7)
     ax.set_ylabel('Risk F1 (%)')
     ax.set_title('Retention Risk F1')
     ax.set_xticks(x)
@@ -124,7 +124,7 @@ def main():
     plt.tight_layout()
     plt.savefig(REPORTS_DIR / 'prompt_performance.png', dpi=300, bbox_inches='tight')
     plt.close()
-    print(f"\nSaved: prompt_performance.png")
+    print("\nSaved: prompt_performance.png")
 
     # Visualization 2: Cost vs Performance
     fig, ax = plt.subplots(figsize=(10, 6))
@@ -147,7 +147,7 @@ def main():
     plt.tight_layout()
     plt.savefig(REPORTS_DIR / 'cost_performance.png', dpi=300, bbox_inches='tight')
     plt.close()
-    print(f"Saved: cost_performance.png")
+    print("Saved: cost_performance.png")
 
     # Visualization 3: Few-Shot Impact
     few_shot_comparison = []
@@ -195,7 +195,7 @@ def main():
         plt.tight_layout()
         plt.savefig(REPORTS_DIR / 'few_shot_impact.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print(f"Saved: few_shot_impact.png")
+        print("Saved: few_shot_impact.png")
 
     # Statistical summary
     print("\n" + "=" * 60)
@@ -217,7 +217,7 @@ def main():
     print("RECOMMENDATION")
     print("=" * 60)
 
-    print(f"\nOptimal Configuration:")
+    print("\nOptimal Configuration:")
     print(f"  Prompt: {best_config['Prompt']}")
     print(f"  Version: {best_config['Version']}")
     print(f"  K-Shot: {int(best_config['K-Shot'])}")
@@ -232,7 +232,7 @@ def main():
         baseline = baseline.iloc[0]
         improvement = (best_config['Theme F1'] - baseline['Theme F1']) * 100
 
-        print(f"\nImprovement over baseline:")
+        print("\nImprovement over baseline:")
         print(f"  Baseline (v1 zero-shot): {baseline['Theme F1']:.1%}")
         print(f"  Best config: {best_config['Theme F1']:.1%}")
         print(f"  Improvement: +{improvement:.1f} percentage points")

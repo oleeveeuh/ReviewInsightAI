@@ -6,7 +6,6 @@ Usage: python scripts/analyze_sentiment.py
 
 import csv
 import json
-import os
 import re
 from collections import Counter
 from pathlib import Path
@@ -127,7 +126,6 @@ def extract_themes(text):
 def analyze_transcript(video_id, video_title):
     """Analyze a single transcript file."""
     txt_path = TRANSCRIPTS_DIR / f"{video_id}.txt"
-    json_path = TRANSCRIPTS_DIR / f"{video_id}.json"
 
     if not txt_path.exists():
         return None
@@ -194,12 +192,12 @@ def main():
         sentiment_dist = Counter(classifications)
 
         print(f"\n{'='*60}")
-        print(f"SUMMARY")
+        print("SUMMARY")
         print(f"{'='*60}")
         print(f"Videos analyzed:     {len(results)}")
         print(f"Total words:         {total_words:,}")
         print(f"Avg sentiment score: {avg_score:+.2f}")
-        print(f"\nSentiment Distribution:")
+        print("\nSentiment Distribution:")
         for sentiment, count in sentiment_dist.most_common():
             pct = count / len(results) * 100
             print(f"  {sentiment:8} {count:2} ({pct:.0f}%)")
@@ -210,7 +208,7 @@ def main():
             for theme, count in r["themes"].items():
                 all_themes[theme] = all_themes.get(theme, 0) + count
 
-        print(f"\nTop Themes Across All Videos:")
+        print("\nTop Themes Across All Videos:")
         for theme, count in sorted(all_themes.items(), key=lambda x: x[1], reverse=True):
             if count > 0:
                 print(f"  {theme:15} {count:3} mentions")
