@@ -1,6 +1,0 @@
-Prompt,K-shot,Valid,Sentiment_MAE,Sentiment_Acc,Theme_F1,Risk_Acc,Cost_per_1k
-Chain of Thought,0,50,0.1,90.0%,7.5%,80.0%,$0.12
-Chain of Thought,1,50,0.34,68.0%,23.7%,78.0%,$0.12
-Chain of Thought,2,50,0.26,74.0%,39.7%,74.0%,$0.13
-Chain of Thought,3,50,0.3,70.0%,52.7%,52.0%,$0.14
-Chain of Thought,5,50,0.32,68.0%,61.9%,68.0%,$0.17

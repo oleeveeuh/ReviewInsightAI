@@ -1,22 +1,41 @@
+# ---------------------------------------------------------------------------
+# Local-only data: real third-party content is NOT redistributed in this repo.
+# Recoverable local copies live in data_local/ (see DATASET_CARD.md).
+# Tracked files under data/ are small synthetic fixtures only.
+# ---------------------------------------------------------------------------
+data_local/
+
+# Raw source data and full transcripts (never commit real content)
+data/raw/*.csv
+data/youtube/transcripts/*
+!data/youtube/transcripts/SYNTH01.txt
+!data/youtube/transcripts/SYNTH01.json
+data/youtube/analysis/
+
+# Derived artifacts (regenerable)
+data/processed/*.npy
+data/database/*.duckdb
+*.duckdb
+data/evaluation/*
+!data/evaluation/rescored_crossval_summary.json
+data/analysis/*
+!data/analysis/.gitkeep
+
+# Insecure serialization artifacts
+*.pkl
+*.pickle
+
+# Agent memory / runtime outputs
+data/memory/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
 # Distribution / packaging
-.Python
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -26,11 +45,13 @@ venv/
 env/
 ENV/
 .venv/
-.venv_clean/
+.venv*/
+venv*/
 
 # Environment variables with credentials
 .env
 .env.local
+.env.*
 
 # IDE
 .vscode/
@@ -46,30 +67,19 @@ Thumbs.db
 # Logs
 *.log
 
-# Data files (too large for git)
-data/raw/*.csv
-data/raw/*.json
-data/processed/*.csv
-data/processed/*.json
-
-# Memory and analysis outputs
-data/memory/*.jsonl
-data/analysis/*.jsonl
-
 # Model cache
 .cache/
-*.pkl
-*.pickle
 
 # Jupyter Notebook
 .ipynb_checkpoints/
 *.ipynb
 
-# Testing
+# Testing / coverage
 .pytest_cache/
+.ruff_cache/
 .coverage
 htmlcov/
 
-# Reports (generative files)
+# Generated figures
 reports/figures/*.png
 reports/figures/*.pdf

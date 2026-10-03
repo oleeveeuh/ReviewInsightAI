@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Binary artifacts (present locally; not redistributed)
+*.duckdb binary
+*.npy binary
+*.pkl binary
