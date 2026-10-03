@@ -396,7 +396,7 @@ if __name__ == '__main__':
 
     stats = agent.memory.get_summary_stats()
     print(f"\nTotal analyses: {stats['total_analyses']}")
-    print(f"\nTheme distribution:")
+    print("\nTheme distribution:")
     for theme, freq in sorted(stats['theme_distribution'].items(), key=lambda x: x[1], reverse=True):
         print(f"  {theme}: {freq:.2f}")
 
@@ -404,6 +404,6 @@ if __name__ == '__main__':
     if stats['avg_sentiment_recent']:
         print(f"Avg sentiment (recent 50): {stats['avg_sentiment_recent']:.2f}")
 
-    print(f"\nRisk distribution:")
+    print("\nRisk distribution:")
     for risk, count in stats['risk_distribution'].items():
         print(f"  {risk}: {count}")

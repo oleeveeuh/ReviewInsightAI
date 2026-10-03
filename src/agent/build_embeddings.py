@@ -51,7 +51,8 @@ def main():
     # Save metadata
     print(f"Saving metadata to {meta_path}")
     metadata = [
-        {'review_id': r.get('review_id'), 'text': r.get('text', '')[:500], 'source': r.get('source'), 'rating': r.get('rating')}
+        {'review_id': r.get('review_id'), 'text': r.get('text', '')[:500],
+         'source': r.get('source'), 'rating': r.get('rating')}
         for r in reviews
     ]
     with open(meta_path, 'w') as f:

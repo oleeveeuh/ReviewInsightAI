@@ -131,8 +131,12 @@ class DriftDetector:
         if is_drifting:
             alert_msg = f"⚠️ DRIFT DETECTED: KL divergence = {kl_div:.3f} (threshold: {threshold})"
             if significant_changes:
-                top_change = max(significant_changes.items(), key=lambda x: abs(x[1]['change']))
-                alert_msg += f"\nLargest change: {top_change[0]} ({top_change[1]['direction']} by {abs(top_change[1]['change'])*100:.1f}%)"
+                top_change = max(significant_changes.items(),
+                                 key=lambda x: abs(x[1]['change']))
+                top_name, top = top_change
+                alert_msg += (f"\nLargest change: {top_name} "
+                              f"({top['direction']} by "
+                              f"{abs(top['change']) * 100:.1f}%)")
         else:
             alert_msg = f"✓ No drift detected (KL divergence = {kl_div:.3f})"
 

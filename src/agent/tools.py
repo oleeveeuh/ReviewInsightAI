@@ -9,7 +9,6 @@ Usage:
     from src.agent.tools import ToolRegistry, retrieve_similar_reviews, analyze_sentiment
 """
 
-from abc import ABC, abstractmethod
 from typing import Dict, List, Any, Optional, ClassVar
 from pydantic import BaseModel, Field
 
@@ -392,7 +391,7 @@ if __name__ == "__main__":
         print(f"\n{tool_info['name']}")
         print(f"  Description: {tool_info['description']}")
 
-        print(f"  Parameters:")
+        print("  Parameters:")
         for param, details in tool_info['parameters'].items():
             required = " (required)" if details.get("required", False) else ""
             default_val = f" = {details.get('default', 'none')}" if 'default' in details else ""

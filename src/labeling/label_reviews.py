@@ -12,7 +12,6 @@ Features:
 
 import json
 import random
-import sys
 from pathlib import Path
 from datetime import datetime
 from collections import Counter
@@ -399,7 +398,7 @@ class ReviewLabeler:
                 print("  Skipping this review...")
                 i += 1
 
-        print(f"\n\n  🎉 Session complete!")
+        print("\n\n  🎉 Session complete!")
         print(f"  Total labeled: {len(self.labeled)}/{self.target_count}")
         print(f"  Saved to: {self.output_path}")
 

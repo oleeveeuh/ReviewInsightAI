@@ -9,19 +9,22 @@ Usage:
     python src/labeling/verify_labels.py --sample 30
 """
 
-import os
 import json
 import random
+import time
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict
 
 try:
-    from readchar import readchar, render_ansored
+    from readchar import readchar
 except ImportError:
-    # Fallback if termcap not available
+    # Fallback if readchar is not available
     readchar = None
-    render_ansored = lambda text, **kwargs: text
+
+def render_answered(text, **kwargs):
+    """Render helper (kept for output formatting; no readchar dependency)."""
+    return text
 
 
 # Color codes for terminal output
@@ -175,7 +178,7 @@ class LabelVerifier:
         """Prompt user for verification decision."""
 
         print(f"\n{Colors.BOLD}Are these labels correct?{Colors.RESET}")
-        print(f"  (y=Yes, n=No, s=Skip, q=Quit)")
+        print("  (y=Yes, n=No, s=Skip, q=Quit)")
 
         if readchar:
             return readchar(prompt_suffix="\n> ", render=True)
@@ -286,7 +289,7 @@ class LabelVerifier:
                 # Treat as challenge/disagreement
                 self._record_verification(review_id, labels, verified=False)
                 print(f"\n{Colors.WARNING}✗ Challenged{Colors.RESET}\n")
-                print(f"Recording disagreement for review statistics\n")
+                print("Recording disagreement for review statistics\n")
                 time.sleep(0.1)
 
         # Final summary
@@ -373,7 +376,7 @@ def main():
     print()
 
     # Run verification
-    result = verifier.verify_sample(args.sample)
+    verifier.verify_sample(args.sample)
 
     print(f"\n{Colors.BOLD}Thanks for using ReviewInsight!{Colors.RESET}")
 

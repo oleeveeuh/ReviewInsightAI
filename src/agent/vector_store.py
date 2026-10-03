@@ -13,9 +13,8 @@ Usage:
     results = store.search("management issues with overtime", k=5)
 """
 
-import json
 from pathlib import Path
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any, Optional
 import numpy as np
 
 

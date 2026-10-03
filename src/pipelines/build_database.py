@@ -21,7 +21,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 import sys
 
-sys.path.append(str(Path(__file__).parent.parent))
+sys.path.append(str(Path(__file__).parent.parent.parent))
 
 try:
     from tqdm import tqdm
@@ -167,12 +167,19 @@ class DatabaseBuilder:
 
     def build_complete_database(
         self,
-        reviews_path: str = 'data/processed/reviews_final.jsonl'
+        reviews_path: str = 'data/processed/reviews_final.jsonl',
+        reviews_only: bool = False
     ):
         """
         Complete pipeline: Load → Analyze → Store → Aggregate
 
         This is the main entry point.
+
+        Args:
+            reviews_path: Path to the reviews JSONL
+            reviews_only: Skip LLM analysis (loads reviews and computes
+                aggregates only). Useful offline or before any silver labels
+                exist; dashboard KPIs that join llm_analysis will be empty.
         """
 
         print("\n" + "="*60)
@@ -187,24 +194,27 @@ class DatabaseBuilder:
             print("  ⚠️  No reviews loaded. Check file path.")
             return
 
-        # Step 2: Get reviews that need analysis
-        print("\n🔍 STEP 2: Identifying reviews to analyze...")
-        all_reviews, unanalyzed_reviews = self.get_unanalyzed_reviews(reviews_path)
-
-        if not unanalyzed_reviews:
-            print("  ✅ All reviews already analyzed!")
+        if reviews_only:
+            print("\n⏭️  Skipping LLM analysis (--reviews-only)")
         else:
-            # Step 3: Analyze with agent
-            print(f"\n🤖 STEP 3: Analyzing {len(unanalyzed_reviews)} reviews with agent...")
-            print("  (This may take several minutes...)\n")
+            # Step 2: Get reviews that need analysis
+            print("\n🔍 STEP 2: Identifying reviews to analyze...")
+            all_reviews, unanalyzed_reviews = self.get_unanalyzed_reviews(reviews_path)
 
-            success_count, error_count = self.analyze_batch(
-                unanalyzed_reviews,
-                show_progress=True
-            )
+            if not unanalyzed_reviews:
+                print("  ✅ All reviews already analyzed!")
+            else:
+                # Step 3: Analyze with agent
+                print(f"\n🤖 STEP 3: Analyzing {len(unanalyzed_reviews)} reviews with agent...")
+                print("  (This may take several minutes...)\n")
 
-            print(f"\n  ✅ Successfully analyzed: {success_count}")
-            print(f"  ❌ Errors: {error_count}")
+                success_count, error_count = self.analyze_batch(
+                    unanalyzed_reviews,
+                    show_progress=True
+                )
+
+                print(f"\n  ✅ Successfully analyzed: {success_count}")
+                print(f"  ❌ Errors: {error_count}")
 
         # Step 4: Compute KPI aggregates
         print("\n📊 STEP 4: Computing KPI aggregates...")
@@ -217,8 +227,8 @@ class DatabaseBuilder:
 
         self.print_summary()
 
-        print(f"\n💾 Database saved to: data/database/reviews.duckdb")
-        print(f"✅ Ready for dashboard!")
+        print("\n💾 Database saved to: data/database/reviews.duckdb")
+        print("✅ Ready for dashboard!")
 
     def print_summary(self):
         """Print database statistics"""
@@ -226,7 +236,7 @@ class DatabaseBuilder:
         # Overall KPIs
         kpis = self.db.get_overall_kpis()
 
-        print(f"\n📊 OVERALL STATISTICS:")
+        print("\n📊 OVERALL STATISTICS:")
         print(f"  Total reviews: {kpis['total_reviews']}")
         print(f"  Data sources: {kpis['source_count']}")
         print(f"  Avg sentiment: {kpis['avg_sentiment']}/5")
@@ -234,7 +244,7 @@ class DatabaseBuilder:
         print(f"  Anomaly rate: {kpis['anomaly_rate']}%")
 
         # Theme distribution
-        print(f"\n🏷️  TOP 5 THEMES:")
+        print("\n🏷️  TOP 5 THEMES:")
         try:
             themes_df = self.db.get_theme_distribution(top_n=5)
             for _, row in themes_df.iterrows():
@@ -243,7 +253,7 @@ class DatabaseBuilder:
             print("  (No theme data available)")
 
         # Retention risk
-        print(f"\n⚠️  RETENTION RISK BREAKDOWN:")
+        print("\n⚠️  RETENTION RISK BREAKDOWN:")
         try:
             risk_df = self.db.get_retention_risk_breakdown()
             for source in risk_df['source'].unique():
@@ -257,8 +267,27 @@ class DatabaseBuilder:
 
 def main():
     """Main execution"""
-    builder = DatabaseBuilder()
-    builder.build_complete_database()
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Build the DuckDB database from reviews_final.jsonl")
+    parser.add_argument('--reviews-only', action='store_true',
+                        help='Load reviews and compute aggregates without '
+                             'LLM analysis (offline; no API key needed)')
+    parser.add_argument('--reviews-path', default='data/processed/reviews_final.jsonl')
+    parser.add_argument('--db-path', default='data/database/reviews.duckdb')
+    args = parser.parse_args()
+
+    if args.reviews_only:
+        # Avoid constructing the agent entirely so no LLM deps are needed
+        builder = DatabaseBuilder.__new__(DatabaseBuilder)
+        builder.db = ReviewDatabase(args.db_path)
+        builder.agent = None
+        print("✅ Database initialized (reviews-only mode; no agent)")
+    else:
+        builder = DatabaseBuilder(args.db_path)
+    builder.build_complete_database(reviews_path=args.reviews_path,
+                                    reviews_only=args.reviews_only)
 
 
 if __name__ == '__main__':

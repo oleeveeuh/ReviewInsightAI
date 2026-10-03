@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
 """
-Production-grade Reddit scraper using Pushshift API (beta).
-Collects Amazon fulfillment center employee discussions.
+Reddit scraper using the Pushshift beta API.
+
+WARNING: Pushshift access has been restricted since 2023; this endpoint
+typically returns HTTP 403 for anonymous clients today, in which case the
+scraper collects nothing. data/raw/reddit_reviews.jsonl in the shipped
+fixtures is synthetic. Use src/scraping/manual_reddit_entry.py for a
+no-API alternative. Not affiliated with or endorsed by Reddit.
 
 Usage:
     python src/scraping/reddit_scraper.py [--target 150] [--output path/to/output.jsonl]
-
-Note: Pushshift API now requires using the beta endpoint.
 """
 
 import requests
 import json
 import time
 import random
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Optional, Set
-import sys
 from urllib.parse import urlencode
 
 # Try to import tqdm for progress bars
@@ -165,7 +167,12 @@ class RedditScraper:
                 )
 
                 if response.status_code == 403:
-                    # API access restricted
+                    # Pushshift rejects anonymous access - make this loud,
+                    # not silent, so an empty result is never mistaken for
+                    # "no matching posts".
+                    print("  ⚠️ Pushshift returned 403 (access restricted); "
+                          "the scraper cannot collect data. Use "
+                          "manual_reddit_entry.py instead.")
                     return []
 
                 response.raise_for_status()
@@ -190,7 +197,7 @@ class RedditScraper:
                     continue
                 return []
 
-            except requests.exceptions.RequestException as e:
+            except requests.exceptions.RequestException:
                 if attempt < self.MAX_RETRIES - 1:
                     continue
                 return []
@@ -424,12 +431,12 @@ class RedditScraper:
         print("SCRAPING STATISTICS")
         print("=" * 60)
 
-        print(f"\n📊 COLLECTION SUMMARY:")
+        print("\n📊 COLLECTION SUMMARY:")
         print(f"  Target:        {self.target_count}")
         print(f"  Collected:     {len(self.collected_posts)}")
         print(f"  Success rate:  {len(self.collected_posts) / self.target_count * 100:.1f}%")
 
-        print(f"\n📈 QUALITY FILTERS:")
+        print("\n📈 QUALITY FILTERS:")
         print(f"  Total fetched:      {self.stats['total_fetched']}")
         print(f"  Deleted/removed:    {self.stats['filtered_deleted']}")
         print(f"  Too short:          {self.stats['filtered_short']}")
@@ -442,7 +449,7 @@ class RedditScraper:
             # Date range
             dates = [r['date'] for r in self.collected_posts if r['date']]
             if dates:
-                print(f"\n📅 DATE RANGE:")
+                print("\n📅 DATE RANGE:")
                 print(f"  From: {min(dates)}")
                 print(f"  To:   {max(dates)}")
 
@@ -452,14 +459,14 @@ class RedditScraper:
                 sub = r['metadata']['subreddit']
                 subreddit_counts[sub] = subreddit_counts.get(sub, 0) + 1
 
-            print(f"\n📍 SUBREDDIT DISTRIBUTION:")
+            print("\n📍 SUBREDDIT DISTRIBUTION:")
             for sub, count in sorted(subreddit_counts.items(), key=lambda x: -x[1]):
                 pct = count / len(self.collected_posts) * 100
                 print(f"  r/{sub:20} {count:4} ({pct:5.1f}%)")
 
             # Word count stats
             word_counts = [r['review_length'] for r in self.collected_posts]
-            print(f"\n📝 REVIEW LENGTH:")
+            print("\n📝 REVIEW LENGTH:")
             print(f"  Min:     {min(word_counts)} words")
             print(f"  Max:     {max(word_counts)} words")
             print(f"  Average: {sum(word_counts) // len(word_counts)} words")
@@ -468,7 +475,7 @@ class RedditScraper:
             # Engagement stats
             scores = [r['metadata']['score'] for r in self.collected_posts]
             comments = [r['metadata']['num_comments'] for r in self.collected_posts]
-            print(f"\n💬 ENGAGEMENT:")
+            print("\n💬 ENGAGEMENT:")
             print(f"  Avg upvotes:     {sum(scores) / len(scores):.1f}")
             print(f"  Avg comments:    {sum(comments) / len(comments):.1f}")
 
@@ -515,7 +522,7 @@ def main():
 
     # Scrape content
     print("\n🚀 Starting Reddit scrape...")
-    print(f"Estimated time: 10-15 minutes\n")
+    print("Estimated time: 10-15 minutes\n")
 
     start_time = time.time()
 

@@ -76,7 +76,7 @@ def load_glassdoor(csv_path=None):
                 date = None
                 year = None
                 quarter = None
-        except:
+        except Exception:
             date = None
             year = None
             quarter = None
@@ -161,7 +161,6 @@ def load_youtube(chunk_words: int = 700, chunk_overlap: int = 100,
 
         # Check for transcript
         json_path = YOUTUBE_TRANSCRIPTS_DIR / f"{video_id}.json"
-        txt_path = YOUTUBE_TRANSCRIPTS_DIR / f"{video_id}.txt"
 
         if not json_path.exists():
             continue
@@ -198,7 +197,7 @@ def load_youtube(chunk_words: int = 700, chunk_overlap: int = 100,
                 date = None
                 year = None
                 quarter = None
-        except:
+        except Exception:
             date = None
             year = None
             quarter = None
@@ -364,7 +363,7 @@ def analyze_dataset(reviews):
     # Review length stats
     lengths = [r['review_length'] for r in reviews]
     if lengths:
-        print(f"\nReview length stats:")
+        print("\nReview length stats:")
         print(f"  Min:     {min(lengths):4} words")
         print(f"  Max:     {max(lengths):4} words")
         print(f"  Average: {sum(lengths)//len(lengths):4} words")
@@ -445,7 +444,7 @@ def merge_and_clean():
         f.write("=" * 50 + "\n\n")
         f.write(f"Merge date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
 
-        f.write(f"SOURCES:\n")
+        f.write("SOURCES:\n")
         source_counts = Counter(r['source'] for r in all_reviews)
         for source, count in sorted(source_counts.items()):
             f.write(f"  - {source}: {count}\n")

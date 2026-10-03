@@ -1,12 +1,27 @@
 #!/usr/bin/env python3
 """
-Vector store for semantic similarity search.
+Lightweight vector store for semantic-ish review retrieval.
 
-Uses pre-computed sentence-transformer embeddings to avoid runtime
-import issues with the DuckDB mutex on macOS + miniforge.
+Two backends:
 
-The embeddings are built once in a clean venv, then loaded and used for
-similarity search using numpy (no sentence-transformers import needed).
+1. TF-IDF (default). Built in-memory from data/processed/reviews_final.jsonl
+   with scikit-learn. Offline, deterministic, no serialized artifacts, and
+   works on a fresh clone. This is lexical similarity (TF-IDF cosine), not
+   true semantic similarity - good enough for context retrieval in this
+   prototype, and honest about what it is.
+
+2. sentence-transformers (optional). If data/processed/st_embeddings.npy and
+   reviews_meta.json exist (built by src/agent/build_embeddings.py) AND the
+   sentence-transformers package is installed, queries are embedded with the
+   model for true semantic search.
+
+Notes on the previous implementation
+------------------------------------
+Earlier versions loaded a pickled TF-IDF vectorizer and an
+``allow_pickle=True`` numpy object array of query embeddings, and approximated
+unseen query vectors by copying the embedding of the max word-overlap review
+(which made the queried review itself the top hit). All of that is gone: no
+pickle, no allow_pickle, no pre-computed query cache, no overlap hack.
 
 Usage:
     from src.agent.embeddings import get_vector_store
@@ -16,219 +31,184 @@ Usage:
 """
 
 import json
-import numpy as np
-import pickle
+import sys
 from pathlib import Path
-from typing import List, Dict, Any, Optional
+from typing import Dict, List, Optional
+
+import numpy as np
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+
+REPO_ROOT = Path(__file__).parent.parent.parent
+REVIEWS_PATH = REPO_ROOT / 'data/processed/reviews_final.jsonl'
+ST_EMB_PATH = REPO_ROOT / 'data/processed/st_embeddings.npy'
+ST_META_PATH = REPO_ROOT / 'data/processed/reviews_meta.json'
 
 # Global cache
 _global_store: Optional['SimpleVectorStore'] = None
 
 
 class SimpleVectorStore:
-    """Vector store using pre-computed sentence-transformer embeddings."""
+    """Review retrieval over reviews_final.jsonl.
 
-    def __init__(self):
-        self.reviews = []
+    Backends (auto-selected):
+      * 'tfidf'  - in-memory scikit-learn TF-IDF vectors (default, offline)
+      * 'sentence-transformers' - precomputed embeddings + model-encoded query
+    """
+
+    def __init__(self, reviews_path: Optional[Path] = None):
+        self.reviews: List[Dict] = []
         self.embeddings = None
         self.vectorizer = None
-        self.query_embeddings = None
-        self._initialized = False
-        self._backend = None  # 'tfidf' or 'sentence-transformer'
+        self._backend = None
+        self._st_model = None
+        self.reviews_path = Path(reviews_path) if reviews_path else REVIEWS_PATH
 
-    def load_from_files(
-        self,
-        jsonl_path: str = 'data/processed/reviews_final.jsonl',
-        meta_path: str = 'data/processed/reviews_meta.json',
-    ):
-        """Load reviews and pre-built embeddings."""
+    # ------------------------------------------------------------------
+    # Loading
+    # ------------------------------------------------------------------
 
-        # Try sentence-transformer embeddings first (better quality)
-        st_emb_path = Path('data/processed/st_embeddings.npy')
-        tfidf_emb_path = Path('data/processed/tfidf_embeddings.npy')
-        tfidf_vectorizer_path = Path('data/processed/tfidf_vectorizer.pkl')
-        query_emb_path = Path('data/processed/query_embeddings.npy')
-
-        if st_emb_path.exists():
-            self._load_sentence_transformer_embeddings(st_emb_path, query_emb_path, meta_path)
-        elif tfidf_emb_path.exists():
-            self._load_tfidf_embeddings(tfidf_emb_path, tfidf_vectorizer_path, meta_path)
-        else:
+    def load_from_files(self, jsonl_path: Optional[Path] = None):
+        """Load reviews, preferring sentence-transformer artifacts when usable."""
+        if jsonl_path:
+            self.reviews_path = Path(jsonl_path)
+        if not self.reviews_path.exists():
             raise FileNotFoundError(
-                "No embeddings found. Run build_embeddings.py first:\n"
-                "  python -m venv .venv_clean\n"
-                "  .venv_clean/bin/pip install sentence-transformers numpy\n"
-                "  .venv_clean/bin/python src/agent/build_embeddings.py"
+                f"Reviews not found at {self.reviews_path}. The tracked file is "
+                "a small synthetic fixture; restore the full local corpus or "
+                "point SimpleVectorStore at another JSONL with the same schema."
             )
 
-    def _load_sentence_transformer_embeddings(self, emb_path: Path, query_emb_path: Path, meta_path: str):
-        """Load sentence-transformer embeddings (no import needed)."""
-        print("Loading sentence-transformer embeddings...")
-        with open(meta_path, 'r') as f:
+        with open(self.reviews_path, 'r') as f:
+            self.reviews = [json.loads(line) for line in f if line.strip()]
+
+        if (ST_EMB_PATH.exists() and ST_META_PATH.exists()
+                and self._try_load_st_model()):
+            self._load_st_backend()
+        else:
+            self._build_tfidf_backend()
+
+    def _try_load_st_model(self) -> bool:
+        """Return True if the optional sentence-transformers model loads."""
+        try:
+            from sentence_transformers import SentenceTransformer
+        except ImportError:
+            return False
+        try:
+            self._st_model = SentenceTransformer('all-MiniLM-L6-v2')
+            return True
+        except Exception:
+            return False
+
+    def _load_st_backend(self):
+        self.embeddings = np.load(ST_EMB_PATH)
+        with open(ST_META_PATH, 'r') as f:
             self.reviews = json.load(f)
+        if self.embeddings.shape[0] != len(self.reviews):
+            raise ValueError(
+                f"st_embeddings.npy has {self.embeddings.shape[0]} rows but "
+                f"reviews_meta.json has {len(self.reviews)} reviews - rebuild "
+                "artifacts with src/agent/build_embeddings.py"
+            )
+        self._backend = 'sentence-transformers'
+        print(f"Loaded {len(self.reviews)} reviews "
+              f"(backend: sentence-transformers, shape {self.embeddings.shape})")
 
-        self.embeddings = np.load(emb_path)
-        print(f"Loaded {len(self.reviews)} reviews with embeddings shape: {self.embeddings.shape}")
+    def _build_tfidf_backend(self):
+        from sklearn.feature_extraction.text import TfidfVectorizer
 
-        # Load pre-computed query embeddings if available
-        if query_emb_path.exists():
-            self.query_embeddings = np.load(query_emb_path, allow_pickle=True).item()
-            print(f"Loaded {len(self.query_embeddings)} pre-computed query embeddings")
-
-        self._backend = 'sentence-transformer'
-        self._initialized = True
-
-    def _load_tfidf_embeddings(self, emb_path: Path, vectorizer_path: Path, meta_path: str):
-        """Load TF-IDF embeddings."""
-        print("Loading TF-IDF embeddings...")
-        with open(meta_path, 'r') as f:
-            self.reviews = json.load(f)
-
-        self.embeddings = np.load(emb_path)
-        print(f"Loaded {len(self.reviews)} reviews with embeddings shape: {self.embeddings.shape}")
-
-        with open(vectorizer_path, 'rb') as f:
-            self.vectorizer = pickle.load(f)
-
+        self.vectorizer = TfidfVectorizer(max_features=5000, stop_words='english',
+                                          ngram_range=(1, 2), sublinear_tf=True)
+        texts = [r.get('text', '') for r in self.reviews]
+        self.embeddings = self.vectorizer.fit_transform(texts)
         self._backend = 'tfidf'
-        self._initialized = True
+        print(f"Loaded {len(self.reviews)} reviews (backend: tfidf, "
+              f"{self.embeddings.shape[1]} features)")
 
-    def _encode_query_st(self, query: str) -> np.ndarray:
-        """
-        Encode query using sentence-transformers without importing.
+    # ------------------------------------------------------------------
+    # Query encoding
+    # ------------------------------------------------------------------
 
-        Uses a hybrid approach:
-        1. Check if query is in pre-computed embeddings
-        2. If not, use a simple bag-of-words approximation using the stored embeddings
-        """
-        # Check for exact or partial match in pre-computed queries
-        if self.query_embeddings:
-            query_lower = query.lower()
-            for precomputed_q in self.query_embeddings.keys():
-                if query_lower in precomputed_q or precomputed_q in query_lower:
-                    return self.query_embeddings[precomputed_q]
+    def _encode_query(self, query: str):
+        if self._backend == 'sentence-transformers':
+            return self._st_model.encode(query, normalize_embeddings=True)
+        return self.vectorizer.transform([query])
 
-        # Fallback: use TF-IDF style approximation
-        # This is not as good as real sentence-transformers but avoids the import
-        # For now, we'll create a simple weighted average of words that appear in the query
-        # But actually, the better approach is to just use cosine similarity with
-        # the stored embeddings directly
-        return self._embed_query_approximation(query)
+    # ------------------------------------------------------------------
+    # Search
+    # ------------------------------------------------------------------
 
-    def _embed_query_approximation(self, query: str) -> np.ndarray:
-        """
-        Create a query embedding approximation using word overlap.
-
-        This is a fallback when pre-computed embeddings aren't available.
-        It finds the most similar stored review and uses its embedding as a starting point,
-        then adjusts based on word overlap.
-        """
-        # Simple approach: find the review with maximum word overlap
-        query_words = set(query.lower().split())
-        best_match_idx = 0
-        best_overlap = 0
-
-        for i, review in enumerate(self.reviews):
-            review_words = set(review.get('text', '').lower().split())
-            overlap = len(query_words & review_words)
-            if overlap > best_overlap:
-                best_overlap = overlap
-                best_match_idx = i
-
-        # Return the embedding of the most similar review
-        # This gives us a "good enough" starting point for similarity search
-        return self.embeddings[best_match_idx]
-
-    def search(
-        self,
-        query: str,
-        k: int = 5,
-        source_filter: Optional[str] = None,
-        exclude_review_id: Optional[str] = None
-    ) -> List[Dict[str, Any]]:
-        """Find semantically similar reviews."""
-        if not self._initialized:
+    def search(self, query: str, k: int = 5,
+               source_filter: Optional[str] = None,
+               exclude_review_id: Optional[str] = None) -> List[Dict[str, any]]:
+        """Find similar reviews (TF-IDF cosine or embedding cosine)."""
+        if not self.reviews:
             self.load_from_files()
 
-        # Transform query based on backend
-        if self._backend == 'sentence-transformer':
-            # Use pre-computed embeddings or approximation
-            query_emb = self._encode_query_st(query)
-        else:  # tfidf
-            query_emb = self.vectorizer.transform([query]).toarray()[0]
-            # Compute cosine similarity for sparse vectors
-            norms = np.linalg.norm(self.embeddings, axis=1) * np.linalg.norm(query_emb)
-            similarities = np.divide(
-                np.dot(self.embeddings, query_emb),
-                norms,
-                where=norms > 0,
-                out=np.zeros(len(norms))
-            )
-            # Return early for TF-IDF since we already computed similarities
-            return self._filter_and_sort_results(similarities, k, source_filter, exclude_review_id)
+        query_vec = self._encode_query(query)
 
-        # Compute cosine similarity for dense vectors
-        similarities = np.dot(self.embeddings, query_emb)
-        return self._filter_and_sort_results(similarities, k, source_filter, exclude_review_id)
+        if self._backend == 'sentence-transformers':
+            similarities = self.embeddings @ query_vec
+        else:
+            # Sparse row-wise cosine similarity
+            sims = (self.embeddings @ query_vec.T).toarray().ravel()
+            q_norm = np.linalg.norm(query_vec.toarray())
+            r_norms = np.sqrt(self.embeddings.multiply(
+                self.embeddings).sum(axis=1)).A.ravel()
+            denom = r_norms * q_norm
+            similarities = np.divide(sims, denom, where=denom > 0,
+                                     out=np.zeros_like(sims))
 
-    def _filter_and_sort_results(
-        self,
-        similarities: np.ndarray,
-        k: int,
-        source_filter: Optional[str],
-        exclude_review_id: Optional[str]
-    ) -> List[Dict[str, Any]]:
-        """Apply filters and sort by similarity."""
-        indices = np.arange(len(self.reviews))
-        mask = np.ones(len(indices), dtype=bool)
+        return self._filter_and_sort_results(similarities, k, source_filter,
+                                             exclude_review_id)
 
+    def _filter_and_sort_results(self, similarities: np.ndarray, k: int,
+                                 source_filter: Optional[str],
+                                 exclude_review_id: Optional[str]) -> List[Dict[str, any]]:
+        mask = np.ones(len(self.reviews), dtype=bool)
         if source_filter:
-            mask &= [self.reviews[i].get('source') == source_filter for i in indices]
-
+            mask &= np.array([r.get('source') == source_filter
+                              for r in self.reviews])
         if exclude_review_id:
-            mask &= [self.reviews[i].get('review_id') != exclude_review_id for i in indices]
+            mask &= np.array([r.get('review_id') != exclude_review_id
+                              for r in self.reviews])
 
-        # Sort by similarity
-        valid_indices = indices[mask]
-        valid_sims = similarities[mask]
-        sorted_idx = np.argsort(valid_sims)[::-1][:k]
+        valid_idx = np.where(mask)[0]
+        if not len(valid_idx):
+            return []
 
-        # Build results
+        order = valid_idx[np.argsort(similarities[valid_idx])[::-1][:k]]
         results = []
-        for idx in sorted_idx:
-            i = valid_indices[idx]
+        for i in order:
+            similarity = float(similarities[i])
+            if similarity <= 0.01:
+                continue
             r = self.reviews[i]
-            similarity = valid_sims[idx]
-            # Only return results with meaningful similarity
-            if similarity > 0.01:
-                results.append({
-                    'review_id': r.get('review_id'),
-                    'text': r.get('text', ''),
-                    'source': r.get('source'),
-                    'rating': r.get('rating'),
-                    'similarity': float(similarity)
-                })
-
+            results.append({
+                'review_id': r.get('review_id'),
+                'text': r.get('text', ''),
+                'source': r.get('source'),
+                'rating': r.get('rating'),
+                'similarity': similarity,
+            })
         return results
 
 
-def get_vector_store() -> SimpleVectorStore:
+def get_vector_store(reviews_path: Optional[Path] = None) -> SimpleVectorStore:
     """Get or create the global vector store."""
     global _global_store
     if _global_store is None:
-        _global_store = SimpleVectorStore()
+        _global_store = SimpleVectorStore(reviews_path=reviews_path)
         _global_store.load_from_files()
     return _global_store
 
 
 if __name__ == "__main__":
-    # Test
     store = SimpleVectorStore()
     store.load_from_files()
 
-    queries = ["overtime", "safety", "management issues"]
+    queries = ["overtime and mandatory extra shifts", "safety", "management communication"]
     for q in queries:
         print(f"\nQuery: {q}")
-        results = store.search(q, k=3)
-        for r in results:
-            print(f"  {r['similarity']:.3f}: [{r['source']}] {r['text'][:60]}...")
+        for r in store.search(q, k=3):
+            print(f"  {r['similarity']:.3f}: [{r['source']}] {r['text'][:70]}...")

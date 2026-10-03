@@ -12,15 +12,14 @@ Usage:
     result = agent.analyze("Employee review text...")
 """
 
-import os
 import json
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List
 from pathlib import Path
 
 # LangChain imports
 try:
     from langchain.agents import create_react_agent, AgentExecutor
-    from langchain.tools import Tool, StructuredTool
+    from langchain.tools import Tool, StructuredTool  # noqa: F401
     from langchain_openai import ChatOpenAI
     from langchain_core.prompts import PromptTemplate
     from langchain.memory import ConversationBufferMemory
@@ -110,7 +109,7 @@ class LangChainAgent:
             # Parse themes from JSON string
             try:
                 themes = json.loads(themes_json)
-            except:
+            except Exception:
                 themes = []
 
             result = tool.execute(themes=themes, sentiment=sentiment)
@@ -240,7 +239,7 @@ Review: {review_text}"""
                         'themes': parsed.get('themes', []),
                         'retention_risk': parsed.get('retention_risk')
                     })
-                except:
+                except Exception:
                     pass
 
             # Add intermediate steps for transparency

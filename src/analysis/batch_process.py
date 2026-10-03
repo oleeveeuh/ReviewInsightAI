@@ -8,7 +8,6 @@ Usage:
 """
 
 import json
-import pandas as pd
 import os
 import time
 import sys
@@ -107,7 +106,7 @@ class BatchProcessor:
             result['retention_risk'] = str(result.get('retention_risk', 'low')).lower()
 
             return result
-        except Exception as e:
+        except Exception:
             return None
 
     def load_reviews(self, input_path: str) -> List[Dict]:
@@ -128,7 +127,7 @@ class BatchProcessor:
                     try:
                         result = json.loads(line)
                         processed_ids.add(result['review_id'])
-                    except:
+                    except Exception:
                         pass
         return processed_ids
 

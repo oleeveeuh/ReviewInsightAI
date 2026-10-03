@@ -7,7 +7,6 @@ Run this script and paste Reddit post content when prompted.
 """
 
 import json
-import uuid
 from datetime import datetime
 from pathlib import Path
 
@@ -23,7 +22,7 @@ def parse_quarter(date_str: str) -> str:
         date = datetime.fromisoformat(date_str.replace('T', ' ').split()[0])
         month = date.month
         return f"Q{(month - 1) // 3 + 1}"
-    except:
+    except Exception:
         return "Q1"
 
 
@@ -55,7 +54,7 @@ def add_reddit_post(
     # Extract year from date
     try:
         year = int(date.split('-')[0])
-    except:
+    except Exception:
         year = datetime.now().year
 
     quarter = parse_quarter(date)
@@ -110,7 +109,7 @@ def save_review(review: dict, output_path: Path = None) -> None:
                     try:
                         data = json.loads(line)
                         existing_ids.add(data.get('review_id'))
-                    except:
+                    except Exception:
                         pass
 
     # Check if already exists
@@ -202,7 +201,6 @@ def interactive_mode():
 def parse_template_file(template_path: Path) -> list:
     """Parse entries from a template file."""
     entries = []
-    current_entry = {}
 
     with open(template_path, 'r') as f:
         content = f.read()

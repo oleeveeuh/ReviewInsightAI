@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """
-Agent controller for ReviewInsight AI - ReAct Pattern Implementation.
+Agent controller for ReviewInsight AI - plan-and-execute orchestration.
 
-Agentic system that uses LLM to:
-1. Plan which tools to use (Reasoning)
-2. Execute tools in sequence (Acting)
-3. Synthesize results (Output)
+ReAct-inspired pipeline (a single LLM planning call, then sequential tool
+execution, then synthesis). This is NOT an iterative ReAct loop: the agent
+does not re-plan based on intermediate tool outputs. For a true iterative
+ReAct implementation, see src/agent/langchain_agent.py (requires the optional
+LangChain dependencies).
 
-This enables more sophisticated analysis than simple one-shot labeling.
+The LLM is called lazily: importing this module and initializing the agent
+require no API key; only plan() does.
 
 Usage:
     from src.agent.controller import ReviewAgent, analyze_review_agentic
@@ -16,8 +18,7 @@ Usage:
     result = agent.analyze("Employee complains about mandatory overtime...")
 """
 
-from typing import Dict, Any, List, Optional
-from openai import OpenAI
+from typing import Dict, Any
 import os
 import json
 from dotenv import load_dotenv
@@ -33,8 +34,26 @@ load_dotenv()
 
 
 def _get_client():
-    """Get or create OpenAI client (lazy initialization)."""
-    return OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+    """Get or create OpenAI client (lazy initialization).
+
+    Raises ImportError if the optional openai package is missing and RuntimeError
+    if no API key is configured, with actionable messages for each.
+    """
+    try:
+        from openai import OpenAI
+    except ImportError as e:
+        raise ImportError(
+            "The openai package is required for LLM features. Install it with: "
+            "pip install -r requirements-optional.txt"
+        ) from e
+
+    api_key = os.getenv('OPENAI_API_KEY')
+    if not api_key:
+        raise RuntimeError(
+            "OPENAI_API_KEY is not set. Copy .env.example to .env and add your "
+            "key, or export OPENAI_API_KEY."
+        )
+    return OpenAI(api_key=api_key)
 
 
 AGENT_SYSTEM_PROMPT = """You are an intelligent agent that analyzes employee reviews.
@@ -136,10 +155,14 @@ Create a plan for which tools to use."""
                     {"tool": "analyze_sentiment", "params": {"review_text": review_text}}
                 ]
             }
+        except (ImportError, RuntimeError):
+            # Propagate missing-dependency / missing-key errors with their
+            # actionable messages (do not swallow them into an empty plan).
+            raise
         except Exception as e:
-            print(f"  ⚠️ Planning error: {e}")
+            print(f"  ⚠️ Planning error: {type(e).__name__}")
             return {
-                "reasoning": f"Error during planning: {e}",
+                "reasoning": "Planning call failed",
                 "steps": []
             }
 
@@ -209,7 +232,8 @@ Create a plan for which tools to use."""
             "themes": sentiment_output.get('themes', []),
             "retention_risk": sentiment_output.get('retention_risk'),
             "is_anomalous": anomaly_output.get('is_anomalous', False),
-            "anomaly_reason": anomaly_output.get('reason') if anomaly_output.get('reason') else anomaly_output.get('anomaly_reason'),
+            "anomaly_reason": (anomaly_output.get('reason')
+                               or anomaly_output.get('anomaly_reason')),
             "reasoning": plan.get('reasoning')
         }
 
@@ -239,24 +263,20 @@ Create a plan for which tools to use."""
         print(f"Review: {review_text[:100]}{'...' if len(review_text) > 100 else ''}")
 
         # Step 1: Plan
-        print(f"\n🧠 Planning...")
+        print("\n🧠 Planning...")
         plan = self.plan(review_text)
         print(f"Reasoning: {plan.get('reasoning', 'N/A')}")
         print(f"Steps: {len(plan.get('steps', []))}")
 
         # Step 2: Execute
-        print(f"\n⚙️  Executing plan...")
+        print("\n⚙️  Executing plan...")
         results = self.execute_plan(review_text, plan)
 
         # Step 3: Done
-        print(f"\n✅ Analysis complete")
+        print("\n✅ Analysis complete")
         print(f"{'='*60}\n")
 
         return results
-
-
-# Alias for backwards compatibility
-execute_tool = ToolRegistry.execute
 
 
 def analyze_review_agentic(review_text: str, vector_db=None) -> Dict[str, Any]:

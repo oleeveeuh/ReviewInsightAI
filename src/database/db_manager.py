@@ -26,8 +26,7 @@ import duckdb
 import json
 import pandas as pd
 from pathlib import Path
-from datetime import datetime
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any
 
 
 class ReviewDatabase:
@@ -369,7 +368,7 @@ class ReviewDatabase:
         """Get theme frequency distribution"""
 
         # DuckDB uses UNNEST differently - need to use from unnest()
-        return self.conn.execute(f"""
+        return self.conn.execute("""
             SELECT
                 unnested.theme as theme,
                 COUNT(*) as frequency,
@@ -378,8 +377,8 @@ class ReviewDatabase:
                  UNNEST(themes) as unnested(theme)
             GROUP BY unnested.theme
             ORDER BY frequency DESC
-            LIMIT {top_n}
-        """).df()
+            LIMIT ?
+        """, [int(top_n)]).df()
 
     def get_retention_risk_breakdown(self) -> pd.DataFrame:
         """Get retention risk distribution by source"""
@@ -398,7 +397,7 @@ class ReviewDatabase:
     def get_high_risk_reviews(self, limit: int = 10) -> pd.DataFrame:
         """Get most recent high-risk reviews for investigation"""
 
-        return self.conn.execute(f"""
+        return self.conn.execute("""
             SELECT
                 r.review_id,
                 SUBSTR(r.text, 1, 200) || '...' as text_preview,
@@ -412,16 +411,19 @@ class ReviewDatabase:
             JOIN llm_analysis a ON r.review_id = a.review_id
             WHERE a.retention_risk = 'high'
             ORDER BY r.date DESC NULLS LAST
-            LIMIT {limit}
-        """).df()
+            LIMIT ?
+        """, [int(limit)]).df()
 
-    def search_reviews(self, search_term: str, limit: int = 20) -> pd.DataFrame:
-        """Simple text search in reviews"""
+    def search_reviews(self, search_term: str, sentiment: int = None,
+                       retention_risk: str = None, limit: int = 20) -> pd.DataFrame:
+        """Text search in reviews with optional sentiment/risk filters.
 
-        # Escape single quotes in search term
-        search_escaped = search_term.replace("'", "''")
+        Fully parameterized: the search term is bound as a value (with SQL
+        LIKE wildcards in the user input escaped), never interpolated.
+        """
+        wildcard_escaped = search_term.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
 
-        return self.conn.execute(f"""
+        sql = """
             SELECT
                 r.review_id,
                 SUBSTR(r.text, 1, 200) || '...' as text_preview,
@@ -433,9 +435,37 @@ class ReviewDatabase:
                 a.retention_risk
             FROM reviews r
             JOIN llm_analysis a ON r.review_id = a.review_id
-            WHERE LOWER(r.text) LIKE LOWER('%{search_escaped}%')
-            ORDER BY r.date DESC NULLS LAST
-            LIMIT {limit}
+            WHERE LOWER(r.text) LIKE LOWER(?) ESCAPE '\\'
+        """
+        params = [f"%{wildcard_escaped}%"]
+
+        if sentiment is not None:
+            sql += " AND a.sentiment = ?"
+            params.append(int(sentiment))
+        if retention_risk is not None:
+            sql += " AND a.retention_risk = ?"
+            params.append(str(retention_risk))
+
+        sql += " ORDER BY r.date DESC NULLS LAST LIMIT ?"
+        params.append(int(limit))
+
+        return self.conn.execute(sql, params).df()
+
+    def get_statistics(self) -> Dict[str, any]:
+        """Summary statistics used by the dashboard KPI cards."""
+        stats = self.get_overall_kpis()
+        stats['table_counts'] = self.get_table_counts()
+        return stats
+
+    def get_sentiment_distribution(self) -> pd.DataFrame:
+        """Distribution of LLM-assigned sentiment scores (dashboard helper)."""
+        return self.conn.execute("""
+            SELECT
+                a.sentiment as sentiment,
+                COUNT(*) as count
+            FROM llm_analysis a
+            GROUP BY a.sentiment
+            ORDER BY a.sentiment
         """).df()
 
     def get_table_counts(self) -> Dict[str, int]:
@@ -467,7 +497,7 @@ if __name__ == '__main__':
     db.load_memory_analyses('data/memory/analysis_log.jsonl')
 
     # Show table counts
-    print(f"\nTable counts:")
+    print("\nTable counts:")
     counts = db.get_table_counts()
     for table, count in counts.items():
         print(f"  {table}: {count} records")
@@ -483,19 +513,19 @@ if __name__ == '__main__':
         print("="*60)
 
         kpis = db.get_overall_kpis()
-        print(f"\nOverall KPIs:")
+        print("\nOverall KPIs:")
         print(f"  Total reviews: {kpis['total_reviews']}")
         print(f"  Sources: {kpis['source_count']}")
         print(f"  Avg sentiment: {kpis['avg_sentiment']}/5")
         print(f"  High risk: {kpis['high_risk_pct']}%")
         print(f"  Anomaly rate: {kpis['anomaly_rate']}%")
 
-        print(f"\nTheme distribution:")
+        print("\nTheme distribution:")
         themes = db.get_theme_distribution(top_n=5)
         print(themes.to_string(index=False))
 
         if counts['kpi_aggregates'] > 0:
-            print(f"\nSentiment trend (first 5 rows):")
+            print("\nSentiment trend (first 5 rows):")
             trend = db.get_sentiment_trend()
             print(trend.head().to_string(index=False))
 

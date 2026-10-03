@@ -4,7 +4,6 @@ Create YouTube dataset with original and cleaned transcripts.
 Generates a CSV file with video metadata and transcript processing.
 """
 
-import os
 import re
 import pandas as pd
 from pathlib import Path
@@ -142,7 +141,7 @@ def extract_video_metadata(file_path):
             with open(json_path, 'r', encoding='utf-8') as f:
                 json_data = json.load(f)
                 metadata['title'] = json_data.get('title', metadata['title'])
-        except:
+        except Exception:
             pass
 
     return metadata
@@ -173,10 +172,10 @@ def main():
         transcript_data = process_transcript_file(transcript_file, metadata['video_id'])
 
         # Create rows for each line
-        for i, (original, cleaned) in enumerate(zip(
-            transcript_data['original_lines'],
-            transcript_data['cleaned_lines'] + [''] * (len(transcript_data['original_lines']) - len(transcript_data['cleaned_lines']))
-        )):
+        originals = transcript_data['original_lines']
+        cleaned_lines = transcript_data['cleaned_lines']
+        padded = cleaned_lines + [''] * (len(originals) - len(cleaned_lines))
+        for i, (original, cleaned) in enumerate(zip(originals, padded)):
             dataset_rows.append({
                 'video_id': metadata['video_id'],
                 'title': metadata['title'],
@@ -196,7 +195,7 @@ def main():
     df.to_csv(OUTPUT_FILE, index=False, encoding='utf-8')
 
     print(f"\n{'='*50}")
-    print(f"Dataset created successfully!")
+    print("Dataset created successfully!")
     print(f"Total rows: {len(df)}")
     print(f"Unique videos: {df['video_id'].nunique()}")
     print(f"Output file: {OUTPUT_FILE}")

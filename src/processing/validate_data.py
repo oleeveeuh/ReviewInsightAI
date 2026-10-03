@@ -8,7 +8,6 @@ import json
 import pandas as pd
 from pathlib import Path
 from collections import Counter
-import re
 
 # Paths
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
@@ -41,13 +40,13 @@ def validate_merged_data(data_path=DEFAULT_DATA_PATH):
     # Check 1: Required fields
     print("\n1. Required Fields Check:")
     required_fields = ['review_id', 'text', 'source']
-    issues_found = False
+    any_missing = False
     for field in required_fields:
         missing = sum(1 for r in reviews if not r.get(field))
         status = "❌" if missing > 0 else "✅"
         print(f"   {status} {field:15} {missing} missing")
         if missing > 0:
-            issues_found = True
+            any_missing = True
 
     # Check 2: Optional fields coverage
     print("\n2. Optional Fields Coverage:")
@@ -137,7 +136,7 @@ def validate_merged_data(data_path=DEFAULT_DATA_PATH):
     if exact_duplicates > 0:
         print(f"   ⚠️  Exact duplicates: {exact_duplicates}")
     else:
-        print(f"   ✅ No exact duplicates found")
+        print("   ✅ No exact duplicates found")
 
     # Check for near-duplicates (similar first 100 chars)
     text_starts = {}
@@ -180,12 +179,15 @@ def validate_merged_data(data_path=DEFAULT_DATA_PATH):
         warnings.append("Less than 50% have ratings")
 
     if warnings:
-        print(f"\n⚠️  Warnings:")
+        print("\n⚠️  Warnings:")
         for w in warnings:
             print(f"   - {w}")
     else:
         print("\n✅ All checks passed!")
 
+    if any_missing:
+        print("\nResult: FAILED - required fields are missing")
+        return False
     return True
 
 

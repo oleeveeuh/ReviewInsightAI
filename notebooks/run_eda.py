@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from collections import Counter
 import re
-import numpy as np
 from pathlib import Path
 
 # Set style
@@ -70,7 +69,7 @@ def main():
     plt.tight_layout()
     plt.savefig(REPORTS_DIR / 'source_distribution.png', dpi=300, bbox_inches='tight')
     plt.close()
-    print(f"Saved: source_distribution.png")
+    print("Saved: source_distribution.png")
 
     # ==================== TEMPORAL ANALYSIS ====================
     print("\n" + "=" * 60)
@@ -94,7 +93,7 @@ def main():
         plt.tight_layout()
         plt.savefig(REPORTS_DIR / 'reviews_over_time.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print(f"Saved: reviews_over_time.png")
+        print("Saved: reviews_over_time.png")
 
         # Yearly distribution
         year_counts = df_with_dates['year'].value_counts().sort_index()
@@ -133,7 +132,7 @@ def main():
         plt.tight_layout()
         plt.savefig(REPORTS_DIR / 'rating_distribution.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print(f"Saved: rating_distribution.png")
+        print("Saved: rating_distribution.png")
 
     # ==================== TEXT ANALYSIS ====================
     print("\n" + "=" * 60)
@@ -189,7 +188,7 @@ def main():
     plt.tight_layout()
     plt.savefig(REPORTS_DIR / 'theme_frequency.png', dpi=300, bbox_inches='tight')
     plt.close()
-    print(f"Saved: theme_frequency.png")
+    print("Saved: theme_frequency.png")
 
     # ==================== REVIEW LENGTH ====================
     print("\n" + "=" * 60)
@@ -212,7 +211,7 @@ def main():
     plt.tight_layout()
     plt.savefig(REPORTS_DIR / 'review_length_dist.png', dpi=300, bbox_inches='tight')
     plt.close()
-    print(f"Saved: review_length_dist.png")
+    print("Saved: review_length_dist.png")
 
     print("\nAverage length by source:")
     length_by_source = df.groupby('source')['review_length'].agg(['mean', 'median', 'count'])
@@ -227,6 +226,8 @@ def main():
     observations = []
 
     observations.append(f"1. Dataset: {len(df)} total reviews from {df['source'].nunique()} sources")
+    observations.append("   (NOTE: statistics below describe the tracked SYNTHETIC fixture corpus;"
+                        " the real corpus is not redistributed - see DATASET_CARD.md)")
 
     if len(df_with_dates) > 0:
         date_range = (df_with_dates['date_parsed'].max() - df_with_dates['date_parsed'].min()).days
@@ -241,9 +242,12 @@ def main():
 
     observations.append(f"5. Average review length: {df['review_length'].mean():.0f} words")
 
-    glassdoor_pct = len(df[df['source'] == 'glassdoor']) / len(df) * 100
-    youtube_pct = len(df[df['source'] == 'youtube']) / len(df) * 100
-    observations.append(f"6. Source mix: {glassdoor_pct:.1f}% Glassdoor, {youtube_pct:.1f}% YouTube")
+    source_mix = ", ".join(
+        f"{pct:.1f}% {source}"
+        for source, pct in sorted(
+            ((s, len(g) / len(df) * 100) for s, g in df.groupby('source')),
+            key=lambda kv: -kv[1]))
+    observations.append(f"6. Source mix: {source_mix}")
 
     for obs in observations:
         print(obs)

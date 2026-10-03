@@ -17,7 +17,6 @@ import json
 import time
 import sys
 from pathlib import Path
-from typing import Dict, List, Any
 
 sys.path.append(str(Path(__file__).parent / 'src'))
 
@@ -47,7 +46,7 @@ def compare_agents():
     reviews = reviews[:args.samples]
 
     print(f"\n{'='*70}")
-    print(f"AGENT COMPARISON: Custom ReAct vs LangChain")
+    print("AGENT COMPARISON: Custom ReAct vs LangChain")
     print(f"{'='*70}")
     print(f"Reviews: {len(reviews)}")
     print(f"Output: {args.output}\n")
@@ -119,8 +118,9 @@ def compare_agents():
                 latency = time.time() - start
                 agent_results['latencies'].append(latency)
 
-                # Count tokens (rough estimate)
-                input_tokens = len(review.split()) * 1.3  # Rough estimate
+                # Token usage is a ROUGH word-count estimate (words x 1.3),
+                # not real API token accounting. Do not cite as measured cost.
+                input_tokens = len(review.split()) * 1.3
                 if 'final_analysis' in result:
                     output_text = str(result['final_analysis'])
                 else:
@@ -141,15 +141,18 @@ def compare_agents():
                 print(f"  ✗ Error: {e}")
 
         # Calculate summary stats
+        latencies = agent_results['latencies']
+        usage = agent_results['token_usage']
         results['agents'][agent_name] = {
-            'avg_latency': sum(agent_results['latencies']) / len(agent_results['latencies']),
-            'total_tokens': sum(t['total'] for t in agent_results['token_usage']),
-            'avg_tokens_per_review': sum(t['total'] for t in agent_results['token_usage']) / len(agent_results['token_usage']),
+            'avg_latency': sum(latencies) / len(latencies) if latencies else 0,
+            'total_tokens': sum(t['total'] for t in usage),
+            'avg_tokens_per_review': (sum(t['total'] for t in usage)
+                                      / len(usage)) if usage else 0,
             'error_rate': agent_results['errors'] / len(reviews),
             'success_rate': (len(reviews) - agent_results['errors']) / len(reviews)
         }
 
-        print(f"\nSummary:")
+        print("\nSummary:")
         print(f"  Avg Latency: {results['agents'][agent_name]['avg_latency']:.2f}s")
         print(f"  Avg Tokens: {results['agents'][agent_name]['avg_tokens_per_review']:.0f}")
         print(f"  Error Rate: {results['agents'][agent_name]['error_rate']:.1%}")
@@ -169,7 +172,7 @@ def compare_agents():
     # Print comparison table
     if len(results['agents']) > 1:
         print(f"\n{'='*70}")
-        print(f"COMPARISON TABLE")
+        print("COMPARISON TABLE")
         print(f"{'='*70}\n")
 
         print(f"{'Metric':<25} {'Custom':<15} {'LangChain':<15}")

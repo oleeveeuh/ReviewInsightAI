@@ -174,6 +174,74 @@ def init_systems():
     except Exception as e:
         return None, None, str(e)
 
+
+def answer_pattern_question(question: str, db, agent) -> dict:
+    """Rule-based pattern summary from local aggregates (offline, no LLM).
+
+    Matches keywords in the question against theme/sentiment/risk aggregates
+    and returns a templated answer with its data sources. Honest scope: this
+    is aggregation, not natural-language question answering.
+    """
+    q = question.lower()
+    sources = []
+
+    theme_dist = db.get_theme_distribution(top_n=10)
+    kpis = db.get_overall_kpis()
+
+    matched_theme = None
+    if not theme_dist.empty:
+        for theme in theme_dist['theme']:
+            if str(theme).lower().replace('_', ' ') in q or str(theme).lower() in q:
+                matched_theme = theme
+                break
+
+    lines = []
+    total = kpis.get('total_reviews', 0)
+    lines.append(f"Based on {total} analyzed reviews in the local database:")
+
+    if matched_theme:
+        row = theme_dist[theme_dist['theme'] == matched_theme].iloc[0]
+        pct = row['percentage']
+        lines.append(
+            f"- The theme **{matched_theme}** appears in about {pct:.0f}% of "
+            f"theme mentions across analyzed reviews.")
+        sources.append("get_theme_distribution()")
+
+        try:
+            hits = db.search_reviews(search_term=str(matched_theme).replace('_', ' '),
+                                     limit=3)
+            if not hits.empty:
+                examples = ", ".join(hits['review_id'].tolist())
+                lines.append(f"- Example reviews mentioning it: {examples}.")
+                sources.append("search_reviews()")
+        except Exception:
+            pass
+    else:
+        top = theme_dist.iloc[0] if not theme_dist.empty else None
+        if top is not None:
+            lines.append(
+                f"- The most frequent theme is **{top['theme']}** "
+                f"(~{top['percentage']:.0f}% of theme mentions).")
+            sources.append("get_theme_distribution()")
+
+    avg = kpis.get('avg_sentiment')
+    if avg is not None:
+        lines.append(f"- Average LLM-assigned sentiment is {avg:.2f} on a 1-5 scale.")
+        sources.append("get_overall_kpis()")
+
+    risk = kpis.get('high_risk_pct')
+    if risk is not None:
+        lines.append(
+            f"- {risk:.0f}% of reviews carry a **high** LLM-assigned review-risk "
+            f"class (an LLM-generated classification, not observed attrition).")
+        sources.append("get_overall_kpis()")
+
+    lines.append(
+        "_Note: this is a rule-based summary of local database aggregates, "
+        "not a language-model answer._")
+
+    return {'answer': "\n".join(lines), 'sources': sources}
+
 @st.cache_data
 def get_drift_status(_db):
     """Check for drift in theme distribution"""
@@ -198,7 +266,7 @@ def get_drift_status(_db):
         current_dist = dict(zip(current['theme'], current['frequency'] / 100))
         detector = DriftDetector(baseline)
         return detector.detect_drift(current_dist, threshold=0.1)
-    except Exception as e:
+    except Exception:
         return None
 
 @st.cache_data
@@ -225,7 +293,7 @@ def get_kpis(_db):
             'high_risk_pct': high_risk_pct,
             'anomaly_rate': anomaly_rate
         }
-    except Exception as e:
+    except Exception:
         return {
             'avg_sentiment': 0,
             'positive_pct': 0,
@@ -464,9 +532,9 @@ with tab1:
                 current_pct = info['current'] * 100
 
                 if info['direction'] == 'increase':
-                    interpretation = f"Increasing mentions"
+                    interpretation = "Increasing mentions"
                 else:
-                    interpretation = f"Decreasing mentions"
+                    interpretation = "Decreasing mentions"
 
                 changes_data.append({
                     'Theme': f"{direction_icon} {theme}",
@@ -663,11 +731,13 @@ with tab2:
 
         if st.button("Get Answer", type="primary"):
             if question:
-                with st.spinner("Analyzing data..."):
+                with st.spinner("Summarizing patterns..."):
                     try:
-                        response = agent.query(question)
+                        # Rule-based pattern summary from local aggregates
+                        # (no LLM call, works offline)
+                        response = answer_pattern_question(question, db, agent)
 
-                        st.markdown("#### Answer")
+                        st.markdown("#### Answer (rule-based summary of local aggregates)")
                         st.markdown(response['answer'])
 
                         if response.get('sources'):
@@ -675,7 +745,7 @@ with tab2:
                             for source in response['sources']:
                                 st.caption(f"- {source}")
                     except Exception as e:
-                        st.error(f"Query failed: {e}")
+                        st.error(f"Query failed: {type(e).__name__}")
             else:
                 st.warning("Please enter a question")
 
@@ -739,13 +809,13 @@ with tab4:
 
     st.markdown("---")
 
-    # Cross-validation notice
+    # Evaluation caveats
     st.info("""
-    **Cross-Validation Results**: The table below shows fair, leakage-free evaluation where no prompt
-    was tested against its own labels. Labels were generated by v2, v3, v6 ensemble, then all prompts
-    were tested against these labels.
-
-    **True Winner**: v3.0 (3-Shot Learning) with 91.95% Theme F1
+    **What these numbers are**: agreement with **LLM-generated silver labels**
+    (gpt-4o-mini) — not accuracy against human ground truth. The historical
+    grid runs were scored against labels produced by v5 itself, so absolute
+    values (especially v5.0's) are inflated by self-testing. See
+    docs/EVALUATION.md for the corrected leave-one-prompt-out re-scoring.
     """)
 
     import json

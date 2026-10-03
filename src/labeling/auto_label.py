@@ -15,7 +15,6 @@ import time
 from pathlib import Path
 from typing import Dict, List, Optional
 
-import pandas as pd
 from openai import OpenAI
 from tqdm import tqdm
 
@@ -336,12 +335,12 @@ def main():
             failures.append(review['review_id'])
 
     print("-" * 60)
-    print(f"\nCompleted!")
+    print("\nCompleted!")
     print(f"  Successful: {len(results)}")
     print(f"  Failed: {len(failures)}")
 
     if failures:
-        print(f"\nFailed review IDs:")
+        print("\nFailed review IDs:")
         for fid in failures[:10]:
             print(f"  - {fid}")
         if len(failures) > 10:
