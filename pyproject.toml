@@ -1,0 +1,29 @@
+# Tooling configuration only (no packaging metadata - install via
+# requirements*.txt files). See README for setup instructions.
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["data_local", "data", ".venv", "venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]  # pycodestyle errors, pyflakes, warnings
+
+[tool.ruff.lint.per-file-ignores]
+# Modules that bootstrap sys.path before imports (intentional pattern).
+"scripts/rescore_crossval.py" = ["E402"]
+"src/evaluation/evaluate_prompts.py" = ["E402"]
+# Prompt template strings must stay byte-identical to what was benchmarked.
+"src/prompts/templates.py" = ["E501"]
+# LLM prompt strings (ReAct template, labeling prompt): byte-identical content.
+"src/agent/langchain_agent.py" = ["E501"]
+"src/labeling/auto_label.py" = ["E501"]
+# Streamlit UI: long CSS/HTML/Markdown string literals.
+"dashboard/app.py" = ["E501"]
+# Legacy analysis scripts scheduled for consolidation; not on the CI path.
+"notebooks/run_eda.py" = ["E501"]
+"scripts/analyze_sentiment.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

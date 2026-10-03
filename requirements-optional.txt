@@ -1,0 +1,40 @@
+# Optional dependencies. The core offline features (tests, evaluation
+# machinery on saved predictions, synthetic fixtures, API health, TF-IDF
+# search, DuckDB pipeline) work with requirements.txt alone.
+#
+# Install everything below, or just the section you need:
+#   pip install -r requirements-optional.txt
+
+# --- LLM features (agent, labeling, live evaluation) ----------------------
+openai==1.54.0
+
+# --- Dashboard ------------------------------------------------------------
+streamlit==1.40.0
+plotly==5.24.0
+
+# --- Alternative vector search backend (sentence-transformers embeddings) -
+# The default TF-IDF backend needs only scikit-learn (core). This backend
+# loads/builds all-MiniLM-L6-v2 embeddings via src/agent/build_embeddings.py.
+sentence-transformers==3.0.1
+
+# --- LangChain ReAct agent variant (src/agent/langchain_agent.py) ---------
+langchain==0.3.0
+langchain-openai==0.2.0
+langchain-community==0.3.0
+
+# --- Data collection (scraping) -------------------------------------------
+# youtube-transcript-api: fetches YouTube captions (scripts/get_transcripts.py)
+youtube-transcript-api==0.6.2
+# requests: HTTP client used by src/scraping/reddit_scraper.py
+# NOTE: that scraper targets the Pushshift beta API, which has been
+# restricted for public use since 2023 and likely returns nothing today.
+requests>=2.31.0
+
+# --- Batch processing progress bars ---------------------------------------
+tqdm==4.67.0
+
+# --- Notebooks / EDA figures ----------------------------------------------
+matplotlib==3.9.0
+seaborn==0.13.0
+wordcloud==1.9.3
+ipykernel==6.29.0
