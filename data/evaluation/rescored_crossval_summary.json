@@ -1,0 +1,167 @@
+{
+  "what_this_is": "Offline re-analysis of previously saved predictions under a leave-one-prompt-out protocol. No new model calls were made. Reference labels are LLM-generated (silver); metrics are agreement with that labeler, NOT accuracy against human ground truth, and NOT unbiased estimates of real-world performance.",
+  "source_artifacts": {
+    "predictions_file": "/Users/olivialiau/extern/data_local/evaluation/experiment_crossval.json",
+    "labels_file": "/Users/olivialiau/extern/data_local/labeled/silver_standard_crossval.jsonl"
+  },
+  "provenance": {
+    "predictions_generated": "2026-02 (per source file timestamps)",
+    "prediction_model": "gpt-4o-mini",
+    "label_model": [
+      "gpt-4o-mini"
+    ],
+    "generator_prompts": [
+      "v2",
+      "v3",
+      "v6"
+    ],
+    "label_type": "llm_silver",
+    "original_protocol_known_issues": [
+      "Original run scored every prompt against ALL label rows, including rows the prompt generated itself.",
+      "Original run used the first 50 label rows only (~17 unique reviews), not the full 175-review corpus.",
+      "All runs were zero-shot (k_shot=0); published k-shot annotations were not from these artifacts."
+    ]
+  },
+  "rescored_at_utc": "2026-10-03T05:42:40.089320+00:00",
+  "split_method": "row-level re-scoring; splits in the live evaluator operate on unique review IDs",
+  "results": [
+    {
+      "prompt_version": "v1.0",
+      "prompt_name": "Zero-shot Basic",
+      "k_shot": 0,
+      "model": "gpt-4o-mini",
+      "rows_before_exclusion": 50,
+      "rows_excluded_as_self_labeled": 0,
+      "n_label_rows": 50,
+      "n_unique_reviews": 17,
+      "original_metrics_uncorrected": {
+        "theme_f1": 0.04651162790697674,
+        "sentiment_exact_agreement": 0.78,
+        "risk_agreement": 0.74
+      },
+      "rescored_agreement": {
+        "theme_f1": 0.04651162790697674,
+        "theme_precision": 0.04666666666666667,
+        "theme_recall": 0.046357615894039736,
+        "sentiment_exact_agreement": 0.78,
+        "sentiment_mae": 0.22,
+        "risk_agreement": 0.74
+      }
+    },
+    {
+      "prompt_version": "v2.0",
+      "prompt_name": "Role Context Enhanced",
+      "k_shot": 0,
+      "model": "gpt-4o-mini",
+      "rows_before_exclusion": 50,
+      "rows_excluded_as_self_labeled": 17,
+      "n_label_rows": 33,
+      "n_unique_reviews": 17,
+      "original_metrics_uncorrected": {
+        "theme_f1": 0.9096989966555183,
+        "sentiment_exact_agreement": 0.84,
+        "risk_agreement": 0.88
+      },
+      "rescored_agreement": {
+        "theme_f1": 0.8730964467005077,
+        "theme_precision": 0.8865979381443299,
+        "theme_recall": 0.86,
+        "sentiment_exact_agreement": 0.7878787878787878,
+        "sentiment_mae": 0.21212121212121213,
+        "risk_agreement": 0.8181818181818182
+      }
+    },
+    {
+      "prompt_version": "v3.0",
+      "prompt_name": "3-Shot Learning",
+      "k_shot": 0,
+      "model": "gpt-4o-mini",
+      "rows_before_exclusion": 50,
+      "rows_excluded_as_self_labeled": 17,
+      "n_label_rows": 33,
+      "n_unique_reviews": 17,
+      "original_metrics_uncorrected": {
+        "theme_f1": 0.9194630872483222,
+        "sentiment_exact_agreement": 0.86,
+        "risk_agreement": 0.88
+      },
+      "rescored_agreement": {
+        "theme_f1": 0.9137055837563451,
+        "theme_precision": 0.9278350515463918,
+        "theme_recall": 0.9,
+        "sentiment_exact_agreement": 0.8787878787878788,
+        "sentiment_mae": 0.12121212121212122,
+        "risk_agreement": 0.8484848484848485
+      }
+    },
+    {
+      "prompt_version": "v4.0",
+      "prompt_name": "Chain of Thought",
+      "k_shot": 0,
+      "model": "gpt-4o-mini",
+      "rows_before_exclusion": 50,
+      "rows_excluded_as_self_labeled": 0,
+      "n_label_rows": 50,
+      "n_unique_reviews": 17,
+      "original_metrics_uncorrected": {
+        "theme_f1": 0.027397260273972605,
+        "sentiment_exact_agreement": 0.58,
+        "risk_agreement": 0.76
+      },
+      "rescored_agreement": {
+        "theme_f1": 0.027397260273972605,
+        "theme_precision": 0.028368794326241134,
+        "theme_recall": 0.026490066225165563,
+        "sentiment_exact_agreement": 0.58,
+        "sentiment_mae": 0.42,
+        "risk_agreement": 0.76
+      }
+    },
+    {
+      "prompt_version": "v5.0",
+      "prompt_name": "Structured Output",
+      "k_shot": 0,
+      "model": "gpt-4o-mini",
+      "rows_before_exclusion": 50,
+      "rows_excluded_as_self_labeled": 0,
+      "n_label_rows": 50,
+      "n_unique_reviews": 17,
+      "original_metrics_uncorrected": {
+        "theme_f1": 0.8571428571428571,
+        "sentiment_exact_agreement": 0.56,
+        "risk_agreement": 0.76
+      },
+      "rescored_agreement": {
+        "theme_f1": 0.8571428571428571,
+        "theme_precision": 0.86,
+        "theme_recall": 0.8543046357615894,
+        "sentiment_exact_agreement": 0.56,
+        "sentiment_mae": 0.44,
+        "risk_agreement": 0.76
+      }
+    },
+    {
+      "prompt_version": "v6.0",
+      "prompt_name": "Detailed Analysis",
+      "k_shot": 0,
+      "model": "gpt-4o-mini",
+      "rows_before_exclusion": 50,
+      "rows_excluded_as_self_labeled": 16,
+      "n_label_rows": 34,
+      "n_unique_reviews": 17,
+      "original_metrics_uncorrected": {
+        "theme_f1": 0.8543046357615893,
+        "sentiment_exact_agreement": 0.9,
+        "risk_agreement": 0.78
+      },
+      "rescored_agreement": {
+        "theme_f1": 0.8177339901477833,
+        "theme_precision": 0.8217821782178217,
+        "theme_recall": 0.8137254901960784,
+        "sentiment_exact_agreement": 0.8529411764705882,
+        "sentiment_mae": 0.14705882352941177,
+        "risk_agreement": 0.6764705882352942
+      }
+    }
+  ]
+}

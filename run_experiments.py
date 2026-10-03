@@ -25,7 +25,7 @@ import sys
 import os
 import time
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import List, Dict
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / 'src'))
@@ -172,7 +172,7 @@ def run_experiment_grid(
     total_experiments = len(prompts) * len(k_shots) * len(models)
 
     print(f"\n{'='*70}")
-    print(f"EXPERIMENT GRID")
+    print("EXPERIMENT GRID")
     print(f"{'='*70}")
     print(f"Prompts: {', '.join(prompts)} ({len(prompts)})")
     print(f"K-shots: {k_shots} ({len(k_shots)})")
@@ -258,7 +258,7 @@ def print_experiment_summary(results: List[Dict]):
         m = r.get('metrics', {})
         print(f"{i+1:2}. {r['prompt_name']:20} k={r['k_shot']} | "
               f"F1: {m.get('theme_f1', 0):.3f} | "
-              f"Acc: {m.get('sentiment_exact_accuracy', 0):.3f} | "
+              f"Agr: {m.get('sentiment_exact_agreement', 0):.3f} | "
               f"Cost: ${m.get('cost_per_1k_samples', 0):.2f}/1k")
 
     print("\nBest by each metric:")
@@ -266,9 +266,9 @@ def print_experiment_summary(results: List[Dict]):
 
     metrics_to_check = [
         ('sentiment_mae', False, 'Lowest MAE'),
-        ('sentiment_exact_accuracy', True, 'Best Sentiment Acc'),
+        ('sentiment_exact_agreement', True, 'Best Sentiment Agreement'),
         ('theme_f1', True, 'Best Theme F1'),
-        ('risk_accuracy', True, 'Best Risk Acc'),
+        ('risk_agreement', True, 'Best Risk Agreement'),
         ('cost_per_1k_samples', False, 'Lowest Cost')
     ]
 
@@ -280,7 +280,6 @@ def print_experiment_summary(results: List[Dict]):
 
 
 def main():
-    import time
 
     parser = argparse.ArgumentParser(
         description="Run A/B testing experiments on prompts",

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Generate silver standard labels using multiple prompts (cross-validation).
+Generate silver (LLM-generated) labels using multiple prompts.
 
-This script generates labels using a subset of prompts, ensuring that
-when we test, no prompt is evaluated against its own labels.
+This script labels each review with several generator prompts (default
+v2, v3, v6). The exclusion of a tested prompt's own labels happens at
+evaluation time: evaluate_crossval.py / PromptEvaluator drop label rows
+whose ``prompt_version`` matches the prompt under evaluation
+(leave-one-prompt-out). No prompt is scored against labels it generated.
 
-Strategy:
-- Use v2, v3, v6 to generate labels (NOT v5)
-- Test all prompts (v1-v6) against these labels
-- This prevents any prompt from being tested against itself
+All labels are LLM-generated (silver); there is no human ground truth here.
 
 Usage:
     python generate_crossval_labels.py --prompts v2 v3 v6 --samples 175
@@ -73,7 +73,7 @@ def generate_labels_with_prompts(
         reviews = reviews[:max_samples]
 
     print(f"\n{'='*70}")
-    print(f"CROSS-VALIDATION SILVER STANDARD GENERATION")
+    print("CROSS-VALIDATION SILVER STANDARD GENERATION")
     print(f"{'='*70}")
     print(f"Reviews: {len(reviews)}")
     print(f"Generator prompts: {prompt_keys}")
@@ -154,10 +154,14 @@ def ensemble_labels(
     output_path: str = 'data/labeled/silver_standard_ensemble.jsonl'
 ):
     """
-    Create ensemble labels by majority voting across multiple prompts.
+    Combine per-prompt labels into one ensemble label per review.
 
-    For each review, takes the majority vote across all generator prompts
-    to create a single robust label.
+    Combination rules (not a strict majority vote):
+    - sentiment: rounded MEAN across prompts
+    - retention_risk: PLURALITY (most common) across prompts
+    - themes: UNION of all themes mentioned by any prompt
+
+    The output is still a silver (LLM-generated) label set.
 
     Args:
         input_path: Cross-validation labels (multiple per review)
@@ -165,7 +169,7 @@ def ensemble_labels(
     """
 
     print(f"\n{'='*70}")
-    print(f"CREATING ENSEMBLE SILVER STANDARD")
+    print("CREATING ENSEMBLE SILVER LABELS (mean/plurality/union)")
     print(f"{'='*70}")
 
     # Load all labels
@@ -184,12 +188,12 @@ def ensemble_labels(
             # Get the original review data
             first_label = labels_list[0]
 
-            # Majority vote for sentiment
-            sentiments = [l['sentiment'] for l in labels_list]
+            # Mean sentiment across prompts
+            sentiments = [lab['sentiment'] for lab in labels_list]
             sentiment = int(round(sum(sentiments) / len(sentiments)))
 
-            # Majority vote for risk
-            risks = [l['retention_risk'] for l in labels_list]
+            # Plurality risk across prompts
+            risks = [lab['retention_risk'] for lab in labels_list]
             risk_counts = defaultdict(int)
             for r in risks:
                 risk_counts[r] += 1
@@ -197,15 +201,15 @@ def ensemble_labels(
 
             # Union of themes (all themes mentioned by any prompt)
             themes_set = set()
-            for l in labels_list:
-                themes_set.update(l.get('themes', []))
+            for lab in labels_list:
+                themes_set.update(lab.get('themes', []))
             themes = list(themes_set)
 
             ensemble_label = {
                 'sentiment': sentiment,
                 'themes': themes,
                 'retention_risk': risk,
-                'confidence': 0.90  # Higher for ensemble
+                'confidence': 0.90  # Hard-coded placeholder, NOT a calibrated score
             }
 
             output = {
@@ -217,31 +221,15 @@ def ensemble_labels(
                 'model': 'ensemble',
                 'prompt_version': 'ensemble',
                 'num_voters': len(labels_list),
-                'generator_prompts': list(set(l.get('prompt_version', '') for l in labels_list))
+                'generator_prompts': sorted(set(lab.get('prompt_version', '') for lab in labels_list)),
+                'label_type': 'llm_silver',
+                'ensemble_method': 'mean_sentiment_plurality_risk_union_themes',
             }
 
             out.write(json.dumps(output) + '\n')
 
     print(f"✅ Created {len(all_labels)} ensemble labels")
     print(f"   Saved to: {output_path}")
-
-
-def get_crossval_splits() -> Dict[str, List[str]]:
-    """
-    Get cross-validation splits that prevent leakage.
-
-    Returns mapping of test prompts → generator prompts.
-    """
-
-    return {
-        # Test v1, v2, v3, v4, v5: Labels from v6
-        'v1': ['v2', 'v3', 'v6'],
-        'v2': ['v1', 'v3', 'v6'],
-        'v3': ['v1', 'v2', 'v6'],
-        'v4': ['v2', 'v3', 'v6'],
-        'v5': ['v2', 'v3', 'v6'],  # Best performer tested against others
-        'v6': ['v2', 'v3', 'v5']
-    }
 
 
 def main():
@@ -262,10 +250,10 @@ def main():
     print("LEAKAGE-FREE SILVER STANDARD GENERATION")
     print("="*70)
 
-    print(f"\nStrategy: Cross-Validation")
+    print("\nStrategy: Cross-Validation")
     print(f"Generator prompts: {args.prompts}")
-    print(f"Test prompts: All 6 versions (v1-v6)")
-    print(f"\nKey: No prompt is tested against labels it generated itself")
+    print("Test prompts: All 6 versions (v1-v6)")
+    print("\nKey: No prompt is tested against labels it generated itself")
 
     if args.ensemble:
         # First generate crossval labels
@@ -282,9 +270,9 @@ def main():
             output_path='data/labeled/silver_standard_ensemble.jsonl'
         )
 
-        print(f"\n✅ Ready for evaluation!")
+        print("\n✅ Ready for evaluation!")
         print(f"Use: {crossval_path} for cross-validation")
-        print(f"Use: data/labeled/silver_standard_ensemble.jsonl for ensemble evaluation")
+        print("Use: data/labeled/silver_standard_ensemble.jsonl for ensemble evaluation")
 
     else:
         # Just generate crossval labels
@@ -294,9 +282,9 @@ def main():
             output_path='data/labeled/silver_standard_crossval.jsonl'
         )
 
-        print(f"\n✅ Ready for cross-validation!")
+        print("\n✅ Ready for cross-validation!")
         print(f"Test any prompt against labels generated by: {args.prompts}")
-        print(f"Key insight: v5.0 can now be tested fairly against labels from v2, v3, v6")
+        print("Key insight: v5.0 can now be tested fairly against labels from v2, v3, v6")
 
 
 if __name__ == '__main__':
