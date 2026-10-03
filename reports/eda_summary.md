@@ -1,28 +1,29 @@
 # EDA Summary Report
 
-Generated: 2026-02-11 17:18:38
+Generated: 2026-10-02 23:06:34
 
 ## Dataset Overview
 
-- 1. Dataset: 108 total reviews from 2 sources
-- 2. Temporal coverage: 639 days (107 reviews with dates)
-- 3. Average Glassdoor rating: 3.36/5.0
-- 4. Top mentioned theme: 'Pay & Benefits' (59 reviews, 54.6%)
-- 5. Average review length: 186 words
-- 6. Source mix: 92.6% Glassdoor, 7.4% YouTube
+- 1. Dataset: 9 total reviews from 3 sources
+-    (NOTE: statistics below describe the tracked SYNTHETIC fixture corpus; the real corpus is not redistributed - see DATASET_CARD.md)
+- 2. Temporal coverage: 769 days (9 reviews with dates)
+- 3. Average Glassdoor rating: 3.00/5.0
+- 4. Top mentioned theme: 'Work-Life Balance' (7 reviews, 77.8%)
+- 5. Average review length: 38 words
+- 6. Source mix: 55.6% glassdoor, 33.3% reddit, 11.1% youtube
 
 ## Theme Frequency
 
 | Theme | Count | Percentage |
 |-------|-------|------------|
-| Pay & Benefits | 59 | 54.6% |
-| Management | 31 | 28.7% |
-| Safety | 12 | 11.1% |
-| Work-Life Balance | 30 | 27.8% |
-| Physical Toll | 16 | 14.8% |
-| Peak Season | 10 | 9.3% |
-| Coworkers | 36 | 33.3% |
-| Workload | 28 | 25.9% |
+| Pay & Benefits | 5 | 55.6% |
+| Management | 4 | 44.4% |
+| Safety | 3 | 33.3% |
+| Work-Life Balance | 7 | 77.8% |
+| Physical Toll | 0 | 0.0% |
+| Peak Season | 2 | 22.2% |
+| Coworkers | 0 | 0.0% |
+| Workload | 3 | 33.3% |
 
 ## Generated Figures
 
