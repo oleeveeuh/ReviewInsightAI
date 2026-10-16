@@ -168,3 +168,23 @@ education about silver-label pitfalls.
   `requirements-optional.txt`).
 - Collection of new data (scraping, paid APIs, new LLM labels) is out of
   scope and requires explicit owner approval.
+
+---
+
+## 10. Derived dataset: DPO silver-preference pairs (`data_local/alignment/`)
+
+**Provenance:** constructed 2026-10-15 from the existing cross-prompt silver
+labels (no new model calls). For each review where the v2/v3/v6 generator
+prompts disagreed, the most consensus-closest label set is *chosen* and the
+most outlying is *rejected* (sentiment distance + risk match + theme Jaccard).
+
+**Counts:** 137 pairs from 175 reviews (38 unanimous reviews skipped);
+110 train / 27 eval, split by unique review ID.
+
+**Nature:** these are **silver preferences** — derived from LLM-generated
+labels by consensus, **not human preference data**. Rows carry
+`label_type: "silver_preference"`, `chosen_from`/`rejected_from` prompt ids,
+and consensus scores. Intended use: demonstrating the DPO training loop
+(`docs/ALIGNMENT.md`). Prohibited use: claiming human-preference alignment,
+or presenting the tuned model's outputs as more trustworthy than the
+generator labels they were tuned toward.

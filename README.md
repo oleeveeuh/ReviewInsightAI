@@ -289,3 +289,22 @@ extern/
   the optional sentence-transformers backend and locally-built artifacts.
 - Two agent implementations and one dashboard accumulated some duplication;
   consolidating them is straightforward but left as-is to keep the diff honest.
+
+## Alignment extension: DPO on silver preferences
+
+Beyond prompting, the repo includes a **preference-alignment training loop**:
+the 525 cross-prompt silver labels are converted into 137 constructed
+preference pairs (consensus label set = *chosen*, outlier = *rejected*;
+38 unanimous reviews skipped), split 110/27 **by review ID**, and used to
+LoRA-DPO **Qwen2.5-0.5B-Instruct** locally on Apple Silicon. Evaluation
+measures agreement shift (base vs. tuned) on the held-out 27 pairs with the
+same metrics as the prompt harness.
+
+It is **DPO on silver preferences — not RLHF and not human-preference
+alignment** (no reward model, no human preference data). Measured on the
+held-out split (27 pairs): risk-class agreement 40.7% → 74.1%, sentiment
+agreement unchanged, theme F1 within noise — agreement with an LLM consensus
+labeler, not accuracy. Method, results, commands, and limitations:
+[docs/ALIGNMENT.md](docs/ALIGNMENT.md). Training
+dependencies are isolated in `requirements-training.txt` (separate venv,
+never needed for the core offline stack or CI).
