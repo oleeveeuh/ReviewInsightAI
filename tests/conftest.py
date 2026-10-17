@@ -22,8 +22,14 @@ FIXTURE_CROSSVAL = REPO_ROOT / 'data' / 'labeled' / 'silver_standard_crossval.js
 
 @pytest.fixture(autouse=True)
 def _no_llm_env(monkeypatch):
-    """Guarantee tests never see an API key, so no code path can call out."""
-    monkeypatch.delenv('OPENAI_API_KEY', raising=False)
+    """Guarantee tests never see an API key, so no code path can call out.
+
+    Sets the key to an empty string rather than deleting it: dotenv's
+    load_dotenv() (called at controller import inside app lifespan) never
+    overrides existing variables, so a developer's real .env key cannot
+    leak back into the test environment.
+    """
+    monkeypatch.setenv('OPENAI_API_KEY', '')
 
 
 @pytest.fixture

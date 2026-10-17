@@ -104,37 +104,44 @@ collection dates, licensing uncertainty, and known provenance gaps:
 
 The only results file in the repo is
 [`data/evaluation/rescored_crossval_summary.json`](data/evaluation/rescored_crossval_summary.json):
-an **offline re-scoring of the original February 2026 predictions**
-(`gpt-4o-mini`, zero-shot) under the corrected leave-one-prompt-out protocol.
-No new model calls were made. **Label type: LLM-generated silver labels.**
+**all 175 reviews × 6 prompts** (`gpt-4o-mini`, zero-shot, 1,050 calls
+generated 2026-10-16), scored leave-one-prompt-out — the tested prompt is
+never scored against labels it generated. **Label type: LLM-generated silver
+labels.** This supersedes an earlier 17-review re-scoring whose slice turned
+out to be single-source (all Reddit).
 
-| Prompt | label rows | unique reviews | self-labeled rows excluded | Theme F1 | Sentiment agr. | Risk agr. |
-|---|---|---|---|---|---|---|
-| v1.0 Zero-shot Basic | 50 | 17 | 0 | 4.7% | 78.0% | 74.0% |
-| v2.0 Role Enhanced | 33 | 17 | 17 | 87.3% | 78.8% | 81.8% |
-| v3.0 Detailed + examples | 33 | 17 | 17 | **91.4%** | **87.9%** | **84.8%** |
-| v4.0 Chain of Thought | 50 | 17 | 0 | 2.7% | 58.0% | 76.0% |
-| v5.0 Structured Output | 50 | 17 | 0 | 85.7% | 56.0% | 76.0% |
-| v6.0 Detailed Analysis | 34 | 17 | 16 | 81.8% | 85.3% | 67.6% |
+| Prompt | label rows | unique reviews | Theme F1 | Sentiment agr. | Risk agr. |
+|---|---|---|---|---|---|
+| v1.0 Zero-shot Basic | 525 | 175 | 8.7% | 77.1% | 82.5% |
+| v2.0 Role Enhanced | 350 | 175 | **89.9%** | 83.1% | **89.4%** |
+| v3.0 Detailed + examples | 350 | 175 | 89.4% | 84.6% | 88.9% |
+| v4.0 Chain of Thought | 525 | 175 | 8.1% | 67.8% | 78.9% |
+| v5.0 Structured Output | 525 | 175 | 87.8% | 68.2% | 86.7% |
+| v6.0 Detailed Analysis | 350 | 175 | 83.5% | 73.4% | 85.1% |
+
+v2.0 and v3.0 are the same prompt at k_shot=0 (v3's few-shot examples are
+unused there); their 0.5 pp gap is sampling noise.
 
 ## Evaluation limitations (read before citing anything)
 
 - **These are not accuracy numbers.** Reference labels came from the same
   LLM family as the tested prompts. Agreement between similar LLM prompts is
   structurally optimistic.
-- **17 unique reviews.** Percentages have enormous error bars; a single
-  review swings a cell by ~3-6 points.
+- **n=175 reviews, three sources** — but percentages still carry roughly
+  ±7 pp confidence intervals, and agreement with an LLM labeler is not
+  human ground truth.
 - **The original "94.3% F1 / 98% / 100%" headline result was self-testing
   contamination** (v5 scored against v5's own labels) and is retained only as
-  a measurement-error case study. Correcting self-testing moved v2
-  91.0→87.3% and v6 85.4→81.8%.
+  a measurement-error case study.
 - **v1/v4's near-zero theme F1 is mostly vocabulary mismatch** (their prompts
-  don't constrain themes to the fixed taxonomy), not sentiment failure.
+  don't constrain themes to the fixed taxonomy), not sentiment failure — the
+  collapse held on the full corpus.
 - "Retention risk" is an **LLM-generated classification of review text**, not
   observed attrition and not a validated prediction.
 - `confidence` fields in label files are hard-coded constants, not
   calibrated scores.
-- Historical predictions, not a fresh run; re-running today would differ.
+- Different runs sample differently (temperature 0.3); re-running would
+  move numbers by points, not reorder the table.
 
 ## Installation
 
@@ -278,8 +285,8 @@ extern/
 
 - No human-labeled ground truth (the human-labeling CLI exists but was never
   run) — until then, "accuracy" claims are impossible by construction.
-- 17-unique-review evaluation; next step is a stratified human-labeled sample
-  (100+ reviews) and CIs on every metric.
+- Silver-label evaluation now spans the full 175-review corpus; the next
+  step is a human-labeled sample and confidence intervals per metric.
 - The Pushshift Reddit scraper is defunct; Reddit collection would need a
   redesign against the official API.
 - The custom agent plans once and executes sequentially; no re-planning from

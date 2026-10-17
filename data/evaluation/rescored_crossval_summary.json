@@ -1,166 +1,126 @@
 {
-  "what_this_is": "Offline re-analysis of previously saved predictions under a leave-one-prompt-out protocol. No new model calls were made. Reference labels are LLM-generated (silver); metrics are agreement with that labeler, NOT accuracy against human ground truth, and NOT unbiased estimates of real-world performance.",
-  "source_artifacts": {
-    "predictions_file": "/Users/olivialiau/extern/data_local/evaluation/experiment_crossval.json",
-    "labels_file": "/Users/olivialiau/extern/data_local/labeled/silver_standard_crossval.jsonl"
-  },
-  "provenance": {
-    "predictions_generated": "2026-02 (per source file timestamps)",
+  "what_this_is": "Leave-one-prompt-out agreement over the FULL 175-review corpus (predictions generated 2026-10-16, gpt-4o-mini, zero-shot). Reference labels are LLM-generated (silver); metrics are agreement with that labeler, NOT accuracy against human ground truth. Supersedes the earlier 17-review re-scoring of the February 2026 predictions, which covered only the first 50 label rows (all Reddit posts).",
+  "protocol": {
     "prediction_model": "gpt-4o-mini",
-    "label_model": [
+    "temperature": 0.3,
+    "k_shot": 0,
+    "one_prediction_per_review_per_prompt": true,
+    "lopo_exclusion": true,
+    "predictions_failed": 0
+  },
+  "label_provenance": {
+    "label_type": "llm_silver",
+    "label_models": [
       "gpt-4o-mini"
     ],
     "generator_prompts": [
       "v2",
       "v3",
       "v6"
-    ],
-    "label_type": "llm_silver",
-    "original_protocol_known_issues": [
-      "Original run scored every prompt against ALL label rows, including rows the prompt generated itself.",
-      "Original run used the first 50 label rows only (~17 unique reviews), not the full 175-review corpus.",
-      "All runs were zero-shot (k_shot=0); published k-shot annotations were not from these artifacts."
     ]
   },
-  "rescored_at_utc": "2026-10-03T05:42:40.089320+00:00",
-  "split_method": "row-level re-scoring; splits in the live evaluator operate on unique review IDs",
+  "rescored_at_utc": "2026-10-17T03:26:43.399068+00:00",
   "results": [
     {
       "prompt_version": "v1.0",
-      "prompt_name": "Zero-shot Basic",
+      "rows_before_exclusion": 525,
+      "rows_excluded_as_self_labeled": 0,
+      "n_label_rows": 525,
+      "n_unique_reviews": 175,
       "k_shot": 0,
       "model": "gpt-4o-mini",
-      "rows_before_exclusion": 50,
-      "rows_excluded_as_self_labeled": 0,
-      "n_label_rows": 50,
-      "n_unique_reviews": 17,
-      "original_metrics_uncorrected": {
-        "theme_f1": 0.04651162790697674,
-        "sentiment_exact_agreement": 0.78,
-        "risk_agreement": 0.74
-      },
       "rescored_agreement": {
-        "theme_f1": 0.04651162790697674,
-        "theme_precision": 0.04666666666666667,
-        "theme_recall": 0.046357615894039736,
-        "sentiment_exact_agreement": 0.78,
-        "sentiment_mae": 0.22,
-        "risk_agreement": 0.74
+        "theme_f1": 0.0874879382438083,
+        "theme_precision": 0.08634920634920636,
+        "theme_recall": 0.08865710560625815,
+        "sentiment_exact_agreement": 0.7714285714285715,
+        "sentiment_mae": 0.22857142857142856,
+        "risk_agreement": 0.8247619047619048
       }
     },
     {
       "prompt_version": "v2.0",
-      "prompt_name": "Role Context Enhanced",
+      "rows_before_exclusion": 525,
+      "rows_excluded_as_self_labeled": 175,
+      "n_label_rows": 350,
+      "n_unique_reviews": 175,
       "k_shot": 0,
       "model": "gpt-4o-mini",
-      "rows_before_exclusion": 50,
-      "rows_excluded_as_self_labeled": 17,
-      "n_label_rows": 33,
-      "n_unique_reviews": 17,
-      "original_metrics_uncorrected": {
-        "theme_f1": 0.9096989966555183,
-        "sentiment_exact_agreement": 0.84,
-        "risk_agreement": 0.88
-      },
       "rescored_agreement": {
-        "theme_f1": 0.8730964467005077,
-        "theme_precision": 0.8865979381443299,
-        "theme_recall": 0.86,
-        "sentiment_exact_agreement": 0.7878787878787878,
-        "sentiment_mae": 0.21212121212121213,
-        "risk_agreement": 0.8181818181818182
+        "theme_f1": 0.8987217305801377,
+        "theme_precision": 0.914,
+        "theme_recall": 0.8839458413926499,
+        "sentiment_exact_agreement": 0.8314285714285714,
+        "sentiment_mae": 0.16857142857142857,
+        "risk_agreement": 0.8942857142857142
       }
     },
     {
       "prompt_version": "v3.0",
-      "prompt_name": "3-Shot Learning",
+      "rows_before_exclusion": 525,
+      "rows_excluded_as_self_labeled": 175,
+      "n_label_rows": 350,
+      "n_unique_reviews": 175,
       "k_shot": 0,
       "model": "gpt-4o-mini",
-      "rows_before_exclusion": 50,
-      "rows_excluded_as_self_labeled": 17,
-      "n_label_rows": 33,
-      "n_unique_reviews": 17,
-      "original_metrics_uncorrected": {
-        "theme_f1": 0.9194630872483222,
-        "sentiment_exact_agreement": 0.86,
-        "risk_agreement": 0.88
-      },
       "rescored_agreement": {
-        "theme_f1": 0.9137055837563451,
-        "theme_precision": 0.9278350515463918,
-        "theme_recall": 0.9,
-        "sentiment_exact_agreement": 0.8787878787878788,
-        "sentiment_mae": 0.12121212121212122,
-        "risk_agreement": 0.8484848484848485
+        "theme_f1": 0.8935752820009809,
+        "theme_precision": 0.9055666003976143,
+        "theme_recall": 0.8818973862536302,
+        "sentiment_exact_agreement": 0.8457142857142858,
+        "sentiment_mae": 0.15428571428571428,
+        "risk_agreement": 0.8885714285714286
       }
     },
     {
       "prompt_version": "v4.0",
-      "prompt_name": "Chain of Thought",
+      "rows_before_exclusion": 525,
+      "rows_excluded_as_self_labeled": 0,
+      "n_label_rows": 525,
+      "n_unique_reviews": 175,
       "k_shot": 0,
       "model": "gpt-4o-mini",
-      "rows_before_exclusion": 50,
-      "rows_excluded_as_self_labeled": 0,
-      "n_label_rows": 50,
-      "n_unique_reviews": 17,
-      "original_metrics_uncorrected": {
-        "theme_f1": 0.027397260273972605,
-        "sentiment_exact_agreement": 0.58,
-        "risk_agreement": 0.76
-      },
       "rescored_agreement": {
-        "theme_f1": 0.027397260273972605,
-        "theme_precision": 0.028368794326241134,
-        "theme_recall": 0.026490066225165563,
-        "sentiment_exact_agreement": 0.58,
-        "sentiment_mae": 0.42,
-        "risk_agreement": 0.76
+        "theme_f1": 0.08109875735775016,
+        "theme_precision": 0.08136482939632546,
+        "theme_recall": 0.08083441981747067,
+        "sentiment_exact_agreement": 0.6780952380952381,
+        "sentiment_mae": 0.3219047619047619,
+        "risk_agreement": 0.7885714285714286
       }
     },
     {
       "prompt_version": "v5.0",
-      "prompt_name": "Structured Output",
+      "rows_before_exclusion": 525,
+      "rows_excluded_as_self_labeled": 0,
+      "n_label_rows": 525,
+      "n_unique_reviews": 175,
       "k_shot": 0,
       "model": "gpt-4o-mini",
-      "rows_before_exclusion": 50,
-      "rows_excluded_as_self_labeled": 0,
-      "n_label_rows": 50,
-      "n_unique_reviews": 17,
-      "original_metrics_uncorrected": {
-        "theme_f1": 0.8571428571428571,
-        "sentiment_exact_agreement": 0.56,
-        "risk_agreement": 0.76
-      },
       "rescored_agreement": {
-        "theme_f1": 0.8571428571428571,
-        "theme_precision": 0.86,
-        "theme_recall": 0.8543046357615894,
-        "sentiment_exact_agreement": 0.56,
-        "sentiment_mae": 0.44,
-        "risk_agreement": 0.76
+        "theme_f1": 0.8781443972557988,
+        "theme_precision": 0.8801571709233792,
+        "theme_recall": 0.8761408083441982,
+        "sentiment_exact_agreement": 0.6819047619047619,
+        "sentiment_mae": 0.3180952380952381,
+        "risk_agreement": 0.8666666666666667
       }
     },
     {
       "prompt_version": "v6.0",
-      "prompt_name": "Detailed Analysis",
+      "rows_before_exclusion": 525,
+      "rows_excluded_as_self_labeled": 175,
+      "n_label_rows": 350,
+      "n_unique_reviews": 175,
       "k_shot": 0,
       "model": "gpt-4o-mini",
-      "rows_before_exclusion": 50,
-      "rows_excluded_as_self_labeled": 16,
-      "n_label_rows": 34,
-      "n_unique_reviews": 17,
-      "original_metrics_uncorrected": {
-        "theme_f1": 0.8543046357615893,
-        "sentiment_exact_agreement": 0.9,
-        "risk_agreement": 0.78
-      },
       "rescored_agreement": {
-        "theme_f1": 0.8177339901477833,
-        "theme_precision": 0.8217821782178217,
-        "theme_recall": 0.8137254901960784,
-        "sentiment_exact_agreement": 0.8529411764705882,
-        "sentiment_mae": 0.14705882352941177,
-        "risk_agreement": 0.6764705882352942
+        "theme_f1": 0.8345323741007195,
+        "theme_precision": 0.8025830258302583,
+        "theme_recall": 0.8691308691308691,
+        "sentiment_exact_agreement": 0.7342857142857143,
+        "sentiment_mae": 0.26571428571428574,
+        "risk_agreement": 0.8514285714285714
       }
     }
   ]

@@ -12,28 +12,28 @@ labels)**, not accuracy against ground truth and not an unbiased estimate of
 real-world performance. The word "accuracy" is reserved in this codebase for
 future comparisons against human labels.
 
-## What was actually run (historical, Feb 2026)
+## What was actually run
 
-All historical runs used `gpt-4o-mini`, zero-shot (k_shot=0), against the
-real (now locally-retained) corpus.
+1. **Contaminated grid (Feb 2026, 30 runs)** — `run_experiments.py
+   --generate-silver --prompt v5` labeled the corpus with v5, then every
+   prompt × k_shot combination was scored against those labels. v5 was
+   evaluated against **its own** labels: v5.0 k=0 scored 94.3% theme F1 /
+   98% sentiment / 100% risk — a textbook self-testing inflation. These
+   artifacts are retained locally (`data_local/evaluation/`) as a case study
+   and must not be cited as performance.
 
-1. **Contaminated grid (30 runs)** — `run_experiments.py --generate-silver
-   --prompt v5` labeled the corpus with v5, then every prompt × k_shot
-   combination was scored against those labels. Every prompt was evaluated
-   against v5's labels, and v5 was evaluated against **its own** labels:
-   v5.0 k=0 scored 94.3% theme F1 / 98% sentiment / 100% risk — a textbook
-   self-testing inflation. These artifacts are retained locally
-   (`data_local/evaluation/`) as a case study, are not reproduced here, and
-   must not be cited as performance.
+2. **17-review re-scoring (Oct 2026, superseded)** — an offline re-scoring of
+   the February cross-prompt predictions. It inherited that run's slice: the
+   first 50 label rows = 17 unique reviews, which turned out to be **all
+   Reddit posts** — a small *and* single-source sample. Superseded by (3).
 
-2. **Cross-prompt run (6 runs)** — `evaluate_crossval.py` labeled 175 reviews
-   with generators v2/v3/v6 (525 label rows) and tested all six prompts
-   against the first **50 label rows ≈ 17 unique reviews**. The original code
-   scored every prompt against ALL 50 rows, including each generator prompt's
-   own rows, despite advertising "leakage-free". Published k-shot annotations
-   (k=3/k=5) matched no artifact — all runs were k=0.
+3. **Full-corpus evaluation (Oct 2026, current)** — 6 prompts × 175 reviews,
+   one zero-shot prediction per (prompt, review): 1,050 gpt-4o-mini calls,
+   0 failures, 0 unparseable outputs. Scored leave-one-prompt-out over all
+   525 silver label rows. This is the committed
+   `data/evaluation/rescored_crossval_summary.json` and the README table.
 
-## The corrected protocol (implemented now)
+## The protocol (implemented in the live code)
 
 `src/evaluation/evaluate_prompts.py` + `evaluate_crossval.py`:
 
@@ -48,43 +48,39 @@ real (now locally-retained) corpus.
 - Dry-run predictions are derived from the reference labels and set
   `metrics: None` — they are plumbing checks, never performance.
 
-## The validated results table
+## Results (full corpus, n=175, three sources)
 
-`data/evaluation/rescored_crossval_summary.json` is the only tracked results
-file. It was produced by `scripts/rescore_crossval.py`: an **offline
-re-scoring of the February 2026 saved predictions** under the corrected
-protocol. No new model calls were made; it is a re-analysis, not a fresh run.
-
-| Prompt | rows | unique reviews | self rows excluded | theme F1 | sentiment agr. | risk agr. |
-|---|---|---|---|---|---|---|
-| v1.0 Zero-shot Basic | 50 | 17 | 0 | 4.7% | 78.0% | 74.0% |
-| v2.0 Role Enhanced | 33 | 17 | 17 | 87.3% | 78.8% | 81.8% |
-| v3.0 Detailed+Examples | 33 | 17 | 17 | **91.4%** | 87.9% | 84.8% |
-| v4.0 Chain of Thought | 50 | 17 | 0 | 2.7% | 58.0% | 76.0% |
-| v5.0 Structured Output | 50 | 17 | 0 | 85.7% | 56.0% | 76.0% |
-| v6.0 Detailed Analysis | 34 | 17 | 16 | 81.8% | 85.3% | 67.6% |
+| Prompt | label rows | theme F1 | sentiment agr. | risk agr. |
+|---|---|---|---|---|
+| v1.0 Zero-shot Basic | 525 | 8.7% | 77.1% | 82.5% |
+| v2.0 Role Enhanced | 350 | **89.9%** | 83.1% | **89.4%** |
+| v3.0 Detailed + examples | 350 | 89.4% | 84.6% | 88.9% |
+| v4.0 Chain of Thought | 525 | 8.1% | 67.8% | 78.9% |
+| v5.0 Structured Output | 525 | 87.8% | 68.2% | 86.7% |
+| v6.0 Detailed Analysis | 350 | 83.5% | 73.4% | 85.1% |
 
 Reading notes:
 
-- The sample is **tiny** (17 unique reviews). Percentages carry huge error
-  bars; treat 1-2 reviews as the resolution of every cell.
-- Correcting self-testing moved v2 91.0→87.3%, v6 85.4→81.8%; v3 barely moved
-  (91.9→91.4%). v3/v2/v6 agree with each other partially *because* they share
-  a model, schema, and instruction style.
-- v1/v4's near-zero theme F1 is largely a **vocabulary mismatch**: their
-  prompts don't constrain themes to the fixed taxonomy, so multi-label F1
-  collapses even when sentiment agreement stays moderate.
+- **v2.0 and v3.0 are the same prompt at k_shot=0** (v3's few-shot examples
+  are unused there); their 0.5 pp gap is sampling noise at temperature 0.3.
+- The earlier 91.4% did not survive the full corpus — best is 89.9%, and the
+  single-source slice had flattered some cells (v6 sentiment 85.3% → 73.4%,
+  v5 sentiment 56.0% → 68.2%) while understating others (v5 risk 76.0% →
+  86.7%).
+- **v1/v4's near-zero theme F1 is a vocabulary mismatch** (their prompts
+  don't constrain themes to the fixed taxonomy) — the collapse held at full
+  scale, so the finding is real.
 - "Risk" is the LLM's retention-risk **classification of review text**, not
   observed attrition.
+- At n=175, proportions carry roughly ±7 pp confidence intervals; treat
+  sub-5-point differences as ties.
 
 ## Hard constraints on interpretation
 
 1. Nothing here measures performance against human judgment. The next
-   milestone would be a human-labeled sample via
-   `src/labeling/label_reviews.py`; only then may the word "accuracy" be used.
-2. Absolute numbers are optimistic even after the correction: labeler and
-   tested prompts share model family and output schema.
+   milestone is a human-labeled sample via `src/labeling/label_reviews.py`;
+   only then may the word "accuracy" be used.
+2. Absolute numbers are optimistic: labeler and tested prompts share model
+   family and output schema.
 3. The 30-run grid cannot be rescued by re-scoring: all of its reference
    labels came from v5, the tested prompt itself.
-4. Historical predictions ≠ reproduced results. If you re-run the evaluation
-   today with an API key, expect different numbers (model updates, sampling).

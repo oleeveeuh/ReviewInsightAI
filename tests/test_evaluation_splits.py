@@ -118,12 +118,17 @@ def test_rescored_summary_exists_and_is_honest():
     path = FIXTURE_CROSSVAL.parent.parent / 'evaluation' / 'rescored_crossval_summary.json'
     data = json.loads(path.read_text())
     assert 'NOT accuracy against human ground truth' in data['what_this_is']
-    assert data['provenance']['label_type'] == 'llm_silver'
+    assert data['label_provenance']['label_type'] == 'llm_silver'
     for r in data['results']:
-        assert r['n_unique_reviews'] == 17
-        assert r['n_label_rows'] <= r['rows_before_exclusion']
+        assert r['n_unique_reviews'] == 175  # full corpus, three sources
+        assert r['n_label_rows'] <= 525
     # Self-labeled rows were actually excluded for the generator prompts
     by_prompt = {r['prompt_version']: r for r in data['results']}
-    assert by_prompt['v2.0']['rows_excluded_as_self_labeled'] == 17
-    assert by_prompt['v6.0']['rows_excluded_as_self_labeled'] == 16
+    assert by_prompt['v2.0']['rows_excluded_as_self_labeled'] == 175
+    assert by_prompt['v6.0']['rows_excluded_as_self_labeled'] == 175
     assert by_prompt['v1.0']['rows_excluded_as_self_labeled'] == 0
+    # Generator prompts score only the other two generators' rows
+    for gen in ('v2.0', 'v3.0', 'v6.0'):
+        assert by_prompt[gen]['n_label_rows'] == 350
+    for non_gen in ('v1.0', 'v4.0', 'v5.0'):
+        assert by_prompt[non_gen]['n_label_rows'] == 525
