@@ -260,18 +260,25 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+import threading
+
+_init_lock = threading.Lock()
+
 # Initialize systems (cached)
 @st.cache_resource
 def init_systems():
     """Initialize database and agent (cached for performance)"""
     try:
         # cloud-safe bootstrap: build from the tracked fixtures when the
-        # database is missing or empty; an existing local build is untouched
-        from prepare_database import ensure_database
-        boot = ensure_database()
-        print(f"dashboard db bootstrap: {boot['action']}")
-        db = ReviewDatabase()
-        agent = MemoryAwareAgent()
+        # database is missing or empty; an existing local build is untouched.
+        # the lock serializes simultaneous first visits — two interleaved
+        # builds racing on one duckdb file produced unique-constraint errors.
+        with _init_lock:
+            from prepare_database import ensure_database
+            boot = ensure_database()
+            print(f"dashboard db bootstrap: {boot['action']}")
+            db = ReviewDatabase()
+            agent = MemoryAwareAgent()
         return db, agent, None
     except Exception as e:
         return None, None, str(e)

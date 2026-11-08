@@ -106,7 +106,14 @@ def ensure_database(db_path: Path = DB_PATH) -> dict:
             return {"action": "existing database left untouched",
                     "path": str(db_path)}
 
-    # Fresh (or absent) database: build from the tracked fixtures.
+    # Fresh (or absent) database: build from the tracked fixtures. If a file
+    # exists here it is a half-built runtime artifact (reviews empty = nothing
+    # seeded; kpi rows are derived) — and re-running compute on it trips
+    # duckdb's unique-index limitation (DELETE + re-INSERT of the same
+    # agg_date/agg_period/source key). Discard it and rebuild clean.
+    if db_path.exists():
+        db_path.unlink()
+
     db = ReviewDatabase(str(db_path))
     loaded = db.load_reviews_from_jsonl(str(FIXTURE_REVIEWS))
     seeded = seed_fixture_labels(db)
