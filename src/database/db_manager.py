@@ -400,6 +400,7 @@ class ReviewDatabase:
         return self.conn.execute("""
             SELECT
                 r.review_id,
+                r.text,
                 SUBSTR(r.text, 1, 200) || '...' as text_preview,
                 r.date,
                 r.source,

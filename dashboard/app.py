@@ -698,13 +698,16 @@ with tab1:
     if not high_risk.empty:
         for _, row in high_risk.iterrows():
             with st.expander(f"Sentiment: {row['sentiment']}/5 | {row['source'].upper()}"):
-                st.markdown(f"**{row.get('text_preview', row.get('text', 'No text available'))}**")
+                # the full review, not a preview — line breaks preserved
+                full_text = row.get('text') or row.get('text_preview') or 'No text available'
+                st.markdown(str(full_text).replace("\n", "  \n"))
 
                 col1, col2, col3 = st.columns(3)
                 with col1:
                     st.caption(f"Source: {row.get('source', 'N/A')}")
                 with col2:
-                    st.caption(f"Date: {row.get('date', 'N/A')}")
+                    review_date = row.get('date')
+                    st.caption(f"Date: {str(review_date)[:10] if review_date is not None else 'N/A'}")
                 with col3:
                     retention_risk = row.get('retention_risk', 'unknown')
                     risk_badge = "HIGH" if retention_risk == 'high' else "MEDIUM" if retention_risk == 'medium' else "LOW"
@@ -713,6 +716,10 @@ with tab1:
                 themes = row.get('themes')
                 if themes is not None and len(themes) > 0:
                     st.caption(f"Themes: {', '.join(themes)}")
+
+                reasoning = row.get('reasoning')
+                if reasoning:
+                    st.caption(f"Label provenance: {reasoning}")
     else:
         st.info("No high-risk reviews found")
 
