@@ -56,6 +56,12 @@ st.markdown("""
         background: var(--paper);
         color: var(--ink);
     }
+    /* the theme layer paints this full-page container — keep it paper even
+       when a viewer's system dark mode flips streamlit's default theme */
+    .stApp {
+        background: var(--paper);
+        color: var(--ink);
+    }
 
     /* lowercase voice, like the site — but keep typed input as typed */
     .stApp, .stMarkdown, .stText, [data-testid="stMarkdownContainer"] {

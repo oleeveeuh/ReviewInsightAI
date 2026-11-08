@@ -40,6 +40,7 @@ st.markdown("""
         background: #f5f1e8;
         color: #25251f;
     }
+    .stApp { background: #f5f1e8; color: #25251f; }
     .stApp, [data-testid="stMarkdownContainer"] { text-transform: lowercase; }
     input, textarea { text-transform: none; }
 
