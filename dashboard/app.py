@@ -32,15 +32,36 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS - Modern, clean design
+# Custom CSS - fieldnotes theme (matches oleeveeuh.github.io)
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600&family=Spectral:wght@400;500&display=swap');
+
+    :root {
+        --paper: #f5f1e8;
+        --cream: #fbf9f4;
+        --ink: #25251f;
+        --ink2: #52514e;
+        --muted: #77776c;
+        --grid: #d8d1c4;
+        --sage: #89927a;
+        --crimson: #a43b36;
+        --wine: #482728;
+        --sumi: #1e342e;
+    }
 
     /* Global styles */
-    html, body, [class*="css"]  {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    html, body, [class*="css"] {
+        font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--paper);
+        color: var(--ink);
     }
+
+    /* lowercase voice, like the site — but keep typed input as typed */
+    .stApp, .stMarkdown, .stText, [data-testid="stMarkdownContainer"] {
+        text-transform: lowercase;
+    }
+    input, textarea { text-transform: none; }
 
     /* Hide streamlit footer and menu */
     #MainMenu {visibility: hidden;}
@@ -49,116 +70,173 @@ st.markdown("""
 
     /* Header styles */
     .main-title {
-        font-size: 2rem;
-        font-weight: 600;
-        color: #1a1a1a;
-        margin-bottom: 0.5rem;
+        font-family: 'Spectral', Georgia, serif;
+        font-size: 2.1rem;
+        font-weight: 500;
+        color: var(--ink);
+        margin-bottom: 0.35rem;
+    }
+
+    .eyebrow {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        color: var(--crimson);
+        margin-bottom: 0.4rem;
     }
 
     .subtitle {
-        font-size: 0.95rem;
-        color: #6b7280;
+        font-size: 0.98rem;
+        color: var(--ink2);
         font-weight: 400;
+    }
+
+    .honesty {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.78rem;
+        color: var(--wine);
+        border: 1px dashed var(--wine);
+        background: var(--cream);
+        padding: 0.65rem 0.9rem;
+        margin: 0.9rem 0 0.3rem;
+        max-width: 640px;
     }
 
     /* Metric cards */
     .metric-container {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 1.25rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        transition: box-shadow 0.2s;
+        background: var(--cream);
+        border: 1px solid var(--grid);
+        border-radius: 2px;
+        padding: 1.15rem 1.25rem;
+        transition: border-color 0.2s;
     }
     .metric-container:hover {
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border-color: var(--sage);
+    }
+    .metric-label {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 0.4rem;
+    }
+    .metric-value {
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: 500;
+        font-size: 1.6rem;
+        color: var(--sumi);
     }
 
     /* Tabs */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        background: #f9fafb;
-        padding: 6px;
-        border-radius: 10px;
-        border: 1px solid #e5e7eb;
+        gap: 6px;
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid var(--grid);
     }
 
     .stTabs [data-baseweb="tab"] {
         background: transparent;
-        border-radius: 8px;
-        padding: 12px 24px;
-        font-weight: 500;
-        color: #6b7280;
+        border-radius: 0;
+        padding: 10px 20px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.82rem;
+        letter-spacing: 0.1em;
+        font-weight: 400;
+        color: var(--muted);
         transition: all 0.15s;
+        border: none;
     }
 
     .stTabs [data-baseweb="tab-selected"] {
-        background: white;
-        color: #111827;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        background: transparent;
+        color: var(--crimson);
+        box-shadow: inset 0 -2px 0 var(--crimson);
     }
 
     /* Buttons */
     .stButton > button {
-        border-radius: 8px;
-        border: none;
-        font-weight: 500;
+        border-radius: 2px;
+        border: 1px solid var(--grid);
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.85rem;
+        font-weight: 400;
+        background: var(--cream);
+        color: var(--ink);
         transition: all 0.15s;
     }
 
     .stButton > button[kind="primary"] {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: var(--crimson);
+        border: 1px solid var(--crimson);
+        color: #fbf9f4;
     }
 
     .stButton > button[kind="primary"]:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        background: var(--wine);
+        border-color: var(--wine);
+        transform: none;
+        box-shadow: none;
     }
 
     /* Info boxes */
     .stInfo, .stSuccess, .stWarning {
-        border-radius: 10px;
+        border-radius: 2px;
         border: 1px solid;
     }
 
     .stInfo {
-        background: #f0f9ff;
-        border-color: #bae6fd;
+        background: var(--cream);
+        border-color: var(--grid);
+        color: var(--ink2);
     }
 
     .stSuccess {
-        background: #f0fdf4;
-        border-color: #bbf7d0;
+        background: #e9ede3;
+        border-color: var(--sage);
     }
 
     .stWarning {
-        background: #fffbeb;
-        border-color: #fde68a;
+        background: #f2e9e2;
+        border-color: var(--crimson);
     }
 
     /* Dataframe */
     .stDataFrame {
-        border-radius: 10px;
+        border-radius: 2px;
         overflow: hidden;
+        border: 1px solid var(--grid);
     }
 
     /* Section dividers */
     hr {
         border: none;
-        border-top: 1px solid #e5e7eb;
+        border-top: 1px solid var(--grid);
         margin: 2rem 0;
     }
 
     /* Sidebar */
     [data-testid="stSidebar"] {
-        background: #f9fafb;
-        border-right: 1px solid #e5e7eb;
+        background: var(--cream);
+        border-right: 1px solid var(--grid);
+    }
+    [data-testid="stSidebar"] h3, [data-testid="stSidebar"] .stMarkdown h3 {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.14em;
+        color: var(--ink2);
     }
 
     /* Headings */
     h1, h2, h3 {
-        color: #111827;
+        color: var(--ink);
         font-weight: 600;
+    }
+    h3 {
+        font-family: 'Spectral', Georgia, serif;
+        font-weight: 500;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -168,6 +246,11 @@ st.markdown("""
 def init_systems():
     """Initialize database and agent (cached for performance)"""
     try:
+        # cloud-safe bootstrap: build from the tracked fixtures when the
+        # database is missing or empty; an existing local build is untouched
+        from prepare_database import ensure_database
+        boot = ensure_database()
+        print(f"dashboard db bootstrap: {boot['action']}")
         db = ReviewDatabase()
         agent = MemoryAwareAgent()
         return db, agent, None
@@ -310,9 +393,15 @@ if error or db is None:
 
 # Custom header
 st.markdown("""
-<div style="margin-bottom: 2rem;">
-    <h1 class="main-title">ReviewInsight AI</h1>
-    <p class="subtitle">Employee sentiment analysis powered by LLM agents and SQL analytics</p>
+<div style="margin-bottom: 1.4rem;">
+    <p class="eyebrow">reviewinsight ai · a field-notes dashboard</p>
+    <h1 class="main-title">warehouse reviews, read by an llm pipeline</h1>
+    <p class="subtitle">sql-powered kpis, a plan-and-execute agent, and prompt a/b evaluation over the merged
+    glassdoor · reddit · youtube corpus. this public deployment runs on the tracked synthetic fixtures —
+    the real corpus stays private (see the dataset card).</p>
+    <div class="honesty">every metric on this page is agreement with an llm labeler — not accuracy against
+    human ground truth. the word accuracy is reserved in this codebase for a human-labeled sample that
+    does not exist yet.</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -369,8 +458,8 @@ with tab1:
     with col1:
         st.markdown(f"""
         <div class="metric-container">
-            <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 0.5rem;">Avg Sentiment</div>
-            <div style="font-size: 1.75rem; font-weight: 600; color: #111827;">
+            <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">Avg Sentiment</div>
+            <div style="font-size: 1.75rem; font-weight: 600; color: #25251f;">
                 {kpis['avg_sentiment']:.2f}
             </div>
         </div>
@@ -379,18 +468,18 @@ with tab1:
     with col2:
         st.markdown(f"""
         <div class="metric-container">
-            <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 0.5rem;">Positive Sentiment</div>
-            <div style="font-size: 1.75rem; font-weight: 600; color: #059669;">
+            <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">Positive Sentiment</div>
+            <div style="font-size: 1.75rem; font-weight: 600; color: #89927a;">
                 {kpis['positive_pct']:.1f}%
             </div>
         </div>
         """, unsafe_allow_html=True)
 
     with col3:
-        risk_color = "#dc2626" if kpis['high_risk_pct'] > 20 else "#f59e0b"
+        risk_color = "#a43b36" if kpis['high_risk_pct'] > 20 else "#b86a62"
         st.markdown(f"""
         <div class="metric-container">
-            <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 0.5rem;">High Retention Risk</div>
+            <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">High Retention Risk</div>
             <div style="font-size: 1.75rem; font-weight: 600; color: {risk_color};">
                 {kpis['high_risk_pct']:.1f}%
             </div>
@@ -401,8 +490,8 @@ with tab1:
         anomaly_display = f"{kpis['anomaly_rate']:.1f}%" if kpis['anomaly_rate'] is not None else "N/A"
         st.markdown(f"""
         <div class="metric-container">
-            <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 0.5rem;">Anomaly Rate</div>
-            <div style="font-size: 1.75rem; font-weight: 600; color: #111827;">
+            <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">Anomaly Rate</div>
+            <div style="font-size: 1.75rem; font-weight: 600; color: #25251f;">
                 {anomaly_display}
             </div>
         </div>
@@ -429,7 +518,7 @@ with tab1:
                 line_shape='spline'
             )
 
-            fig.add_hline(y=3.0, line_dash="dash", line_color="#9ca3af",
+            fig.add_hline(y=3.0, line_dash="dash", line_color="#b86a62",
                          annotation_text="Neutral")
 
             fig.update_layout(
@@ -437,11 +526,11 @@ with tab1:
                 hovermode='x unified',
                 height=350,
                 margin=dict(l=0, r=0, t=10, b=0),
-                paper_bgcolor='white',
-                plot_bgcolor='white',
-                font=dict(size=12, color="#374151")
+                paper_bgcolor='#fbf9f4',
+                plot_bgcolor='#fbf9f4',
+                font=dict(size=12, color="#52514e")
             )
-            fig.update_traces(line_color="#667eea", marker_size=8)
+            fig.update_traces(line_color="#1E342E", marker_color="#89927a", marker_size=8)
 
             st.plotly_chart(fig, use_container_width=True)
 
@@ -462,12 +551,12 @@ with tab1:
             fig.update_layout(
                 height=350,
                 margin=dict(l=0, r=0, t=10, b=0),
-                paper_bgcolor='white',
-                plot_bgcolor='white',
-                font=dict(size=12, color="#374151")
+                paper_bgcolor='#fbf9f4',
+                plot_bgcolor='#fbf9f4',
+                font=dict(size=12, color="#52514e")
             )
             fig.update_traces(
-                marker_color="#667eea",
+                marker_color="#89927a",
                 textposition='outside'
             )
             fig.update_yaxes(categoryorder='total ascending')
@@ -487,11 +576,11 @@ with tab1:
         with col1:
             has_drift = drift_result.get('has_drift', False)
             status = "Detected" if has_drift else "No Drift"
-            status_color = "#dc2626" if has_drift else "#059669"
+            status_color = "#a43b36" if has_drift else "#89927a"
 
             st.markdown(f"""
             <div class="metric-container">
-                <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 0.5rem;">Drift Status</div>
+                <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">Drift Status</div>
                 <div style="font-size: 1.5rem; font-weight: 600; color: {status_color};">
                     {status}
                 </div>
@@ -502,8 +591,8 @@ with tab1:
             kl_div = drift_result.get('kl_divergence', 0)
             st.markdown(f"""
             <div class="metric-container">
-                <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 0.5rem;">KL Divergence</div>
-                <div style="font-size: 1.5rem; font-weight: 600; color: #111827;">
+                <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">KL Divergence</div>
+                <div style="font-size: 1.5rem; font-weight: 600; color: #25251f;">
                     {kl_div:.3f}
                 </div>
             </div>
@@ -514,8 +603,8 @@ with tab1:
             change_count = len(changes)
             st.markdown(f"""
             <div class="metric-container">
-                <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 0.5rem;">Significant Changes</div>
-                <div style="font-size: 1.5rem; font-weight: 600; color: #111827;">
+                <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">Significant Changes</div>
+                <div style="font-size: 1.5rem; font-weight: 600; color: #25251f;">
                     {change_count}
                 </div>
             </div>
@@ -569,7 +658,7 @@ with tab1:
                     x=[row['Baseline']],
                     y=[theme],
                     orientation='h',
-                    marker_color='#d1d5db',
+                    marker_color='#d8d1c4',
                     showlegend=False
                 ))
                 fig.add_trace(go.Bar(
@@ -577,7 +666,7 @@ with tab1:
                     x=[row['Current']],
                     y=[theme],
                     orientation='h',
-                    marker_color='#dc2626' if row['Direction'] == 'increase' else '#059669',
+                    marker_color='#a43b36' if row['Direction'] == 'increase' else '#89927a',
                     showlegend=False
                 ))
 
@@ -587,8 +676,8 @@ with tab1:
                 height=max(200, len(chart_df) * 40),
                 hovermode='x unified',
                 margin=dict(l=0, r=0, t=10, b=0),
-                paper_bgcolor='white',
-                plot_bgcolor='white'
+                paper_bgcolor='#fbf9f4',
+                plot_bgcolor='#fbf9f4'
             )
             st.plotly_chart(fig, use_container_width=True)
         else:
@@ -625,6 +714,8 @@ with tab1:
 with tab2:
     st.markdown("### AI-Powered Analysis")
     st.markdown("*On-demand analysis using LLM agent with tool orchestration*")
+    st.caption("needs an openai api key at request time, so this public deployment stays keyless "
+               "by design — run the dashboard locally with your own key to use this tab.")
 
     st.markdown("---")
 
@@ -661,11 +752,11 @@ with tab2:
                     # Results cards
                     col1, col2, col3 = st.columns(3)
 
-                    sentiment_color = "#059669" if analysis['sentiment'] >= 4 else "#f59e0b" if analysis['sentiment'] == 3 else "#dc2626"
+                    sentiment_color = "#89927a" if analysis['sentiment'] >= 4 else "#b86a62" if analysis['sentiment'] == 3 else "#a43b36"
                     with col1:
                         st.markdown(f"""
                         <div class="metric-container">
-                            <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 0.5rem;">Sentiment</div>
+                            <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">Sentiment</div>
                             <div style="font-size: 1.5rem; font-weight: 600; color: {sentiment_color};">
                                 {analysis['sentiment']}/5
                             </div>
@@ -674,10 +765,10 @@ with tab2:
 
                     with col2:
                         risk = analysis['retention_risk'].title()
-                        risk_color = {"High": "#dc2626", "Medium": "#f59e0b", "Low": "#059669"}.get(risk, "#6b7280")
+                        risk_color = {"High": "#a43b36", "Medium": "#b86a62", "Low": "#89927a"}.get(risk, "#6b7280")
                         st.markdown(f"""
                         <div class="metric-container">
-                            <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 0.5rem;">Retention Risk</div>
+                            <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">Retention Risk</div>
                             <div style="font-size: 1.5rem; font-weight: 600; color: {risk_color};">
                                 {risk}
                             </div>
@@ -688,8 +779,8 @@ with tab2:
                         theme_count = len(analysis.get('themes', []))
                         st.markdown(f"""
                         <div class="metric-container">
-                            <div style="font-size: 0.85rem; color: #6b7280; margin-bottom: 0.5rem;">Themes Found</div>
-                            <div style="font-size: 1.5rem; font-weight: 600; color: #111827;">
+                            <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">Themes Found</div>
+                            <div style="font-size: 1.5rem; font-weight: 600; color: #25251f;">
                                 {theme_count}
                             </div>
                         </div>
@@ -821,12 +912,14 @@ with tab4:
     import json
 
     eval_dir = Path(__file__).parent.parent / 'data' / 'evaluation'
-    result_files = list(eval_dir.glob('experiment_grid_*.json')) + list(eval_dir.glob('experiment_*.json')) + list(eval_dir.glob('experiment_crossval*.json'))
-
-    # Prioritize cross-validation results
-    crossval_files = [f for f in result_files if 'crossval' in f.name]
-    if crossval_files:
-        result_files = crossval_files + [f for f in result_files if f not in crossval_files]
+    # rescored_crossval_summary.json is the only evaluation artifact the repo
+    # tracks (DATASET_CARD); raw grid files stay local-only. Prefer it, then
+    # any local grid/crossval files for offline use.
+    result_files = list(eval_dir.glob('rescored_crossval_summary.json')) + \
+                   list(eval_dir.glob('experiment_grid_*.json')) + \
+                   list(eval_dir.glob('experiment_*.json')) + \
+                   list(eval_dir.glob('experiment_crossval*.json'))
+    result_files = list(dict.fromkeys(result_files))
 
     if not result_files:
         st.info("No experiment results found. Run `python run_experiments.py --run-all` to generate results.")
@@ -847,21 +940,24 @@ with tab4:
             with col2:
                 st.caption(f"{len(results)} experiments completed")
 
-            # Convert to DataFrame
+            # Convert to DataFrame (handles both the rescored summary's
+            # rescored_agreement schema and the raw grid's metrics schema)
             df_results = []
             for r in results:
-                metrics = r.get('metrics', {})
+                metrics = r.get('rescored_agreement', r.get('metrics', {}))
                 df_results.append({
-                    'prompt': r.get('prompt_name', 'Unknown'),
+                    'prompt': r.get('prompt_name', r.get('prompt_version', 'Unknown')),
                     'version': r.get('prompt_version', 'v?'),
                     'k_shot': r.get('k_shot', 0),
                     'model': r.get('model', 'unknown'),
                     'sentiment_mae': metrics.get('sentiment_mae', 0),
-                    'sentiment_acc': metrics.get('sentiment_exact_accuracy', 0),
+                    'sentiment_acc': metrics.get('sentiment_exact_accuracy',
+                                                 metrics.get('sentiment_exact_agreement', 0)),
                     'theme_f1': metrics.get('theme_f1', 0),
                     'theme_precision': metrics.get('theme_precision', 0),
                     'theme_recall': metrics.get('theme_recall', 0),
-                    'risk_acc': metrics.get('risk_accuracy', 0),
+                    'risk_acc': metrics.get('risk_accuracy',
+                                            metrics.get('risk_agreement', 0)),
                     'cost': metrics.get('cost_per_1k_samples', 0)
                 })
 
@@ -961,9 +1057,9 @@ with tab4:
 
                     fig.update_layout(
                         height=500,
-                        paper_bgcolor='white',
-                        plot_bgcolor='white',
-                        font=dict(color="#374151")
+                        paper_bgcolor='#fbf9f4',
+                        plot_bgcolor='#fbf9f4',
+                        font=dict(color="#52514e")
                     )
 
                     st.plotly_chart(fig, use_container_width=True)
@@ -999,9 +1095,9 @@ with tab4:
                         xaxis_tickangle=-45,
                         height=500,
                         yaxis_range=[0, 1],
-                        paper_bgcolor='white',
-                        plot_bgcolor='white',
-                        font=dict(color="#374151")
+                        paper_bgcolor='#fbf9f4',
+                        plot_bgcolor='#fbf9f4',
+                        font=dict(color="#52514e")
                     )
 
                     st.plotly_chart(fig, use_container_width=True)
@@ -1025,9 +1121,9 @@ with tab4:
                     fig.update_layout(
                         xaxis_tickangle=-45,
                         height=500,
-                        paper_bgcolor='white',
-                        plot_bgcolor='white',
-                        font=dict(color="#374151")
+                        paper_bgcolor='#fbf9f4',
+                        plot_bgcolor='#fbf9f4',
+                        font=dict(color="#52514e")
                     )
 
                     st.plotly_chart(fig, use_container_width=True)
@@ -1035,7 +1131,7 @@ with tab4:
 # Footer
 st.markdown("---")
 st.markdown("""
-<div style='text-align: center; color: #9ca3af; font-size: 0.85rem;'>
+<div style='text-align: center; color: #b86a62; font-size: 0.85rem;'>
     ReviewInsight AI | Hybrid LLM + SQL Analytics Platform
 </div>
 """, unsafe_allow_html=True)

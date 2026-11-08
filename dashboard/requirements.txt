@@ -1,0 +1,14 @@
+# Dashboard-only requirements (Streamlit Community Cloud deploy).
+# Same pins as the repo's core + optional files so local and cloud match.
+# Python 3.11 (the numpy/scipy pins don't support 3.13+).
+streamlit==1.40.0
+plotly==5.24.0
+pandas==2.2.0
+numpy==1.26.0
+scikit-learn==1.5.0
+scipy==1.13.0
+duckdb==1.1.0
+python-dotenv==1.0.0
+# Analysis tab runs only with a user-supplied key at request time;
+# the public deployment stays keyless by design.
+openai==1.54.0
