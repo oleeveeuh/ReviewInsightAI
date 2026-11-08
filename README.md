@@ -3,8 +3,9 @@
 An end-to-end LLM pipeline that analyzes warehouse employee reviews — sentiment, themes, and retention-risk classification — with a tool-using agent, a prompt A/B-testing harness, and an honest evaluation framework.
 
 > **This is a portfolio/research prototype.** It is not production software,
-> it has never been deployed, and all evaluation numbers are agreement with
-> LLM-generated labels — not accuracy against human ground truth.
+> and nothing in it serves real traffic — the public streamlit demos are read-only
+> (a fixture-data dashboard, an offline dpo demo). all evaluation numbers are
+> agreement with LLM-generated labels — not accuracy against human ground truth.
 
 ---
 
