@@ -1,0 +1,318 @@
+{
+  "generated_by": "dashboard/build_real_aggregates.py (frozen; regenerate, never hand-edit)",
+  "provenance": "aggregates of the real 175-review corpus \u2014 counts and distributions only; review text is never published (see DATASET_CARD.md)",
+  "n_reviews": 175,
+  "n_labels": 175,
+  "date_range": [
+    "2020-08-01",
+    "2026-02-15"
+  ],
+  "sources": {
+    "glassdoor": 100,
+    "reddit": 57,
+    "youtube": 18
+  },
+  "ratings": {
+    "1.0": 12,
+    "2.0": 9,
+    "3.0": 31,
+    "4.0": 27,
+    "5.0": 21
+  },
+  "mean_rating": 3.36,
+  "years": {
+    "2020": 6,
+    "2021": 5,
+    "2022": 5,
+    "2023": 5,
+    "2024": 46,
+    "2025": 78,
+    "2026": 25
+  },
+  "sentiment": {
+    "1": 1,
+    "2": 35,
+    "3": 91,
+    "4": 43,
+    "5": 5
+  },
+  "risk": {
+    "medium": 110,
+    "high": 34,
+    "low": 31
+  },
+  "themes": {
+    "workload": 117,
+    "pay_benefits": 77,
+    "culture": 70,
+    "management": 61,
+    "work_life_balance": 56,
+    "career_growth": 43,
+    "other": 40,
+    "safety": 16,
+    "training": 14,
+    "overtime": 13,
+    "scheduling": 1
+  },
+  "trend": [
+    {
+      "month": "2020-08",
+      "source": "reddit",
+      "avg_sentiment": 2.0,
+      "n": 3
+    },
+    {
+      "month": "2020-09",
+      "source": "reddit",
+      "avg_sentiment": 2.5,
+      "n": 2
+    },
+    {
+      "month": "2020-10",
+      "source": "reddit",
+      "avg_sentiment": 2.0,
+      "n": 1
+    },
+    {
+      "month": "2021-01",
+      "source": "reddit",
+      "avg_sentiment": 3.0,
+      "n": 1
+    },
+    {
+      "month": "2021-08",
+      "source": "reddit",
+      "avg_sentiment": 2.5,
+      "n": 2
+    },
+    {
+      "month": "2021-10",
+      "source": "reddit",
+      "avg_sentiment": 3.0,
+      "n": 1
+    },
+    {
+      "month": "2021-11",
+      "source": "reddit",
+      "avg_sentiment": 3.0,
+      "n": 1
+    },
+    {
+      "month": "2022-05",
+      "source": "reddit",
+      "avg_sentiment": 3.0,
+      "n": 1
+    },
+    {
+      "month": "2022-06",
+      "source": "reddit",
+      "avg_sentiment": 5.0,
+      "n": 1
+    },
+    {
+      "month": "2022-07",
+      "source": "reddit",
+      "avg_sentiment": 3.0,
+      "n": 1
+    },
+    {
+      "month": "2022-09",
+      "source": "reddit",
+      "avg_sentiment": 3.0,
+      "n": 1
+    },
+    {
+      "month": "2022-11",
+      "source": "reddit",
+      "avg_sentiment": 3.0,
+      "n": 1
+    },
+    {
+      "month": "2023-04",
+      "source": "reddit",
+      "avg_sentiment": 2.0,
+      "n": 1
+    },
+    {
+      "month": "2023-07",
+      "source": "reddit",
+      "avg_sentiment": 4.0,
+      "n": 1
+    },
+    {
+      "month": "2023-10",
+      "source": "reddit",
+      "avg_sentiment": 2.0,
+      "n": 1
+    },
+    {
+      "month": "2023-11",
+      "source": "reddit",
+      "avg_sentiment": 3.0,
+      "n": 1
+    },
+    {
+      "month": "2023-12",
+      "source": "reddit",
+      "avg_sentiment": 4.0,
+      "n": 1
+    },
+    {
+      "month": "2024-01",
+      "source": "reddit",
+      "avg_sentiment": 2.0,
+      "n": 1
+    },
+    {
+      "month": "2024-01",
+      "source": "youtube",
+      "avg_sentiment": 3.25,
+      "n": 4
+    },
+    {
+      "month": "2024-02",
+      "source": "reddit",
+      "avg_sentiment": 2.5,
+      "n": 2
+    },
+    {
+      "month": "2024-03",
+      "source": "reddit",
+      "avg_sentiment": 4.0,
+      "n": 2
+    },
+    {
+      "month": "2024-04",
+      "source": "reddit",
+      "avg_sentiment": 1.0,
+      "n": 1
+    },
+    {
+      "month": "2024-06",
+      "source": "youtube",
+      "avg_sentiment": 3.2,
+      "n": 5
+    },
+    {
+      "month": "2024-09",
+      "source": "glassdoor",
+      "avg_sentiment": 3.0,
+      "n": 1
+    },
+    {
+      "month": "2024-09",
+      "source": "reddit",
+      "avg_sentiment": 2.0,
+      "n": 1
+    },
+    {
+      "month": "2024-10",
+      "source": "glassdoor",
+      "avg_sentiment": 3.333,
+      "n": 3
+    },
+    {
+      "month": "2024-10",
+      "source": "reddit",
+      "avg_sentiment": 3.0,
+      "n": 1
+    },
+    {
+      "month": "2024-11",
+      "source": "glassdoor",
+      "avg_sentiment": 3.5,
+      "n": 6
+    },
+    {
+      "month": "2024-11",
+      "source": "reddit",
+      "avg_sentiment": 3.5,
+      "n": 2
+    },
+    {
+      "month": "2024-12",
+      "source": "glassdoor",
+      "avg_sentiment": 3.0,
+      "n": 13
+    },
+    {
+      "month": "2024-12",
+      "source": "youtube",
+      "avg_sentiment": 3.0,
+      "n": 4
+    },
+    {
+      "month": "2025-01",
+      "source": "glassdoor",
+      "avg_sentiment": 3.125,
+      "n": 16
+    },
+    {
+      "month": "2025-01",
+      "source": "reddit",
+      "avg_sentiment": 4.0,
+      "n": 1
+    },
+    {
+      "month": "2025-02",
+      "source": "glassdoor",
+      "avg_sentiment": 3.222,
+      "n": 18
+    },
+    {
+      "month": "2025-03",
+      "source": "glassdoor",
+      "avg_sentiment": 2.867,
+      "n": 15
+    },
+    {
+      "month": "2025-04",
+      "source": "glassdoor",
+      "avg_sentiment": 3.231,
+      "n": 13
+    },
+    {
+      "month": "2025-05",
+      "source": "glassdoor",
+      "avg_sentiment": 2.9,
+      "n": 10
+    },
+    {
+      "month": "2025-06",
+      "source": "glassdoor",
+      "avg_sentiment": 2.0,
+      "n": 1
+    },
+    {
+      "month": "2025-07",
+      "source": "glassdoor",
+      "avg_sentiment": 2.0,
+      "n": 1
+    },
+    {
+      "month": "2025-08",
+      "source": "glassdoor",
+      "avg_sentiment": 3.0,
+      "n": 2
+    },
+    {
+      "month": "2025-10",
+      "source": "glassdoor",
+      "avg_sentiment": 3.0,
+      "n": 1
+    },
+    {
+      "month": "2026-02",
+      "source": "reddit",
+      "avg_sentiment": 3.36,
+      "n": 25
+    }
+  ],
+  "kpis": {
+    "avg_sentiment": 3.09,
+    "positive_pct": 27.4,
+    "high_risk_pct": 19.4,
+    "anomaly_pct": 9.1,
+    "anomaly_count": 16
+  }
+}

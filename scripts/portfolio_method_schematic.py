@@ -79,7 +79,7 @@ def main() -> None:
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
-    ax.set_title(spaced("THE METHOD") + "  —  " + spaced("ONE CORPUS, THREE CONSUMERS"),
+    ax.set_title(spaced("SENTIMENT BY AGENT, ALIGNMENT BY DPO"),
                  fontsize=11.5, color=INK2, loc="left", pad=7)
 
     # ---- sources (left column), fanning into the corpus -------------------

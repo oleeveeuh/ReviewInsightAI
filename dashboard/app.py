@@ -21,9 +21,12 @@ from pathlib import Path
 # Add project root to path
 sys.path.append(str(Path(__file__).parent.parent / 'src'))
 
+import json
+
 from database.db_manager import ReviewDatabase
 from agent.memory import MemoryAwareAgent
 from agent.drift import DriftDetector
+
 
 # Page config
 st.set_page_config(
@@ -31,6 +34,16 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+@st.cache_data
+def load_real_aggregates():
+    """Frozen aggregates of the real 175-review corpus — counts only, no
+    review text (see dashboard/build_real_aggregates.py)."""
+    path = Path(__file__).resolve().parent / "real_aggregates.json"
+    return json.loads(path.read_text())
+
+
+REAL = load_real_aggregates()
 
 # Custom CSS - fieldnotes theme (matches oleeveeuh.github.io)
 st.markdown("""
@@ -403,8 +416,8 @@ st.markdown("""
     <p class="eyebrow">reviewinsight ai · a field-notes dashboard</p>
     <h1 class="main-title">warehouse reviews, read by an llm pipeline</h1>
     <p class="subtitle">sql-powered kpis, a plan-and-execute agent, and prompt a/b evaluation over the merged
-    glassdoor · reddit · youtube corpus. this public deployment runs on the tracked synthetic fixtures —
-    the real corpus stays private (see the dataset card).</p>
+    glassdoor · reddit · youtube corpus. headline numbers are aggregates of the real 175-review corpus
+    (counts only — the text stays private); review-level views run on the tracked synthetic fixtures.</p>
     <div class="honesty">every metric on this page is agreement with an llm labeler — not accuracy against
     human ground truth. the word accuracy is reserved in this codebase for a human-labeled sample that
     does not exist yet.</div>
@@ -456,28 +469,27 @@ tab1, tab2, tab3, tab4 = st.tabs(["Dashboard", "Analysis", "Search", "Experiment
 
 # ===== TAB 1: DASHBOARD =====
 with tab1:
-    # KPI cards
-    kpis = get_kpis(db)
+    st.caption("headline numbers: the real 175-review corpus, aggregates only — review text "
+               "stays private (DATASET_CARD.md) · review-level views further down run on the 9 "
+               "tracked synthetic fixtures")
 
+    # KPI cards — real corpus aggregates
+    kpis = REAL["kpis"]
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
         st.markdown(f"""
         <div class="metric-container">
-            <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">Avg Sentiment</div>
-            <div style="font-size: 1.75rem; font-weight: 600; color: #25251f;">
-                {kpis['avg_sentiment']:.2f}
-            </div>
+            <div class="metric-label">avg sentiment · real corpus</div>
+            <div class="metric-value">{kpis['avg_sentiment']:.2f}</div>
         </div>
         """, unsafe_allow_html=True)
 
     with col2:
         st.markdown(f"""
         <div class="metric-container">
-            <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">Positive Sentiment</div>
-            <div style="font-size: 1.75rem; font-weight: 600; color: #89927a;">
-                {kpis['positive_pct']:.1f}%
-            </div>
+            <div class="metric-label">positive sentiment · real corpus</div>
+            <div class="metric-value" style="color: #89927a;">{kpis['positive_pct']:.1f}%</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -485,73 +497,69 @@ with tab1:
         risk_color = "#a43b36" if kpis['high_risk_pct'] > 20 else "#b86a62"
         st.markdown(f"""
         <div class="metric-container">
-            <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">High Retention Risk</div>
-            <div style="font-size: 1.75rem; font-weight: 600; color: {risk_color};">
-                {kpis['high_risk_pct']:.1f}%
-            </div>
+            <div class="metric-label">high retention risk · real corpus</div>
+            <div class="metric-value" style="color: {risk_color};">{kpis['high_risk_pct']:.1f}%</div>
         </div>
         """, unsafe_allow_html=True)
 
     with col4:
-        anomaly_display = f"{kpis['anomaly_rate']:.1f}%" if kpis['anomaly_rate'] is not None else "N/A"
         st.markdown(f"""
         <div class="metric-container">
-            <div style="font-size: 0.85rem; color: #77776c; margin-bottom: 0.5rem;">Anomaly Rate</div>
-            <div style="font-size: 1.75rem; font-weight: 600; color: #25251f;">
-                {anomaly_display}
-            </div>
+            <div class="metric-label">anomaly rate · real corpus (rule-flagged)</div>
+            <div class="metric-value" style="color: #25251f;">{kpis['anomaly_pct']:.1f}%</div>
         </div>
         """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Charts row
+    # Charts row — real corpus aggregates
     col1, col2 = st.columns(2)
 
     with col1:
         st.markdown("### Sentiment Trend")
-        df_trend = db.get_sentiment_trend()
+        df_trend = pd.DataFrame(REAL["trend"])
+        pivot = df_trend.pivot(index="month", columns="source", values="avg_sentiment")
 
-        if not df_trend.empty and 'date' in df_trend.columns:
-            df_trend_agg = df_trend.groupby('date')['sentiment'].mean().reset_index()
+        fig = px.line(
+            pivot,
+            markers=True,
+            labels={'value': 'Average Sentiment', 'month': 'Month', 'source': 'Source'},
+            line_shape='spline',
+            color_discrete_map={"glassdoor": "#1E342E", "reddit": "#89927a",
+                                "youtube": "#d4708c"},
+        )
 
-            fig = px.line(
-                df_trend_agg,
-                x='date',
-                y='sentiment',
-                markers=True,
-                labels={'sentiment': 'Average Sentiment', 'date': 'Date'},
-                line_shape='spline'
-            )
+        fig.add_hline(y=3.0, line_dash="dash", line_color="#b86a62",
+                     annotation_text="Neutral")
 
-            fig.add_hline(y=3.0, line_dash="dash", line_color="#b86a62",
-                         annotation_text="Neutral")
+        fig.update_layout(
+            yaxis_range=[1, 5],
+            hovermode='x unified',
+            height=350,
+            margin=dict(l=0, r=0, t=10, b=0),
+            paper_bgcolor='#fbf9f4',
+            plot_bgcolor='#fbf9f4',
+            font=dict(size=12, color="#52514e"),
+            legend_title_text=''
+        )
 
-            fig.update_layout(
-                yaxis_range=[1, 5],
-                hovermode='x unified',
-                height=350,
-                margin=dict(l=0, r=0, t=10, b=0),
-                paper_bgcolor='#fbf9f4',
-                plot_bgcolor='#fbf9f4',
-                font=dict(size=12, color="#52514e")
-            )
-            fig.update_traces(line_color="#1E342E", marker_color="#89927a", marker_size=8)
-
-            st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True)
 
     with col2:
         st.markdown("### Theme Distribution")
-        themes = db.get_theme_distribution(top_n=10)
+        themes = pd.DataFrame(
+            sorted(REAL["themes"].items(), key=lambda kv: kv[1]),
+            columns=['theme', 'mentions']
+        )
 
         if not themes.empty:
             fig = px.bar(
                 themes,
-                x='frequency',
+                x='mentions',
                 y='theme',
                 orientation='h',
-                labels={'frequency': 'Percentage', 'theme': ''},
-                text_auto='.1f%'
+                labels={'mentions': 'Mentions', 'theme': ''},
+                text_auto='.0f'
             )
 
             fig.update_layout(
@@ -561,15 +569,17 @@ with tab1:
                 plot_bgcolor='#fbf9f4',
                 font=dict(size=12, color="#52514e")
             )
-            fig.update_traces(
-                marker_color="#89927a",
-                textposition='outside'
-            )
-            fig.update_yaxes(categoryorder='total ascending')
+            fig.update_traces(marker_color="#89927a", textposition='outside')
 
             st.plotly_chart(fig, use_container_width=True)
 
+    st.caption("labels: v5 silver labels, one per review across the real corpus — agreement "
+               "with an llm labeler, not accuracy · risk is an llm classification of text, not "
+               "observed attrition · anomaly rate: the repo's detect_anomaly rule "
+               "(negative sentiment + safety, or pay_benefits + management at negative sentiment)")
+
     st.markdown("---")
+    st.caption("review-level views — the 9 tracked synthetic fixtures (the real corpus text stays private)")
 
     # Drift detection section
     st.markdown("### Distribution Drift Analysis")
@@ -857,6 +867,7 @@ with tab2:
 with tab3:
     st.markdown("### Search & Explore Reviews")
     st.markdown("*Search through analyzed reviews with filters*")
+    st.caption("searching the 9 tracked synthetic fixtures — the real corpus text stays private")
 
     st.markdown("---")
 
