@@ -1,0 +1,168 @@
+/* reviewinsight showcase — fieldnotes theme matched to the portfolio site.
+   plain static css; no framework, no build step. */
+
+:root {
+  --paper: #f5f1e8;
+  --cream: #fbf9f4;
+  --ink: #25251f;
+  --ink2: #52514e;
+  --muted: #77776c;
+  --grid: #d8d1c4;
+  --sage: #89927a;
+  --sage-light: #dfe1d5;
+  --crimson: #a43b36;
+  --wine: #482728;
+  --sumi: #1e342e;
+  --sans: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Spectral", Georgia, serif;
+  --mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  text-transform: lowercase;
+}
+
+.wrap { max-width: 1060px; margin: 0 auto; padding: 0 28px; }
+
+/* ---- header ---- */
+header { padding: 64px 0 30px; border-bottom: 1px solid var(--grid); }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em;
+  color: var(--crimson);
+}
+.eyebrow::before { content: "● "; font-size: 9px; vertical-align: 2px; }
+h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.15; margin: 14px 0 12px; max-width: 760px;
+}
+.lede { max-width: 700px; color: var(--ink2); font-size: 18px; }
+.honesty {
+  margin-top: 22px; padding: 12px 16px; border: 1px dashed var(--wine);
+  color: var(--wine); font-family: var(--mono); font-size: 13px;
+  max-width: 700px;
+}
+.headlinks { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 22px; }
+.headlinks a {
+  font-family: var(--mono); font-size: 13px; color: var(--ink);
+  text-decoration: none; border-bottom: 1px solid var(--crimson); padding-bottom: 2px;
+}
+.headlinks a:hover { color: var(--crimson); }
+
+/* ---- kpis ---- */
+.kpis {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px; padding: 30px 0 10px;
+}
+.kpi {
+  background: var(--cream); border: 1px solid var(--grid); padding: 16px 16px 13px;
+}
+.kpi .n {
+  font-family: var(--mono); font-weight: 500; font-size: 26px; color: var(--sumi);
+}
+.kpi .l { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ---- sections ---- */
+section { padding: 44px 0 6px; }
+.sec-kicker {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em;
+  color: var(--crimson); margin-bottom: 6px;
+}
+h2 {
+  font-family: var(--serif); font-weight: 500; font-size: 26px; margin-bottom: 10px;
+}
+.sec-lede { color: var(--ink2); max-width: 720px; margin-bottom: 24px; }
+
+/* ---- chart grid ---- */
+.chart-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+.chart-card {
+  background: var(--cream); border: 1px solid var(--grid); padding: 18px 18px 12px;
+}
+.chart-card.wide { grid-column: 1 / -1; }
+.chart-title {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em;
+  color: var(--ink2); margin-bottom: 10px;
+}
+.chart-card svg { width: 100%; height: auto; display: block; }
+.chart-note {
+  font-family: var(--mono); font-size: 11px; color: var(--muted);
+  margin-top: 8px; line-height: 1.5;
+}
+
+/* ---- evaluation table ---- */
+table { width: 100%; border-collapse: collapse; background: var(--cream); border: 1px solid var(--grid); }
+th {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--muted);
+  text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--grid);
+  font-weight: 400;
+}
+td {
+  padding: 9px 12px; border-bottom: 1px solid var(--grid);
+  font-family: var(--mono); font-size: 13.5px;
+}
+td:first-child { font-family: var(--sans); font-size: 15px; }
+td.num { color: var(--ink2); }
+tr.best td { background: var(--sage-light); }
+tr.best td:first-child { color: var(--sumi); font-weight: 600; }
+td.collapse { color: var(--wine); font-weight: 600; }
+.tbl-note { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 8px; }
+
+/* ---- callout ---- */
+.callout {
+  border: 1px dashed var(--wine); background: var(--cream);
+  padding: 18px 20px; margin: 18px 0; max-width: 760px;
+}
+.callout .t {
+  font-family: var(--mono); font-size: 13px; color: var(--wine); margin-bottom: 6px;
+}
+.callout p { font-size: 15px; color: var(--ink2); }
+.callout img { width: 100%; height: auto; margin-top: 14px; border: 1px solid var(--grid); }
+
+.figure-img { width: 100%; max-width: 900px; height: auto; border: 1px solid var(--grid); margin-top: 16px; }
+.fig-caption { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 8px; max-width: 900px; line-height: 1.55; }
+
+/* ---- agent chips ---- */
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 18px; }
+.chip {
+  font-family: var(--mono); font-size: 13px; color: var(--ink);
+  background: var(--cream); border: 1px solid var(--grid);
+  padding: 7px 13px;
+}
+.chip b { color: var(--sage); font-weight: 500; margin-right: 7px; }
+
+/* ---- claim table ---- */
+.claims { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0; }
+.claim {
+  background: var(--cream); border: 1px solid var(--grid); padding: 16px 18px;
+}
+.claim.yes { border-left: 3px solid var(--sage); }
+.claim.no { border-left: 3px solid var(--wine); }
+.claim .t { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; margin-bottom: 8px; }
+.claim.yes .t { color: var(--sage); }
+.claim.no .t { color: var(--wine); }
+.claim ul { list-style: none; }
+.claim li { font-size: 14.5px; color: var(--ink2); padding: 3px 0; }
+.claim li::before { content: "— "; color: var(--muted); }
+
+/* ---- footer ---- */
+footer {
+  margin-top: 56px; border-top: 1px solid var(--grid);
+  padding: 26px 0 60px; font-family: var(--mono); font-size: 12px; color: var(--muted);
+}
+footer a { color: var(--crimson); text-decoration: none; }
+footer a:hover { border-bottom: 1px solid var(--crimson); }
+footer .row { display: flex; flex-wrap: wrap; gap: 20px; }
+
+@media (max-width: 640px) {
+  .claims { grid-template-columns: 1fr; }
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>reviewinsight ai — a field-notes dashboard</title>
+  <meta name="description" content="An LLM pipeline over warehouse-employee reviews: silver-label evaluation, a plan-and-execute agent, and DPO alignment on silver preferences — every number traced to a frozen artifact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600&family=Spectral:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="eyebrow">reviewinsight ai · a field-notes dashboard</p>
+      <h1>warehouse reviews, read by an llm pipeline — and scored by rules that refuse self-grading</h1>
+      <p class="lede">glassdoor, reddit, and youtube reviews of warehouse work, merged into one corpus and turned into
+        structured signals: a 1–5 sentiment score, themes from a fixed taxonomy, a retention-risk class. this page is the
+        project's dashboard: the corpus, the honest evaluation table, the plan-and-execute agent, and the dpo alignment
+        extension. every number is computed from a frozen artifact in the repository — this is a static showcase, and
+        nothing on it is a served model.</p>
+      <div class="honesty">every metric on this page is agreement with an llm labeler — not accuracy against human ground
+        truth. the word accuracy is reserved in this codebase for a human-labeled sample that does not exist yet.</div>
+      <div class="headlinks">
+        <a href="https://github.com/oleeveeuh/extern">github repository ↗</a>
+        <a href="https://github.com/oleeveeuh/extern/blob/main/DATASET_CARD.md">dataset card ↗</a>
+        <a href="https://github.com/oleeveeuh/extern/blob/main/docs/EVALUATION.md">evaluation methodology ↗</a>
+        <a href="https://github.com/oleeveeuh/extern/blob/main/docs/ALIGNMENT.md">alignment (dpo) docs ↗</a>
+        <a href="https://oleeveeuh.github.io/">portfolio entry ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="kpis" id="kpis"></div>
+
+    <section id="corpus">
+      <p class="sec-kicker">chapter 01 · the corpus</p>
+      <h2>175 reviews of warehouse work</h2>
+      <p class="sec-lede">three sources, one schema: glassdoor reviews copied manually, reddit posts from r/AmazonFC and
+        friends, youtube transcript chunks from warehouse-creator videos. the repository ships synthetic fixtures only;
+        the real corpus lives untracked in data_local/ — see the dataset card for every provenance gap.</p>
+      <div class="chart-grid">
+        <div class="chart-card"><p class="chart-title">SOURCES</p><div id="c-sources"></div><p class="chart-note" id="c-sources-note"></p></div>
+        <div class="chart-card"><p class="chart-title">GLASSDOOR RATINGS</p><div id="c-ratings"></div><p class="chart-note" id="c-ratings-note"></p></div>
+        <div class="chart-card wide"><p class="chart-title">REVIEWS BY YEAR</p><div id="c-years"></div><p class="chart-note" id="c-years-note"></p></div>
+      </div>
+    </section>
+
+    <section id="labels">
+      <p class="sec-kicker">chapter 02 · what the pipeline extracts</p>
+      <h2>signals, labeled by an llm</h2>
+      <p class="sec-lede">the same pipeline that will analyze new reviews labeled the corpus: one label per review from the
+        v5 template — sentiment 1–5, up to three themes from a fixed taxonomy, and a retention-risk class. these are the
+        silver labels the whole evaluation stands on.</p>
+      <div class="chart-grid">
+        <div class="chart-card wide"><p class="chart-title">THEMES · MENTIONS ACROSS 175 REVIEWS</p><div id="c-themes"></div><p class="chart-note" id="c-themes-note"></p></div>
+        <div class="chart-card"><p class="chart-title">SENTIMENT · 1–5</p><div id="c-sentiment"></div><p class="chart-note" id="c-sentiment-note"></p></div>
+        <div class="chart-card"><p class="chart-title">RETENTION RISK</p><div id="c-risk"></div><p class="chart-note" id="c-risk-note"></p></div>
+      </div>
+    </section>
+
+    <section id="evaluation">
+      <p class="sec-kicker">chapter 03 · the harness</p>
+      <h2>six prompts, scored leave-one-prompt-out</h2>
+      <p class="sec-lede">the original grid let a prompt be scored against its own labels; the headline it produced —
+        94.3% theme f1 — was retired. the corrected harness splits by unique review id, excludes each prompt's own label
+        rows, and reports agreement with an llm labeler as what it is.</p>
+      <table>
+        <thead><tr><th>prompt</th><th>theme f1</th><th>sentiment agr.</th><th>risk agr.</th><th>label rows</th><th>unique reviews</th></tr></thead>
+        <tbody id="lopo-body"></tbody>
+      </table>
+      <p class="tbl-note" id="lopo-note"></p>
+      <div class="callout">
+        <p class="t">✗ the retired headline — kept on file as a measurement-error case study</p>
+        <p>v5.0 at k_shot = 0 once scored <strong>94.3% theme f1 / 98% sentiment / 100% risk</strong> in a 30-run grid —
+          against reference labels v5 itself had generated. the same prompt, measured leave-one-prompt-out on the full
+          corpus: 87.8% / 68.2% / 86.7%. the grid cannot be rescued by re-scoring; its artifacts are retained, and
+          docs/evaluation.md forbids citing them as performance.</p>
+        <img src="assets/reviewinsight-contamination.png" alt="grouped horizontal bar chart comparing the contaminated grid's v5 scores of 94.3, 98.0 and 100.0 percent against the leave-one-prompt-out re-measure of 87.8, 68.2 and 86.7 percent">
+      </div>
+      <img class="figure-img" src="assets/reviewinsight-prompt-leaderboard.png" alt="three horizontal bar panels showing theme F1, sentiment agreement and risk agreement for the six prompt versions">
+      <p class="fig-caption">the full leaderboard: v2.0 role-enhanced leads theme f1 (89.9%) and risk (89.4%); v3.0 — the
+        same prompt at k_shot = 0 — leads sentiment (84.6%). the elaborate prompt lost: chain-of-thought is last on every
+        metric, and v1/v4's near-zero theme f1 is vocabulary mismatch against the fixed taxonomy.</p>
+    </section>
+
+    <section id="agent">
+      <p class="sec-kicker">chapter 04 · the agent</p>
+      <h2>one plan, sequential tools</h2>
+      <p class="sec-lede">the analysis half of the pipeline: one llm planning call produces a json plan, then tools run
+        sequentially and a synthesis step returns sentiment, themes, and risk. reAct-inspired, not reAct — there is no
+        re-planning from tool observations, and the docs say so plainly.</p>
+      <div class="chips">
+        <span class="chip"><b>01</b>retrieve_similar_reviews · tf-idf vector store</span>
+        <span class="chip"><b>02</b>analyze_sentiment · with retrieved context</span>
+        <span class="chip"><b>03</b>detect_anomaly · when themes warrant it</span>
+      </div>
+      <div class="chips">
+        <span class="chip"><b>≡</b>memory · jsonl analysis log</span>
+        <span class="chip"><b>Δkl</b>drift detection · theme distribution vs baseline, kl divergence</span>
+        <span class="chip"><b>⚙</b>fastapi service · /analyze /memory/stats /tools /health</span>
+        <span class="chip"><b>▦</b>streamlit dashboard · duckdb-backed</span>
+      </div>
+      <p class="sec-lede" style="margin-bottom:0">a langchain variant that iterates with true reAct loops exists in the repo
+        and has never been fully exercised — a documented limitation, not a hidden one. the api works keyless except
+        /analyze; nothing here is deployed as a live service.</p>
+    </section>
+
+    <section id="dpo">
+      <p class="sec-kicker">chapter 05 · the alignment extension</p>
+      <h2>dpo on silver preferences</h2>
+      <p class="sec-lede">the 525 cross-prompt silver labels become 137 constructed preference pairs — where two generator
+        prompts agree and the third disagrees, the consensus label set is chosen and the outlier is rejected — and a
+        0.5b model is tuned with lora-dpo to move toward that consensus.</p>
+      <div class="chips" id="dpo-construction"></div>
+      <div class="chart-card wide">
+        <p class="chart-title">BASE VS TUNED · 27 REVIEW-DISJOINT HELD-OUT PAIRS</p>
+        <div id="dpo-bars"></div>
+        <p class="chart-note" id="dpo-note"></p>
+      </div>
+      <div class="claims">
+        <div class="claim yes">
+          <p class="t">what this is</p>
+          <ul>
+            <li>dpo training with lora on an open-weights model (qwen2.5-0.5b-instruct)</li>
+            <li>preference tuning — preferences constructed from llm label consensus</li>
+            <li>a +33.3 pp risk-class agreement shift on held-out reviews</li>
+            <li>adapter-only training on apple silicon · trl 0.14 + peft · fp16 mps</li>
+          </ul>
+        </div>
+        <div class="claim no">
+          <p class="t">what this is not</p>
+          <ul>
+            <li>not rlhf — no reward model, no ppo, dpo skips both by design</li>
+            <li>not trained on human preferences — the preferences are silver</li>
+            <li>not accuracy — agreement with an llm consensus labeler, bias included</li>
+            <li>not settled — consensus circularity, one seed, n = 27 (±18 pp)</li>
+          </ul>
+        </div>
+      </div>
+      <p class="sec-lede" style="margin-bottom:0">training facts, reported because the docs require them: efficient profile
+        (2 epochs, batch 2, reviews truncated to 300 tokens for 16% of pairs), final dpo loss 0.669 from 0.693 — ln 2, the
+        loss dpo starts at when it knows nothing — and a 5h04m wall clock, because a heat-soaked macbook degrades step
+        time roughly 10×. the next layer is a human preference set, replacing silver preferences entirely.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="row">
+        <a href="https://github.com/oleeveeuh/extern">code</a>
+        <a href="https://github.com/oleeveeuh/extern/blob/main/DATASET_CARD.md">dataset card</a>
+        <a href="https://github.com/oleeveeuh/extern/blob/main/docs/EVALUATION.md">evaluation methodology</a>
+        <a href="https://github.com/oleeveeuh/extern/blob/main/docs/ALIGNMENT.md">alignment docs</a>
+        <a href="https://oleeveeuh.github.io/">portfolio</a>
+      </div>
+      <p style="margin-top:14px">frozen data generated by scripts/build_showcase_data.py from the repository's artifacts ·
+        static page, no server, no api keys, nothing served · agreement, not accuracy.</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
