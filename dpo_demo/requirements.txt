@@ -1,0 +1,8 @@
+# DPO demo — Streamlit Community Cloud deploy (cpu only).
+# The cpu wheel index keeps the build ~180 mb instead of ~900 mb cuda.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.5.1
+transformers==4.46.3
+peft==0.13.2
+accelerate==1.1.1
+streamlit==1.40.0
