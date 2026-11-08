@@ -366,7 +366,7 @@ def get_kpis(_db):
         sentiment_dist = _db.get_sentiment_distribution()
 
         avg_sentiment = stats.get('avg_sentiment', 0)
-        high_risk_pct = stats.get('high_risk_percentage', 0)
+        high_risk_pct = stats.get('high_risk_pct', 0)
         anomaly_rate = stats.get('anomaly_rate', 0)
 
         # Calculate positive sentiment percentage
