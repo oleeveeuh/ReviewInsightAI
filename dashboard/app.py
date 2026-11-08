@@ -963,8 +963,7 @@ with tab4:
                     'theme_precision': metrics.get('theme_precision', 0),
                     'theme_recall': metrics.get('theme_recall', 0),
                     'risk_acc': metrics.get('risk_accuracy',
-                                            metrics.get('risk_agreement', 0)),
-                    'cost': metrics.get('cost_per_1k_samples', 0)
+                                            metrics.get('risk_agreement', 0))
                 })
 
             df = pd.DataFrame(df_results)
@@ -981,7 +980,7 @@ with tab4:
                 if is_crossval:
                     st.success("**Cross-Validation Mode**: Fair, leakage-free evaluation")
 
-                col1, col2, col3, col4 = st.columns(4)
+                col1, col2, col3 = st.columns(3)
 
                 with col1:
                     best_idx = df['sentiment_acc'].idxmax()
@@ -1011,20 +1010,12 @@ with tab4:
                         help=f"{df.loc[best_idx, 'prompt']} (k={df.loc[best_idx, 'k_shot']})"
                     )
 
-                with col4:
-                    best_idx = df['cost'].idxmin()
-                    st.metric(
-                        "Lowest Cost",
-                        f"${df.loc[best_idx, 'cost']:.3f}/1k",
-                        help=f"{df.loc[best_idx, 'prompt']} (k={df.loc[best_idx, 'k_shot']})"
-                    )
-
                 st.markdown("---")
 
                 # Chart selection
                 chart_type = st.radio(
                     "Select view:",
-                    ["Leaderboard", "Performance vs Cost", "Theme Metrics", "Cost Analysis"],
+                    ["Leaderboard", "Theme Metrics"],
                     horizontal=True,
                     label_visibility="collapsed"
                 )
@@ -1033,42 +1024,13 @@ with tab4:
                     st.markdown("#### Experiment Leaderboard")
 
                     df_sorted = df.sort_values('theme_f1', ascending=False).reset_index(drop=True)
-                    display_df = df_sorted[['prompt', 'k_shot', 'sentiment_acc', 'theme_f1', 'risk_acc', 'cost']].copy()
-                    display_df.columns = ['Prompt', 'K-shot', 'Sentiment Acc', 'Theme F1', 'Risk Acc', 'Cost/1k']
+                    display_df = df_sorted[['prompt', 'k_shot', 'sentiment_acc', 'theme_f1', 'risk_acc']].copy()
+                    display_df.columns = ['Prompt', 'K-shot', 'Sentiment Acc', 'Theme F1', 'Risk Acc']
                     display_df['Sentiment Acc'] = (display_df['Sentiment Acc'] * 100).round(1).astype(str) + '%'
                     display_df['Theme F1'] = (display_df['Theme F1'] * 100).round(1).astype(str) + '%'
                     display_df['Risk Acc'] = (display_df['Risk Acc'] * 100).round(1).astype(str) + '%'
-                    display_df['Cost/1k'] = '$' + display_df['Cost/1k'].round(3).astype(str)
 
                     st.dataframe(display_df, use_container_width=True, hide_index=True)
-
-                elif chart_type == "Performance vs Cost":
-                    st.markdown("#### Performance vs Cost Trade-off")
-
-                    fig = px.scatter(
-                        df,
-                        x='cost',
-                        y='theme_f1',
-                        size='sentiment_acc',
-                        color='prompt',
-                        hover_data=['k_shot'],
-                        labels={
-                            'cost': 'Cost per 1k Samples ($)',
-                            'theme_f1': 'Theme F1 Score',
-                            'sentiment_acc': 'Sentiment Accuracy',
-                            'prompt': 'Prompt'
-                        },
-                        title='Theme F1 vs Cost (bubble size = Sentiment Accuracy)'
-                    )
-
-                    fig.update_layout(
-                        height=500,
-                        paper_bgcolor='#fbf9f4',
-                        plot_bgcolor='#fbf9f4',
-                        font=dict(color="#52514e")
-                    )
-
-                    st.plotly_chart(fig, use_container_width=True)
 
                 elif chart_type == "Theme Metrics":
                     st.markdown("#### Theme Classification Metrics")
@@ -1108,31 +1070,7 @@ with tab4:
 
                     st.plotly_chart(fig, use_container_width=True)
 
-                elif chart_type == "Cost Analysis":
-                    st.markdown("#### Cost per Sample by Experiment")
 
-                    df_cost = df.sort_values('cost').reset_index(drop=True)
-
-                    fig = px.bar(
-                        df_cost,
-                        x='prompt',
-                        y='cost',
-                        color='k_shot',
-                        labels={'prompt': 'Prompt Version', 'cost': 'Cost per 1k Samples ($)', 'k_shot': 'K-shot'},
-                        title='Cost per 1k Samples (lower is better)',
-                        text='cost'
-                    )
-
-                    fig.update_traces(texttemplate='$%{y:.3f}', textposition='outside')
-                    fig.update_layout(
-                        xaxis_tickangle=-45,
-                        height=500,
-                        paper_bgcolor='#fbf9f4',
-                        plot_bgcolor='#fbf9f4',
-                        font=dict(color="#52514e")
-                    )
-
-                    st.plotly_chart(fig, use_container_width=True)
 
 # Footer
 st.markdown("---")

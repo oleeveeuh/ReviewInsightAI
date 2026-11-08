@@ -52,13 +52,27 @@ def seed_fixture_labels(db: ReviewDatabase) -> int:
             al = row.get("auto_labels") or {}
             if not al:
                 continue
+            # the repo's own anomaly rule (src/agent/tools.py detect_anomaly):
+            # sentiment <= 2 with safety, or pay_benefits + management together
+            # at sentiment <= 2 — computed, never hard-coded
+            themes_l = [str(t).lower() for t in al.get("themes", [])]
+            sentiment = al.get("sentiment")
+            is_anomalous = False
+            reasons = []
+            if isinstance(sentiment, int) and sentiment <= 2 and "safety" in themes_l:
+                is_anomalous = True
+                reasons.append(f"Negative sentiment ({sentiment}) with safety concerns is unusual")
+            if (isinstance(sentiment, int) and sentiment <= 2
+                    and "pay_benefits" in themes_l and "management" in themes_l):
+                is_anomalous = True
+                reasons.append("Pay/benefits complaints with negative sentiment AND management issues")
             try:
                 db.conn.execute(
                     """
                     INSERT OR REPLACE INTO llm_analysis
                     (review_id, analysis_id, sentiment, themes, retention_risk,
                      confidence, reasoning, is_anomalous, anomaly_reason, model_version)
-                    VALUES (?, nextval('analysis_id_seq'), ?, ?, ?, ?, ?, FALSE, NULL, ?)
+                    VALUES (?, nextval('analysis_id_seq'), ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         row.get("review_id"),
@@ -67,6 +81,8 @@ def seed_fixture_labels(db: ReviewDatabase) -> int:
                         al.get("retention_risk"),
                         0.85,
                         "fixture silver label (v5) — seeded offline, see data/labeled/",
+                        is_anomalous,
+                        "; ".join(reasons) if reasons else None,
                         "gpt-4o-mini (silver fixture)",
                     ),
                 )
