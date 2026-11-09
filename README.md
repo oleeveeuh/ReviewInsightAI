@@ -31,8 +31,9 @@ into structured, queryable signals.
   A true iterative ReAct variant lives in
   [`src/agent/langchain_agent.py`](src/agent/langchain_agent.py) (optional
   LangChain dependencies; never fully exercised due to dependency conflicts).
-- **Context retrieval**: lightweight TF-IDF vector store, no serialization,
-  works offline on a fresh clone ([`src/agent/embeddings.py`](src/agent/embeddings.py));
+- **Context retrieval**: lightweight TF-IDF vector store (keyword-overlap
+  search — no embeddings, no serialization), works offline on a fresh clone
+  ([`src/agent/embeddings.py`](src/agent/embeddings.py));
   an optional sentence-transformers backend is supported.
 - **Memory + drift detection**: analyses append to a JSONL log; theme
   distributions are compared against a baseline with KL divergence
@@ -78,13 +79,14 @@ runnable today.
 |---|---|---|
 | Glassdoor | 100 reviews (manual copy, 2024–2025) | header-only template |
 | Reddit | 57 posts (37 manual paste, 25 Pushshift) | 3 synthetic posts |
-| YouTube | 18 transcript chunks (8 videos) | 1 synthetic video |
+| YouTube | 18 transcript chunks (from 4 of 8 videos) | 1 synthetic video |
 | **Merged** | **175 reviews** (`reviews_final.jsonl` locally) | **9 synthetic reviews** |
 
 The repository **does not redistribute third-party review or transcript
 text**. Tracked files under `data/` are small hand-authored synthetic
-fixtures with the same schema, so tests and demos run on a fresh clone. The
-real corpus is kept locally in gitignored `data_local/`. Full details,
+fixtures with the same schema, so tests and demos run on a fresh clone; the
+committed `data/evaluation/` summary is aggregate metrics only (no review
+text). The real corpus is kept locally in gitignored `data_local/`. Full details,
 collection dates, licensing uncertainty, and known provenance gaps:
 **[DATASET_CARD.md](DATASET_CARD.md)**.
 
@@ -123,6 +125,13 @@ out to be single-source (all Reddit).
 v2.0 and v3.0 are the same prompt at k_shot=0 (v3's few-shot examples are
 unused there); their 0.5 pp gap is sampling noise.
 
+Theme F1 is micro-averaged over the fixed ten-label taxonomy. Majority-label
+baselines on the same 525-row reference set — always predicting the single
+most common reference label — match 34.9% of sentiment labels exactly, 56.0%
+of risk labels, and score 46.4% theme F1 (predicting the modal theme set).
+v2/v3 clear the risk baseline by ~33 pp; v1/v4 sit far below even the
+constant theme baseline, which is the vocabulary mismatch made measurable.
+
 ## Evaluation limitations (read before citing anything)
 
 - **These are not accuracy numbers.** Reference labels came from the same
@@ -149,7 +158,7 @@ unused there); their 0.5 pp gap is sampling noise.
 Requires **Python 3.11** (the pinned numpy/scipy builds don't support 3.13+).
 
 ```bash
-git clone https://github.com/oleeveeuh/extern.git
+git clone https://github.com/oleeveeuh/ReviewInsightAI.git
 cd extern
 
 python3.11 -m venv .venv
@@ -225,14 +234,19 @@ pip install -r requirements-optional.txt
 streamlit run dashboard/app.py
 ```
 
-The dashboard reads the local DuckDB (build it from the fixtures with
-`python src/pipelines/build_database.py`) and works without an API key except
-for the Analyze tab.
+The dashboard has two data layers: headline KPIs, the source trend, and the
+theme chart render from
+[`dashboard/real_aggregates.json`](dashboard/real_aggregates.json) — frozen
+aggregates of the real 175-review corpus (counts only, no review text) —
+while the remaining tabs bootstrap a fixtures-built DuckDB on first run
+(`python src/pipelines/build_database.py`; `dashboard/prepare_database.py`
+never touches a real-corpus database). Everything works without an API key
+except the Analyze tab.
 
 ## Tests and verification
 
 ```bash
-pytest                          # 51 offline tests; no API key, no network
+pytest                          # 57 offline tests; no API key, no network
 bash scripts/verify.sh          # ruff + pytest + offline end-to-end demo
 ruff check .                    # static checks (config in pyproject.toml)
 ```
@@ -245,7 +259,7 @@ dry-run results never carry metrics, and SQL search is parameterized.
 ## Repository structure
 
 ```
-extern/
+ReviewInsightAI/
 ├── api/                    # FastAPI service
 ├── dashboard/              # Streamlit dashboard
 ├── docs/                   # evaluation + silver-label methodology
@@ -262,7 +276,7 @@ extern/
 │   ├── prompts/            # 6 prompt templates
 │   └── scraping/           # Pushshift scraper (defunct API) + manual entry
 ├── tests/                  # offline pytest suite
-├── data/                   # synthetic fixtures only (see DATASET_CARD.md)
+├── data/                   # synthetic fixtures + committed evaluation summary
 ├── data_local/             # real corpus, gitignored, never redistributed
 ├── DATASET_CARD.md
 └── requirements*.txt
@@ -277,6 +291,13 @@ extern/
   variables. No secrets have ever been committed.
 - API: configurable CORS, bounded request size, sanitized error responses
   (details logged server-side only), parameterized SQL throughout.
+- **Prompt-injection surface, stated plainly:** review text — and the
+  retrieved reviews used as model context — is third-party content
+  interpolated directly into prompts, so an instruction embedded in a review
+  can steer the model's structured output. The blast radius is bounded by
+  design: the deployed apps are read-only, the agent's tools have no side
+  effects beyond a deterministic theme-frequency check, and no model output
+  is ever executed. Treat all outputs as untrusted text.
 - Glassdoor/Reddit/YouTube content carries platform-specific terms and
   creator rights; this repo therefore ships synthetic fixtures only.
 - **Retention-risk output is an LLM classification of text**, not a
@@ -304,7 +325,10 @@ Beyond prompting, the repo includes a **preference-alignment training loop**:
 the 525 cross-prompt silver labels are converted into 137 constructed
 preference pairs (consensus label set = *chosen*, outlier = *rejected*;
 38 unanimous reviews skipped), split 110/27 **by review ID**, and used to
-LoRA-DPO **Qwen2.5-0.5B-Instruct** locally on Apple Silicon. Evaluation
+fine-tune **Qwen2.5-0.5B-Instruct** locally on Apple Silicon with LoRA-DPO
+(direct preference optimization — the model learns from chosen/rejected
+pairs instead of a reward model; LoRA trains a small adapter, not the base
+weights). Evaluation
 measures agreement shift (base vs. tuned) on the held-out 27 pairs with the
 same metrics as the prompt harness.
 

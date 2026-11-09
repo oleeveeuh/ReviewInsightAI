@@ -192,9 +192,12 @@ def main():
         remove_unused_columns=False,
     )
 
-    n_steps = len(train_ds) // config.gradient_accumulation_steps * int(args.epochs)
+    effective_batch = args.batch_size * config.gradient_accumulation_steps
+    n_steps = len(train_ds) // effective_batch * int(args.epochs)
     print(f'Dataset: {len(train_ds)} pairs -> {n_steps} optimizer steps '
-          f'(effective batch {config.gradient_accumulation_steps})')
+          f'(per-device batch {args.batch_size} x accumulation '
+          f'{config.gradient_accumulation_steps} = effective batch '
+          f'{effective_batch})')
 
     trainer = DPOTrainer(model=model, args=config, train_dataset=train_ds,
                          processing_class=tokenizer, peft_config=peft_config)

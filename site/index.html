@@ -46,7 +46,7 @@
         <tbody>
           <tr><td>glassdoor</td><td>manual copy-paste into a csv</td><td>2024–2025</td><td>100 · every row carries a rating</td><td>the raw csv was never committed — the processed rows' original file is gone, a provenance gap the dataset card documents rather than hides</td></tr>
           <tr><td>reddit</td><td>manual paste (37) + pushshift api (25)</td><td>2020–2021</td><td>57</td><td>pushshift public access died (http 403 since 2023) — the scraper ships defunct, and reddit collection would need a redesign against the official api</td></tr>
-          <tr><td>youtube</td><td>caption-level transcripts from 8 hand-picked videos</td><td>uploaded 2024</td><td>18 chunks</td><td>spoken commentary, not written reviews — the unit of analysis is the caption chunk, not the video or the creator</td></tr>
+          <tr><td>youtube</td><td>caption-level transcripts from 4 of 8 hand-picked videos</td><td>uploaded 2024</td><td>18 chunks</td><td>spoken commentary, not written reviews — the unit of analysis is the caption chunk, not the video or the creator</td></tr>
         </tbody>
       </table>
       <p class="tbl-note">collection summary from DATASET_CARD.md · corpus date range 2020-08-01 → 2026-02-15 · mean glassdoor rating 3.36 / 5</p>
@@ -154,7 +154,7 @@
             <li>not rlhf — no reward model, no ppo, dpo skips both by design</li>
             <li>not trained on human preferences — the preferences are silver</li>
             <li>not accuracy — agreement with an llm consensus labeler, bias included</li>
-            <li>not settled — consensus circularity, one seed, n = 27 (±18 pp)</li>
+            <li>not settled — consensus circularity, one unseeded run, n = 27 (±18 pp)</li>
           </ul>
         </div>
       </div>

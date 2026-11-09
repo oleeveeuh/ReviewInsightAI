@@ -1,6 +1,6 @@
 # Dataset Card — ReviewInsight AI
 
-**Last updated:** 2026-10-02 · **Maintainer:** repository owner
+**Last updated:** 2026-11-08 · **Maintainer:** repository owner
 
 This card documents every dataset in the repository: what is tracked (small
 synthetic fixtures), what exists only locally (the real corpus, in
@@ -23,6 +23,7 @@ synthetic fixtures), what exists only locally (the real corpus, in
 | `data/glassdoor/reviews.csv`, `data/indeed/reviews.csv` | ✅ header-only (0 rows) | Collection templates |
 | DuckDB databases (`data/database/*.duckdb`) | ❌ not tracked | Rebuildable via `src/pipelines/build_database.py` |
 | Embeddings (`data/processed/*.npy`) | ❌ not tracked | Rebuildable via `src/agent/build_embeddings.py` |
+| `dashboard/real_aggregates.json` | ✅ tracked — frozen aggregates of the real corpus (counts only, no review text) | Dashboard headline KPIs |
 | Evaluation outputs (`data/evaluation/*`) | ❌ not tracked (except re-scored summary) | Regenerable |
 
 ✅ = tracked in git · 📁 = kept locally in `data_local/` (gitignored), never redistributed

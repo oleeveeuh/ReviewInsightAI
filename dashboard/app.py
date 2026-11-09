@@ -16,6 +16,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
 import sys
+import threading
 from pathlib import Path
 
 # Add project root to path
@@ -259,8 +260,6 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
-import threading
 
 _init_lock = threading.Lock()
 

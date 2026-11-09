@@ -15,6 +15,8 @@ select = ["E", "F", "W"]  # pycodestyle errors, pyflakes, warnings
 "src/evaluation/evaluate_prompts.py" = ["E402"]
 # Prompt template strings must stay byte-identical to what was benchmarked.
 "src/prompts/templates.py" = ["E501"]
+# Demo embeds the v2 "Role Context Enhanced" prompt verbatim from src/prompts.
+"dpo_demo/app.py" = ["E501"]
 # LLM prompt strings (ReAct template, labeling prompt): byte-identical content.
 "src/agent/langchain_agent.py" = ["E501"]
 "src/labeling/auto_label.py" = ["E501"]

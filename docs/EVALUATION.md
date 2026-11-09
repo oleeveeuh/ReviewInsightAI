@@ -17,8 +17,9 @@ future comparisons against human labels.
 1. **Contaminated grid (Feb 2026, 30 runs)** — `run_experiments.py
    --generate-silver --prompt v5` labeled the corpus with v5, then every
    prompt × k_shot combination was scored against those labels. v5 was
-   evaluated against **its own** labels: v5.0 k=0 scored 94.3% theme F1 /
-   98% sentiment / 100% risk — a textbook self-testing inflation. These
+   evaluated against **its own** labels on the 50-review validation slice:
+   v5.0 k=0 scored 94.3% theme F1 / 98% sentiment / 100% risk — a textbook
+   self-testing inflation. These
    artifacts are retained locally (`data_local/evaluation/`) as a case study
    and must not be cited as performance.
 
@@ -28,9 +29,11 @@ future comparisons against human labels.
    Reddit posts** — a small *and* single-source sample. Superseded by (3).
 
 3. **Full-corpus evaluation (Oct 2026, current)** — 6 prompts × 175 reviews,
-   one zero-shot prediction per (prompt, review): 1,050 gpt-4o-mini calls,
-   0 failures, 0 unparseable outputs. Scored leave-one-prompt-out over all
-   525 silver label rows. This is the committed
+   one zero-shot prediction per (prompt, review): 1,050 gpt-4o-mini calls
+   (the `gpt-4o-mini` alias as of 2026-10-16), 0 failures, 0 unparseable
+   outputs, roughly $0.16 total API cost
+   (`data_local/evaluation/generate.log`). Scored leave-one-prompt-out over
+   all 525 silver label rows. This is the committed
    `data/evaluation/rescored_crossval_summary.json` and the README table.
 
 ## The protocol (implemented in the live code)
@@ -59,8 +62,18 @@ future comparisons against human labels.
 | v5.0 Structured Output | 525 | 87.8% | 68.2% | 86.7% |
 | v6.0 Detailed Analysis | 350 | 83.5% | 73.4% | 85.1% |
 
+Theme F1 is **micro-averaged** over the fixed ten-label taxonomy
+(`calculate_metrics` in `src/evaluation/evaluate_prompts.py`).
+
 Reading notes:
 
+- **Majority-label baselines** on the full 525-row reference set: always
+  guessing the modal sentiment (4) matches 34.9% of rows exactly; always
+  guessing risk `medium` matches 56.0%; always predicting the modal theme set
+  (`culture`, `management`, `workload`) scores 46.4% micro-F1. Per-prompt
+  reference subsets move these by a few points at most. v1/v4's ~8% theme F1
+  sits far below even that constant baseline — the vocabulary mismatch made
+  measurable — while v2.0/v3.0 clear the risk baseline by ~33 pp.
 - **v2.0 and v3.0 are the same prompt at k_shot=0** (v3's few-shot examples
   are unused there); their 0.5 pp gap is sampling noise at temperature 0.3.
 - The earlier 91.4% did not survive the full corpus — best is 89.9%, and the

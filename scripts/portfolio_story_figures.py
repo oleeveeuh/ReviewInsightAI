@@ -121,9 +121,9 @@ def fig_contamination(out: Path) -> None:
     fig, ax = plt.subplots(figsize=(7.4, 4.0))
     y = np.arange(len(metrics))[::-1].astype(float)
     bh = 0.30
-    bars = ax.barh(y + bh / 2 + 0.02, [m[1] for m in metrics], height=bh,
-                   color=WINE, zorder=3,
-                   label="feb 2026 grid — v5 × v5's own labels (50-review slice)")
+    ax.barh(y + bh / 2 + 0.02, [m[1] for m in metrics], height=bh,
+            color=WINE, zorder=3,
+            label="feb 2026 grid — v5 × v5's own labels (50-review slice)")
     ax.barh(y - bh / 2 - 0.02, [m[2] for m in metrics], height=bh,
             color=SAGE, zorder=3,
             label="oct 2026 — full corpus, leave-one-prompt-out (n = 175)")
@@ -164,10 +164,9 @@ def fig_leaderboard(out: Path) -> None:
         items = sorted(cross.items(), key=lambda kv: kv[1][key])
         names = [PROMPT_LABELS[v] for v, _ in items]
         vals = [m[key] * 100 for _, m in items]
-        worst = vals[0]
         colors = [SAGE if v > 60 else WINE for v in vals]
-        bars = ax.barh(np.arange(len(vals)), vals, height=0.62, color=colors,
-                       zorder=3)
+        ax.barh(np.arange(len(vals)), vals, height=0.62, color=colors,
+                zorder=3)
         for i, v in enumerate(vals):
             ax.text(v + 1.5, i, f"{v:.1f}%", va="center", fontsize=10.5,
                     color=INK2 if colors[i] == SAGE else WINE,

@@ -112,8 +112,9 @@ accuracy against ground truth.
 - **Reference circularity risk**: tuning toward consensus and evaluating
   against consensus are related; the held-out split mitigates but cannot
   eliminate this. External (human) evaluation is the cure.
-- **One seed, one run**: no variance estimates. Re-running with different
-  seeds would be needed for any stronger claim.
+- **One run, no seed fixed**: the training code sets no seed, so a re-run
+  will not reproduce this adapter bit-for-bit. Seeded re-runs would be
+  needed for any variance estimate.
 - Training ran on Apple MPS in fp16 (fp32 LoRA adapters); results are not
   directly comparable to CUDA runs and no distributed/batched optimizations
   were used.
